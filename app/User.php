@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name','surname','address','phonenumber','gender', 'email', 'password','birthdate','paymentcard','roles',
+        'name','surname','address','phonenumber','gender', 'email', 'password','birthdate','paymentcard','roles','year','month','day','password-confirm','profilepic','age',
     ];
 
     /**
@@ -24,6 +24,15 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token','password-confirm',
     ];
+
+    public function products()
+    {
+        return $this->hasMany('App\Product');
+    }
+    public function carts()
+    {
+        return $this->hasMany('App\Cart','carts','carts_id','users_id');
+    }
 }
