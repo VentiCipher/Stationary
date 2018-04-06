@@ -26,7 +26,7 @@ Laravel is accessible, yet powerful, providing tools needed for large, robust ap
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
-
+## Under Proprietary software Licensed
 <p><strong>Preamble:</strong> This Agreement, signed on Apr 5, 2018 (hereinafter: Effective Date) governs the relationship between COOP-Web-Project, a Business Entity, (hereinafter: Licensee) and Colonel-Technologies, a partnership under the laws of  whose principal place of business is {location} (hereinafter: Licensor). This Agreement sets the terms, rights, restrictions and obligations on using Website Seller Software &amp; Manage System (hereinafter: The Software) created and owned by Licensor, as detailed herein</p>
 </li><li>
 <p><strong>License Grant:</strong> Licensor hereby grants Licensee a Personal, Non-assignable &amp; non-transferable, Pepetual, Commercial, Royalty free, Without the rights to create derivative works, Non-exclusive license, all with accordance with the terms set forth and other legal restrictions set forth in 3rd party software used while running Software.</p>
