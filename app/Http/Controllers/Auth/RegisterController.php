@@ -28,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/home';
 
     /**
      * Create a new controller instance.
@@ -48,19 +48,11 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-      //  dd($data);
-     
         return Validator::make($data, [
             'name' => 'required|string|max:255',
-            'surname' => 'required|string|max:255',
-            'age' => 'required|integer|max:100|min:1',
-            'gender' => 'required|string',
             'email' => 'required|string|email|max:255|unique:users',
-            'birthdate' => 'required|string|max:255',
             'password' => 'required|string|min:6|confirmed',
-        
         ]);
-       
     }
 
     /**
@@ -71,30 +63,10 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $newpath ="";
-        
-        // if($data['profilepic'])
-        // {
-        //     $destinationPath =  storage_path().'/'.Auth::user()->email.'/';
-        //     $file = $data->file('profilepic');
-        //     $imgName =$file->getClientOriginalName();
-        //     $data->profilepic->move($destinationPath, $imgName);
-        //     $newpath = $destinationPath.'/'.$imgName;
-        // }
-       // $newdate = date_parse_from_format("Y-d-m", $data['birthdate']);
-        //$data['birthdate']= ((string)$newdate['year']) +  ((string)$newdate['month']) + ((string)$newdate['day']);
         return User::create([
             'name' => $data['name'],
-            'surname' => $data['surname'],
-            'address' => $data['address'],
-            'age' => $data['age'],
-            'gender' => $data['gender'],
-            // 'profilepic' => $newpath,
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'address'=> $data['address'],
-            'phonenumber' => $data['phonenumber'],
-            'birthdate' => $data['birthdate'],
         ]);
     }
 }

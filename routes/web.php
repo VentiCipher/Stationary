@@ -11,10 +11,10 @@
 |
 */
 
-Auth::routes();
-// Route::get('/', function () {
-//     return view('index');
-// });
-Route::get('/','Index\MainController@index')->name('index');
+Route::get('/', function () {
+    return view('index');
+});
 
+Auth::routes();
+Route::get('/spanel','Seller\SellerController@index')->name('sellerpanel')->middleware('seller');
 //Route::get('/home', 'HomeController@index')->name('home');
