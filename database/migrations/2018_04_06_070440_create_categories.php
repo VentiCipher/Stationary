@@ -18,7 +18,7 @@ class CreateCategories extends Migration
             $table->increments('id')->index();
             $table->string('name');
             $table->string('createby');
-            $table->string('descriptions');
+            $table->string('description');
             $table->timestamps();
         });
     }

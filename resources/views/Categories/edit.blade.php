@@ -21,7 +21,7 @@
             </div>
             <div class="panel-body">
                 
-                <form action="{{ route('createcat') }}" method="POST" class="form-horizontal" enctype="multipart/form-data">
+                <form action="{{ route('cat.update',$cat->id) }}" method="POST" class="form-horizontal" enctype="multipart/form-data">
                     {{ csrf_field() }} 
               
               
@@ -33,7 +33,7 @@
                         <label class="col-md-4 control-label" >Categories Name </label>
 
                         <div class="col-md-6">
-                            <input type="text" name="name" id="name" class="form-control">
+                            <input type="text" name="name" id="name" class="form-control" value="{{$cat->name}}">
                         </div>
                     </div>
 
@@ -42,13 +42,13 @@
                         <label class="col-md-4 control-label" >Categories Description </label>
 
                         <div class="col-md-12">
-                            <textarea id="description" name="description" class="form-control" style="    width: 75%;height: 30%;"></textarea>
+                            <textarea id="description" name="description" class="form-control" style="    width: 75%;height: 30%;"  >{{$cat->description}}</textarea>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
-                            <input type="submit" class="btn btn-default" value="Add Categories" />
+                            <input type="submit" class="btn btn-default" value="Update Categories" />
                         </div>
                     </div>
                 </form>

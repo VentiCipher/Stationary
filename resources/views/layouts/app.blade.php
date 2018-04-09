@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
@@ -113,50 +114,55 @@
         
         color:black;
       }
-      .dropdown:hover .dropbtn {
-    color:grey;}
+    .dropdown:hover .dropbtn 
+    {
+        color:grey;
+    }
     .newbgnav
     {
         /*background-image: url(../images/bg.png);*/
             background-color: #ffffa2;
-                width: 102%;
+               
     }
     .navigator
     {
         margin-right: 8%;
     }
-    .tooltip {
+    .tooltip 
+    {
     position: relative;
     display: contents;
     border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
-}
+    }
 
-/* Tooltip text */
-.tooltip .tooltiptext {
-    visibility: hidden;
-    width: 120px;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    padding: 5px 0;
-    border-radius: 6px;
-    margin-top: 8px;
-    /* Position the tooltip text - see examples below! */
-    position: absolute;
-    z-index: 1;
-}
+    /* Tooltip text */
+    .tooltip .tooltiptext 
+    {
+        visibility: hidden;
+        width: 120px;
+        background-color: black;
+        color: #fff;
+        text-align: center;
+        padding: 5px 0;
+        border-radius: 6px;
+        margin-top: 8px;
+        /* Position the tooltip text - see examples below! */
+        position: absolute;
+        z-index: 1;
+    }
 
-/* Show the tooltip text when you mouse over the tooltip container */
-.tooltip:hover .tooltiptext {
-    visibility: visible;
-}
+    /* Show the tooltip text when you mouse over the tooltip container */
+    .tooltip:hover .tooltiptext 
+    {
+        visibility: visible;
+    }
 
     </style>
 </head>
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel newbgnav">
+        <nav class="navbar navbar-expand-md navbar-light navbar-laravel navbar-fixed-top newbgnav">
             <div class= "bg"></div>
             <div class="container">
             
@@ -176,8 +182,8 @@
                    
                      <a href="#search"  class="nav-link fa fa-search buttonbar"></a>
         
-                 
-                     @if(Auth::user()->roles == "seller" || Auth::user()->roles == "admin")
+                    @if(Auth::check())
+                    @if(Auth::user()->roles == "seller" || Auth::user()->roles == "admin")
                <!-- <a href ="#" class="nav-link fa fa-cubes buttonbar" style="margin-left:1%" title="Stock MANAGER"></a> -->
 <!-- THIS IS DROPDOWNS STOCK-->
                  <li class="nav-item dropdown">
@@ -224,13 +230,10 @@
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                            
 
-                                    <a class="dropdown-item" href="{{ route('login') }}">
+                                    <a class="dropdown-item" href="{{ route('indexcat') }}">
                                         Manage Categories
                                     </a>
 
-                                    <a class="dropdown-item" href="{{ route('addcat') }}">
-                                        Add Categories
-                                    </a>
                                      <a class="dropdown-item" href="{{ route('login') }}">
                                         Manage User
                                     </a>
@@ -238,6 +241,7 @@
                                
                                 </div>
                             </li>
+                    @endif
                     @endif
                     </ul>
 
@@ -293,18 +297,18 @@
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                      <i class="fa fa-user-circle buttonbar dropbtn" ></i>
-                        <span class="caret"></span>
+                        <!-- <span class="caret"></span> -->
                                 </a>
 
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="    left: -333%;">
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="    left: -333%;">
                             @guest
                              <div style ="padding-bottom:20px;">
                             <label class ="dropdown-item" style="background-color: #dcdcaa; padding-bottom: ">Welcome Guest</label>
                             </div>
-                            <li><a class="dropdown-item" href="{{ route('login') }}">{{ __('Login') }}</a></li>
-                            <li><a class="dropdown-item" href="{{ route('register') }}">{{ __('Register') }}</a></li>
-                             <li><a class="dropdown-item" href="{{ route('register') }}">Tracking Orders</a></li>
-                             <li><a class="dropdown-item" href="{{ route('register') }}">F.A.Q.</a></li>
+                            <a class="dropdown-item" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            <a class="dropdown-item" href="{{ route('register') }}">{{ __('Register') }}</a>
+                             <a class="dropdown-item" href="{{ route('register') }}">Tracking Orders</a>
+                            <a class="dropdown-item" href="{{ route('register') }}">F.A.Q.</a>
                             @else
                             <div style ="padding-bottom:20px;">
                             <label class ="dropdown-item" style="background-color: #dcdcaa; padding-bottom: ">Welcome {{ Auth::user()->name }}</label>
@@ -380,11 +384,12 @@
     
     
     //Do not include! This prevents the form from submitting for DEMO purposes only!
-    $('form').submit(function(event) {
-        event.preventDefault();
-        return false;
-    })
+    // $('form').submit(function(event) {
+    //     event.preventDefault();
+    //     return false;
+    // })
 });
 </script>
+
 </body>
 </html>
