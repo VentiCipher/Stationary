@@ -16,5 +16,5 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-Route::get('/spanel','Seller\SellerController@index')->name('sellerpanel')->middleware('seller');
+Route::get('/spanel','Seller\SellerController@index')->name('sellerpanel');//->middleware('seller')
 //Route::get('/home', 'HomeController@index')->name('home');
