@@ -13,8 +13,18 @@
 
 Route::get('/', function () {
     return view('index');
-});
+})->name('index');
 
 Auth::routes();
+
 Route::get('/spanel','Seller\SellerController@index')->name('sellerpanel');//->middleware('seller')
-//Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', function () {
+    return view('index');
+})->name('home');
+
+/* Product Section */
+Route::get('/add_product','Product\ProductController@add')->name('addproduct');
+
+/*Categories Section*/
+Route::get('/add_cat','Categories\CategoriesController@showadd')->name('addcat');
+Route::get('/createcat','Categories\CategoriesController@create')->name('createcat');
