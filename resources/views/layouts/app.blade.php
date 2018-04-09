@@ -118,6 +118,10 @@
     {
         color:grey;
     }
+    .btnholder:hover
+    {
+        color:grey;
+    }
     .newbgnav
     {
         /*background-image: url(../images/bg.png);*/
@@ -216,7 +220,13 @@
                         
                     @endif
                     @if(Auth::user()->roles == "admin")
-                    
+                   <div class ="tooltip">
+                      <a href ="{{route('dashboardindex')}}" class="nav-link" style="margin-left:2%">
+                                     <i class="fa fa-dashboard buttonbar  btnholder"   >
+                                     </i>
+                                     <span class="tooltiptext">Management Panel</span></a>
+                                 </div>
+                    <!-- 
                     <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     <div class ="tooltip">
@@ -240,7 +250,7 @@
 
                                
                                 </div>
-                            </li>
+                            </li> -->
                     @endif
                     @endif
                     </ul>

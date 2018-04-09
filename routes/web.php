@@ -38,7 +38,7 @@ Route::prefix('admins')->group(function(){
 Route::get('/categories/add','Categories\CategoriesController@showadd')->name('addcat');
 Route::post('/categories/create','Categories\CategoriesController@createadd')->name('createcat');
 Route::get('/categories/index','Categories\CategoriesController@index')->name('indexcat');
-
+Route::get('/dashboard','DashboardController@index')->name('dashboardindex');
 
 // Route::get('/categories/details/{id}','Categories\CategoriesController@details')->name('cat.details');
 Route::get('/categories/edit/{id}','Categories\CategoriesController@showedit')->name('cat.edit');
