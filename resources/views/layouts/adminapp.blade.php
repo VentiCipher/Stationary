@@ -339,11 +339,12 @@
                             <a class="dropdown-item" href="{{ route('login') }}">{{ __('Login') }}</a>
                             <a class="dropdown-item" href="{{ route('register') }}">{{ __('Register') }}</a>
                              <a class="dropdown-item" href="{{ route('register') }}">Tracking Orders</a>
-                            <a class="dropdown-item" href="{{ route('register') }}">F.A.Q.</a>
+                           <a class="dropdown-item" href="mailto:trythis.stationary@gmail.com?Subject=FAQ. to Admin" target="_top">F.A.Q.</a>
                             @else
                             <div style ="padding-bottom:20px;">
                             <label class ="dropdown-item" style="background-color: #dcdcaa; padding-bottom: ">Welcome {{ Auth::user()->name }}</label>
                             </div>
+                                <a class="dropdown-item" href="mailto:trythis.stationary@gmail.com?Subject=FAQ. to Admin" target="_top">F.A.Q.</a>
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
@@ -421,7 +422,7 @@
               <a class="nav-link {{ isActiveRoute('acc.show.add') }} blackfont" href="{{route('acc.show.add')}}">Add Users</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link {{ isActiveRoute('acc.index') }} blackfont" href="{{route('acc.index')}}">Edit/View Users</a>
+              <a class="nav-link {{ isActiveRoute('acc.index') }} blackfont" href="{{route('acc.index')}}">View All Users</a>
             </li>
              <li class="nav-item">
               <a class="nav-link {{ isActiveRoute('acc.show.manage') }} blackfont" href="{{route('acc.show.manage')}}">Dealers Management</a>
