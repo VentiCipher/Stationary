@@ -3,9 +3,9 @@
 namespace App;
 use Illuminate\Database\Eloquent\Model;
 
-class Image extends Model
+class Wishlist extends Model
 {
-   // use Notifiable;
+  
     protected $guard = 'web';
     /**
      * The attributes that are mass assignable.
@@ -13,11 +13,12 @@ class Image extends Model
      * @var array
      */
     protected $fillable = [
-        'name','products_id','categories_id','path','createby',
+        'name','users_id','products_id',
     ];
 
-    public function products()
+    public function users()
     {
-        return $this->belongsTo('App\Product','product_imgs','products_id','images_id');
+        return $this->belongsTo('App\User');
     }
+    
 }

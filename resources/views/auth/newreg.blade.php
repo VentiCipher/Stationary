@@ -243,7 +243,7 @@ label.light {
        <div class="form-group{{ $errors->has('age') ? ' has-error' : '' }} ">
             <label for="age">Age:</label>
             <input type="number" id="age" class="form-control" name="age" required> 
-            @if ($errors->has('password'))
+            @if ($errors->has('age'))
               <span class="help-block">
               <strong>{{ $errors->first('age') }}</strong>
               </span>

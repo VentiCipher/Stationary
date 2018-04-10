@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Add Account</title>
+  <title>Edit Users Account</title>
   
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 
@@ -148,16 +148,16 @@ label.light {
       @if (session('error'))
           <div class="alert alert-warning">{{ Session::get('error') }}</div>
       @endif
-        <form id = "formid" class="form-horizontal"  onsubmit="setup()" method="POST" action="{{ route('acc.create.add') }}" enctype="multipart/form-data">
+        <form id = "formid" class="form-horizontal"  onsubmit="setup()" method="POST" action="{{ route('acc.update',$datauser->id) }}" enctype="multipart/form-data">
          {{ csrf_field() }}
-        <h1>Add new User</h1>
+        <h1>Edit User</h1>
         <br>
         <fieldset>
           <legend><span class="number">1</span>User basic info</legend>
           <br>
           <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
             <label for="email">Email:</label>
-              <input type="email" id="email" name="email" required>
+              <input type="email" id="email" name="email" required value="{{$datauser->email}}">
                 @if ($errors->has('email'))
                   <span class="help-block">
                   <strong>{{ $errors->first('email') }}</strong>
@@ -167,7 +167,7 @@ label.light {
 
           <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
             <label for="name">Name:</label>
-              <input type="text" id="name" name="name" required>
+              <input type="text" id="name" name="name" required value="{{$datauser->name}}">
                 @if ($errors->has('name'))
                   <span class="help-block">
                   <strong>{{ $errors->first('name') }}</strong>
@@ -177,7 +177,7 @@ label.light {
           
            <div class="form-group{{ $errors->has('surname') ? ' has-error' : '' }}">
             <label for="surname">Surname:</label>
-              <input type="text" id="surname" name="surname" required>
+              <input type="text" id="surname" name="surname" required value="{{$datauser->surname}}">
                 @if ($errors->has('surname'))
                   <span class="help-block">
                   <strong>{{ $errors->first('surname') }}</strong>
@@ -206,7 +206,7 @@ label.light {
                             <label for="password" class="control-label">Password</label>
 
                             
-                                <input id="password" type="password" class="form-control" name="password" required>
+                                <input id="password" type="password" class="form-control" name="password" >
 
                                 @if ($errors->has('password'))
                                     <span class="help-block">
@@ -219,7 +219,7 @@ label.light {
                         <div class="form-group">
                             <label for="password-confirm" class="control-label">Confirm Password</label>
 
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" >
            
                         </div>
 
@@ -242,8 +242,8 @@ label.light {
 
        <div class="form-group{{ $errors->has('age') ? ' has-error' : '' }} ">
             <label for="age">Age:</label>
-            <input type="number" id="age" class="form-control" name="age" required> 
-            @if ($errors->has('password'))
+            <input type="number" id="age" class="form-control" name="age" required value="{{$datauser->age}}"> 
+            @if ($errors->has('age'))
               <span class="help-block">
               <strong>{{ $errors->first('age') }}</strong>
               </span>
@@ -252,9 +252,9 @@ label.light {
         <label for="gender">Gender:</label>
         <select id="gender" name="gender">
           <optgroup label="Sex">
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="other">Other</option>
+            <option value="male"   {{ $datauser->gender == 'male' ? 'selected' : '' }} >Male</option>
+            <option value="female" {{ $datauser->gender == 'female' ? 'selected' : '' }} >Female</option>
+            <option value="other"{{ $datauser->gender == 'other' ? 'selected' : '' }}>Other</option>
           </optgroup>
           <!--<optgroup label="Mobile">
             <option value="Android_developer">Androild Developer</option>
@@ -277,7 +277,7 @@ label.light {
       <label class = "center">Date of Birth</label>
       <div class="form-group{{ $errors->has('birthdate') ? ' has-error' : '' }} ">
           
-            <input type="date" id="birthdate" class="form-control" name="birthdate" required> 
+            <input type="date" id="birthdate" class="form-control" name="birthdate" required value="{{$datauser->birthdate}}"> 
             @if ($errors->has('birthdate'))
               <span class="help-block">
               <strong>{{ $errors->first('birthdate') }}</strong>
@@ -292,54 +292,59 @@ label.light {
    <legend><span class="number">3</span>User Contact</legend>
    <div class="form-group{{ $errors->has('phonenumber') ? ' has-error' : '' }} ">
             <label for="phonenumber">Phone Number:</label>
-            <input type="number" id="phonenumber" class="form-control" name="phonenumber"> 
+            <input type="number" id="phonenumber" class="form-control" name="phonenumber" value="{{$datauser->phonenumber}}" 
           </div>
 
 
         <label for="address">Address:</label>
-        <textarea id="address" name="address"></textarea>
+        <textarea id="address" name="address">
+          {{$datauser->address}}</textarea>
         <br><br>
 
        
       </fieldset>
 
-
-   
 <br>
- <fieldset>
+
+   <fieldset>
 
    <legend><span class="number">4</span>User information</legend>
    <div class="form-group">
 
             <label for="paymentcard">Payment Card:</label>
-            <input type="number" id="paymentcard" class="form-control" name="paymentcard" value="{{Auth::user()->paymentcard}}"> 
+            <input type="number" id="paymentcard" class="form-control" name="paymentcard" value="{{$datauser->paymentcard}}"> 
           </div>
 
 
            <label for="roles">Roles:</label>
         <select id="roles" name="roles">
           <optgroup label="Normal User">
-            <option value="user"  >Normal User</option>
-            <option value="seller"   >Dealer user</option>
+            <option value="user"  {{ $datauser->roles == 'user' ? 'selected' : '' }} >Normal User</option>
+            <option value="seller"  {{ $datauser->roles == 'seller' ? 'selected' : '' }} >Dealer user</option>
           </optgroup>
           <optgroup label="Administrator">
-            <option value="admin" }>Administrator</option>
+            <option value="admin"  {{ $datauser->roles == 'admin' ? 'selected' : '' }}>Administrator</option>
           </optgroup>
         </select>
 
 
        
       </fieldset>
-      <br>
 
- <button id="submit" type="submit">Add user</button>
+
+
+   
+<br>
+
+
+ <button id="submit" type="submit">Update user</button>
       </form>
  <script>
 
             function setup()
             {
               // alert("The Files was submitted");
-              document.getElementById("submit").value = "Signing Up ...";
+              document.getElementById("submit").value = "Registering Up ...";
               document.getElementById("submit").disabled = true;
                   // $('submit').value = 'Please Wait we are Processing ...';
                   /*  document.getElementById("content").style.visibility = "hidden";

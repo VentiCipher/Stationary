@@ -54,5 +54,20 @@ Route::get('/categories/delete/{id}','Categories\CategoriesController@delete')->
 
 /* User Management Section */
 Route::get('/account/showadd','Account\AccountController@showadd')->name('acc.show.add');
+Route::post('/account/create','Account\AccountController@createadd')->name('acc.create.add');
 
+Route::get('/account/index','Account\AccountController@index')->name('acc.index');
+Route::get('/account/delete/{id}','Account\AccountController@delete')->name('acc.delete');
+Route::post('/account/update/{id}','Account\AccountController@update')->name('acc.update');
+Route::get('/account/edit/{id}','Account\AccountController@showedit')->name('acc.edit');
+Route::get('/account/approve','Account\AccountController@showapprove')->name('acc.show.approve');
+
+Route::get('/account/approvem','Account\AccountController@showmanage')->name('acc.show.manage');
+
+Route::get('/account/approve/a{id}','Account\AccountController@approved')->name('acc.approved');
+Route::get('/account/approve/r{id}','Account\AccountController@rejected')->name('acc.rejected');
+Route::get('/account/approve/d{id}','Account\AccountController@rejected')->name('acc.demote');
+
+Route::get('/account/promote/admin/{id}','Account\AccountController@promoteadmin')->name('acc.promote.admin');
+Route::get('/account/promote/seller/{id}','Account\AccountController@promoteseller')->name('acc.promote.seller');
 });

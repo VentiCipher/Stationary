@@ -15,7 +15,11 @@ class CheckSeller
      */
     public function handle($request, Closure $next)
     {
-        if($request->user()->roles != "seller") 
+        if(!Auth::check()){
+            return redirect('/login');
+        }
+        
+        if(Auth::check() && $request->user()->roles != "seller") 
             return redirect('/');
 
         return $next($request);

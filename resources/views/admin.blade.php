@@ -31,7 +31,10 @@
                     You are logged in!
                 </div>
             </div>
-        </div> -->
+        </div> -->.
+        @if (Session::has('info'))
+        <div class="card alert alert-info">{{ Session::get('info') }}</div>
+        @endif
         <h2>Dashboard Overview</h2>
         <br>
         <section class="row text-center placeholders">
@@ -109,10 +112,12 @@
                      @if($user->profilepic != null)
                       <img src="{{$user->profilepic}}" alt="User Image">
                       @else
-                      <i class="ion-person"></i>
+                      <i class="ion-person" style="font-size: 30px;"></i>
                       @endif
-                      <a class="users-list-name" href="#">{{$user->name}} <br>{{$user->surname}}</a>
+
+                      <a class="users-list-name" href="{{route('acc.edit',$user->id)}}">{{$user->name}} <br>{{$user->surname}}</a>
                       <span class="users-list-date">{{$user->created_at}}</span>
+                      <span class="users-list-date">[{{$user->roles}}]</span>
                     </li>
                      @endforeach
                   </ul>
@@ -151,9 +156,10 @@
                      @foreach($last_cat as $cat)
                     <li>
                     
-                      <i class="ion-soup-can"></i>
+                      <i class="ion-soup-can" style="font-size: 30px;"></i>
                       <a class="users-list-name" href="{{route('cat.edit',$cat->id)}}">{{$cat->name}} <br>{{$cat->description}}</a>
-                      <span class="users-list-date">{{$user->created_at}}</span>
+                      <span class="users-list-date">{{$cat->created_at}}</span>
+                      <span class="users-list-date">[{{$cat->createby}}]</span>
                     </li>
                     @endforeach
                   </ul>

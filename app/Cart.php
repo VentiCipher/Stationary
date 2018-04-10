@@ -5,8 +5,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cart extends Model
 {
-    use Notifiable;
-    //protected $guard = 'web';
+    // use Notifiable;
+    protected $guard = 'web';
     /**
      * The attributes that are mass assignable.
      *
@@ -18,7 +18,7 @@ class Cart extends Model
 
     public function users()
     {
-        return $this->belongsTo('App\User','carts','users_id','carts_id');
+        return $this->belongsTo('App\User');
     }
     
 }
