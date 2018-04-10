@@ -4,7 +4,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Categories;
+use App\User;
+use App\Product;
+use App\Image;
+use App\Cart;
+use Session;
 use Auth;
 class DashboardController extends Controller
 {
@@ -35,7 +40,14 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        
-        return view('admin');
+        $user_amount = User::all()->count();
+        $cat_amount = Categories::all()->count();
+        $image_amount = Image::all()->count();
+        $product_amount = Product::all()->count();
+
+        $last_user = User::orderby('created_at','desc')->limit(4)->get();
+        $last_cat = Categories::orderby('created_at','desc')->limit(4)->get();
+        //$last_user = User::all();
+        return view('admin',['u_am'=>$user_amount,'cat_am'=>$cat_amount,'img_am'=>$image_amount,'pro_am'=>$product_amount,'last_users'=>$last_user,'last_cat'=>$last_cat]);
     }
 }

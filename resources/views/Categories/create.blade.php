@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.adminapp')
 <style>
 .hideplz
 {
@@ -17,7 +17,7 @@
         @endif
         <div class="panel panel-default">
             <div class="panel-heading">
-               <h3> Add a Categories</h3> <a href="{{ route('index') }}" class="label label-primary pull-right">Back</a>
+               <h3> Add a Categories</h3> <!-- <a href="{{ route('index') }}" class="label label-primary pull-right">Back</a> -->
             </div>
             <div class="panel-body">
                 

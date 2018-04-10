@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Seller;
 
 use Illuminate\Http\Request;
-use App\Category;
+use App\Categories;
 use App\User;
 use App\Product;
 use App\Image;

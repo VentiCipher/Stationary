@@ -31,17 +31,28 @@ Route::prefix('dealers')->group(function(){
 Route::get('/add_product','Product\ProductController@add')->name('addproduct');
 });
 
-/*Categories Section*/
+
 
 
 Route::prefix('admins')->group(function(){
+
+
+Route::get('/dashboard','DashboardController@index')->name('dashboardindex');
+
+/*Categories Section*/
 Route::get('/categories/add','Categories\CategoriesController@showadd')->name('addcat');
 Route::post('/categories/create','Categories\CategoriesController@createadd')->name('createcat');
 Route::get('/categories/index','Categories\CategoriesController@index')->name('indexcat');
-Route::get('/dashboard','DashboardController@index')->name('dashboardindex');
+
 
 // Route::get('/categories/details/{id}','Categories\CategoriesController@details')->name('cat.details');
 Route::get('/categories/edit/{id}','Categories\CategoriesController@showedit')->name('cat.edit');
 Route::post('/categories/update/{id}','Categories\CategoriesController@update')->name('cat.update');
 Route::get('/categories/delete/{id}','Categories\CategoriesController@delete')->name('cat.delete');
+
+
+
+/* User Management Section */
+Route::get('/account/showadd','Account\AccountController@showadd')->name('acc.show.add');
+
 });

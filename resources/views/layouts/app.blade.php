@@ -47,7 +47,10 @@
             
             opacity: 0;
         }
-
+   .centerdrop
+        {
+                text-align: center;
+        }
         #search.open {
             -webkit-transform: translate(0px, 0px) scale(1, 1);
             -moz-transform: translate(0px, 0px) scale(1, 1);
@@ -104,14 +107,16 @@
       .navbar-right{
         float:right;
       }
-      .buttonbar
+    .buttonbar
       {
         font-size: 23px;/*
         margin-top: 6px;
         margin-bottom: 12px;
         margin-left: 15px;
         margin-right: 15px;*/
-        
+        padding-left: 20px;
+    padding-right: 20px;
+        text-align: center;
         color:black;
       }
     .dropdown:hover .dropbtn 
@@ -130,9 +135,9 @@
     }
     .navigator
     {
-        margin-right: 8%;
+        /*margin-right: 8%;*/
     }
-    .tooltip 
+     .tooltip 
     {
     position: relative;
     display: contents;
@@ -168,7 +173,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel navbar-fixed-top newbgnav">
             <div class= "bg"></div>
-            <div class="container">
+            <div class="container-fluid">
             
                 <!-- <div class = "navbar-header"> -->
 
@@ -190,16 +195,16 @@
                     @if(Auth::user()->roles == "seller" || Auth::user()->roles == "admin")
                <!-- <a href ="#" class="nav-link fa fa-cubes buttonbar" style="margin-left:1%" title="Stock MANAGER"></a> -->
 <!-- THIS IS DROPDOWNS STOCK-->
-                 <li class="nav-item dropdown">
+                 <li class="nav-item dropdown centerdrop">
                                 <a id="navbarDropdown" class="nav-link dropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     <div class="tooltip">
-                                     <i class="fa fa-cubes buttonbar dropbtn" style="margin-left:35%" ></i>
+                                     <i class="fa fa-cubes buttonbar dropbtn"  ></i>
                                      <span class="tooltiptext">Stocks & Products</span>
                                  </div>
                         <span class="caret"></span>
                                 </a>
 
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdow   n">
                            
 
                                     <a class="dropdown-item" href="{{ route('login') }}">
@@ -220,14 +225,14 @@
                         
                     @endif
                     @if(Auth::user()->roles == "admin")
-                   <div class ="tooltip">
-                      <a href ="{{route('dashboardindex')}}" class="nav-link" style="margin-left:2%">
-                                     <i class="fa fa-dashboard buttonbar  btnholder"   >
+              <div class ="tooltip">
+                      <a href ="{{route('dashboardindex')}}" class="nav-link">
+                                     <i class="fa fa-dashboard buttonbar nav-link nav-item"   >
                                      </i>
                                      <span class="tooltiptext">Management Panel</span></a>
                                  </div>
-                    <!-- 
-                    <li class="nav-item dropdown">
+                    
+                  <!--   <li class="nav-item dropdown centerdrop">
                                 <a id="navbarDropdown" class="nav-link dropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     <div class ="tooltip">
                                      <i class="fa fa-dashboard buttonbar dropbtn" style="margin-left:80%" >
@@ -252,6 +257,12 @@
                                 </div>
                             </li> -->
                     @endif
+                    @else
+                            <div style="padding-left:2%">      </div>
+
+                            <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
+                            <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
+
                     @endif
                     </ul>
 
@@ -262,9 +273,22 @@
 
   <ul class="nav nav-justified" style="text-align: center;">
    <li> 
+    @if(Auth::check())
+    @if((Auth::user()->roles == "admin")||(Auth::user()->roles == "seller"))
     <a href="{{url('/')}}" class="navbar-brand">
     <img src="{{url('/images/logo.png')}}" style="width: 60%" >
     </a> 
+    @else
+    <a href="{{url('/')}}" class="navbar-brand">
+    <img src="{{url('/images/logo.png')}}" style="width: 60% ; padding-left: 11%;" >
+    </a> 
+       
+    @endif
+      @else
+    <a href="{{url('/')}}" class="navbar-brand">
+    <img src="{{url('/images/logo.png')}}" style="width: 60% ; " >
+    </a> 
+    @endif
     </li>
 
     </ul>
@@ -272,14 +296,18 @@
      
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
+                        <a href="#" class="nav-link">
                           <i class="nav-link fa fa-gift buttonbar navigator" ></i>
+                      </a>
+                      <a href="#" class="nav-link">
                            <i class="nav-link fa fa-shopping-cart buttonbar navigator" ></i>
+                       </a>
                         <!-- Authentication Links
                         @guest
                             <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
                             <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
                         @else
-                            <li class="nav-item dropdown">
+                            <li class="nav-item dropdown centerdrop">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
@@ -304,13 +332,15 @@
                       
                        <!-- Authentication Links -->
                        
-                            <li class="nav-item dropdown">
+                            <li class="nav-link nav-item dropdown centerdrop">
                                 <a id="navbarDropdown" class="nav-link dropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                     <i class="fa fa-user-circle buttonbar dropbtn" ></i>
+                                
+                                     <i class="fa fa-user-circle buttonbar dropbtn" > </i>
+                               
                         <!-- <span class="caret"></span> -->
                                 </a>
 
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="    left: -333%;">
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="    left: -125%; top: 128%;">
                             @guest
                              <div style ="padding-bottom:20px;">
                             <label class ="dropdown-item" style="background-color: #dcdcaa; padding-bottom: ">Welcome Guest</label>
