@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Categories;
 use App\User;
 use App\Product;
-use App\Image;
+use App\Images;
 use App\Cart;
 use Session;
 use Auth;
@@ -42,7 +42,7 @@ class DashboardController extends Controller
     {
         $user_amount = User::all()->count();
         $cat_amount = Categories::all()->count();
-        $image_amount = Image::all()->count();
+        $image_amount = Images::all()->count();
         $product_amount = Product::all()->count();
 
         $last_user = User::orderby('created_at','desc')->limit(4)->get();

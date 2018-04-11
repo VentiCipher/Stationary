@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Categories;
 use App\User;
 use App\Product;
-use App\Image;
+use App\Images;
 use App\Cart;
 use App\Http\Controllers\Controller;
 use Auth;
@@ -71,7 +71,7 @@ class CategoriesController extends Controller
             'createby' => $this->user,
             
         ]);
-        $request['createby'] = $this->user;
+        $request['createby'] = Auth::user()->email;
         $cat = Categories::create($request->all());
         
       

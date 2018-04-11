@@ -18,7 +18,12 @@ class Cart extends Model
 
     public function users()
     {
-        return $this->belongsTo('App\User');
+        return $this->hasOne('App\User');
+    }
+
+    public function products()
+    {
+        return $this->hasMany('App\Product', 'products_id', 'carts_id');
     }
     
 }

@@ -6,16 +6,17 @@ use Illuminate\Http\Request;
 use App\Categories;
 use App\User;
 use App\Product;
-use App\Image;
+use App\Images;
 use App\Cart;
 use App\Http\Controllers\Controller;
 use Auth;
+
 class SellerController extends Controller
 {
     public function __construct()
     {
         $this->middleware('seller');
-        
+
         $this->middleware(function ($request, $next) {
             $this->user = Auth::user()->name;
 
@@ -39,6 +40,6 @@ class SellerController extends Controller
      */
     public function index()
     {
-        return view('auth.register');
+        return view('seller');
     }
 }

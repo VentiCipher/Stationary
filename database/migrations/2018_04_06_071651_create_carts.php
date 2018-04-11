@@ -15,7 +15,7 @@ class CreateCarts extends Migration
     {
         //
          Schema::create('carts', function (Blueprint $table) {
-            $table->increments('id')->index();
+             $table->increments('id')->unique();
             $table->integer('users_id');
             $table->integer('products_id');
             $table->timestamps();
