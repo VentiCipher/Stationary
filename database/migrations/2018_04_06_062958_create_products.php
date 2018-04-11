@@ -18,8 +18,8 @@ class CreateProducts extends Migration
             $table->increments('id')->unique();
             $table->string('name');
             $table->integer('in_stock');
-            $table->integer('category_id');
-            $table->string('description');
+//            $table->integer('categories_id')->nullable();
+            $table->string('description')->nullable();
             $table->double('price');
             $table->double('price_promo')->nullable();
             $table->string('color')->nullable();

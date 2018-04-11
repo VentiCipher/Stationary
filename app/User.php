@@ -29,13 +29,17 @@ class User extends Authenticatable
 
     public function products()
     {
-        return $this->hasMany('App\Product');
+        return $this->belongsToMany('App\Product', 'product_info', 'users_id', 'products_id');
     }
     public function carts()
     {
-        return $this->hasOne('App\Cart','carts','carts_id','users_id');
+        return $this->hasOne('App\Cart');
     }
 
+    public function wishlists()
+    {
+        return $this->hasOne('App\Wishlist', 'wishlist_id', 'users_id');
+    }
 
     public function sendPasswordResetNotification($token)
     {

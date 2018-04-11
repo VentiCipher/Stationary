@@ -13,19 +13,19 @@ class Product extends Model
      * @var array
      */
     protected $fillable = [
-        'name','in_stock','categories_id','description','price', 'color', 'createby','promotions_id',
+        'name', 'in_stock', 'categories_id', 'description', 'price', 'color', 'createby', 'promotion_id', 'price_promo', 'users_id', 'categories[]',
     ];
 
     public function users()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsToMany('App\User', 'product_info', 'products_id', 'users_id');
     }
     public function images()
     {
-        return $this->hasMany('App\Image','product_imgs','images_id','products_id');
+        return $this->hasMany('App\Image', 'images_id', 'products_id');
     }
     public function categories()
     {
-        return $this->belongsToMany('App\Categories','matcher','categories_id','products_id');
+        return $this->belongsToMany('App\Categories', 'matcher', 'products_id', 'categories_id');
     }
 }

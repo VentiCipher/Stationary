@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Categories;
 use App\User;
 use App\Product;
-use App\Image;
+use App\Images;
 use App\Cart;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
