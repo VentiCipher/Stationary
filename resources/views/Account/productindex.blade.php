@@ -1,4 +1,4 @@
-@extends('layouts.sellerapp')
+@extends('layouts.adminapp')
 <head>
     <link href="{{ asset('css/AdminLTE.css') }}" rel="stylesheet">
     <link href="{{ asset('css/AdminLTE.min.css') }}" rel="stylesheet">
@@ -41,7 +41,7 @@
             <section class="content">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">My Product</h3>
+                        <h3 class="box-title">All Product</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
@@ -64,7 +64,7 @@
                                                 IN STOCK
                                             </th>
                                             <th>Price</th>
-                                            <th>Last Update</th>
+                                            <th>Owner</th>
                                             <th>Color</th>
                                             <th>Promotion ID</th>
                                             <th>Option</th>
@@ -89,7 +89,7 @@
                                                 <td>{{$prod->name}}</td>
                                                 <td>{{$prod->in_stock}}</td>
                                                 <td>{{$prod->price}}</td>
-                                                <td>{{$prod->updated_at}}</td>
+                                                <td>{{$prod->createby}}</td>
                                                 <td>{{$prod->color}}</td>
                                                 <td>{{$prod->promotion_id}}</td>
                                                 <td><a href="{{route('prod.show.edit',$prod->id)}}"
@@ -119,7 +119,7 @@
                                                 IN STOCK
                                             </th>
                                             <th>Price</th>
-                                            <th>Last Update</th>
+                                            <th>Owner</th>
                                             <th>Color</th>
                                             <th>Promotion ID</th>
                                             <th>Option</th>

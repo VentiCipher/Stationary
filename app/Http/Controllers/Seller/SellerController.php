@@ -40,6 +40,11 @@ class SellerController extends Controller
      */
     public function index()
     {
-        return view('seller');
+        $totalprod = Auth::user()->products->count();
+        $prod = Auth::user()->products;
+        $ima = array();
+        $imagecount = 0;
+        $nameuser = Auth::user();
+        return view('seller',['productamount'=>$totalprod,'nameuser'=>$nameuser]);
     }
 }

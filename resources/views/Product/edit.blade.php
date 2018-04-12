@@ -74,6 +74,19 @@
                                     @endif
                                 </div>
                             </div>
+
+                            <div class="form-group row">
+                                <label for="name" class="col-md-4 col-form-label text-md-right">Price on Promotion</label>
+                                <div class="col-md-6">
+                                    <input id="price_promo" type="number"
+                                           class="form-control{{ $errors->has('price_promo') ? ' is-invalid' : '' }}"
+                                           name="price_promo" value="{{$product->price_promo}}">
+
+
+                                </div>
+                            </div>
+
+
                             <div class="form-group row">
                                 <label for="promotion_id" class="col-md-4 col-form-label text-md-right">Promotion
                                     ID</label>
@@ -117,6 +130,9 @@
                                     <button type="submit" class="btn btn-primary">
                                         Edit Product
                                     </button>
+                                    <a href="{{route('prod.image.index',$product->id)}}" class="btn btn-primary">
+                                        Edit Product Images
+                                    </a>
                                 </div>
                             </div>
                         </form>

@@ -15,6 +15,13 @@
 </head>
 @section('content')
     <div class="container-fluid">
+
+        <div style="padding: 20px 30px; background: #28a745; z-index: 999999; font-size: 16px; font-weight: 600;">
+            <label
+               style="color: rgba(255, 255, 255, 0.9); display: inline-block; margin-right: 10px; text-decoration: none;">
+                Welcome Back Dealers: {{$nameuser->name}} Your Account Status: Approved
+              </label>
+        </div>
         <div class=" justify-content-center">
         <!--  <div class="col-md-8">
             <div class="card">
@@ -34,6 +41,8 @@
             @if (Session::has('info'))
                 <div class="card alert alert-info">{{ Session::get('info') }}</div>
             @endif
+
+
             <h2>Dealer Dashboard Overview</h2>
             <br>
             <section class="row text-center placeholders">
@@ -68,8 +77,9 @@
                         <span class="info-box-icon bg-orange"><i class="ion ion-pricetags newicon"></i></span>
 
                         <div class="info-box-content">
-                            <span class="info-box-text">Total Products</span>
-                            <span class="info-box-number">Soon <small>Products</small></span>
+                            <span class="info-box-text">Total My Products</span>
+                            <span class="info-box-number">{{$productamount}}
+                                <small>Products</small></span>
                         </div>
                     </div>
                 </div>

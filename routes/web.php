@@ -28,14 +28,20 @@ Route::prefix('users')->group(function () {
 
 /* Product Section */
 Route::prefix('dealers')->group(function () {
-    Route::get('/', 'Seller\SellerController@index')->name('sellerpanel');//->middleware('seller')
+    Route::get('/panel', 'Seller\SellerController@index')->name('sellerpanel');//->middleware('seller')
     Route::get('/products/showadd', 'Product\ProductController@showadd')->name('prod.show.add');
     Route::get('/products/edit/{id}', 'Product\ProductController@showedit')->name('prod.show.edit');
     Route::post('/products/create', 'Product\ProductController@createadd')->name('prod.show.create');
     Route::post('/products/update/{id}', 'Product\ProductController@update')->name('prod.update');
-    Route::get('/products/delete', 'Product\ProductController@delete')->name('prod.delete');
+    Route::get('/products/delete{id}', 'Product\ProductController@delete')->name('prod.delete');
 
     Route::get('/products/index', 'Product\ProductController@index')->name('prod.index');
+    Route::post('/products/search', 'Product\ProductController@search')->name('prod.show.search');
+    Route::get('/products/image/{id}', 'Product\ProductController@imgindex')->name('prod.image.index');
+    Route::get('/products/killimages/{id}{prodid}', 'Product\ProductController@killimg')->name('prod.image.delete');
+    Route::get('/products/setimages/{id}{prodid}', 'Product\ProductController@setimg')->name('prod.image.set');
+    Route::post('/products/image/addition/{id}', 'Product\ProductController@addmore')->name('prod.image.add');
+
 });
 
 
@@ -54,7 +60,7 @@ Route::prefix('admins')->group(function () {
     Route::get('/categories/edit/{id}', 'Categories\CategoriesController@showedit')->name('cat.edit');
     Route::post('/categories/update/{id}', 'Categories\CategoriesController@update')->name('cat.update');
     Route::get('/categories/delete/{id}', 'Categories\CategoriesController@delete')->name('cat.delete');
-
+    Route::post('/products/search', 'DashboardController@search')->name('admin.prod.show.search');
 
     /* User Management Section */
     Route::get('/account/showadd', 'Account\AccountController@showadd')->name('acc.show.add');

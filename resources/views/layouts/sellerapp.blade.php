@@ -182,6 +182,16 @@
         .blackfont {
             color: black;
         }
+        .input[type=text] {
+            width: 130px;
+            -webkit-transition: width 0.4s ease-in-out;
+            transition: width 0.4s ease-in-out;
+        }
+
+        /* When the input field gets focus, change its width to 100% */
+        .input[type=text]:focus {
+            width: 100%;
+        }
     </style>
 </head>
 
@@ -380,7 +390,7 @@
 
                     <li class="nav-item">
 
-                        <a class="nav-link {{ isActiveRoute('cat.edit') }} blackfont">⚫Product Management</a>
+                        <a class="nav-link {{ isActiveRoute('prod.image.index') }} {{ isActiveRoute('prod.show.search') }} blackfont">⚫Product Management</a>
 
 
                     </li>
@@ -391,10 +401,20 @@
                             Product</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ isActiveRoute('prod.index') }} blackfont" href="{{route('prod.index')}}">Edit/View
+                        <a class="nav-link {{ isActiveRoute('prod.index') }} blackfont" href="{{route('prod.index')}}">Overview
                             Product</a>
                     </li>
+                    <br/>
+                    <li class="nav-item nav-link">
 
+                        <form method="POST" action="{{ route('prod.show.search') }}" enctype="multipart/form-data">
+                            @csrf
+                        <input type="text" name="searcher" placeholder="Search my Product ...">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        </form>
+                    </li>
 
                 </ul>
 

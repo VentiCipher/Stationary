@@ -13,7 +13,7 @@ class Product extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'in_stock', 'categories_id', 'description', 'price', 'color', 'createby', 'promotion_id', 'price_promo', 'users_id', 'categories[]',
+        'name', 'in_stock', 'categories_id', 'description', 'price', 'color', 'createby', 'promotion_id', 'price_promo', 'users_id', 'categories[]','thumbsnail',
     ];
 
     public function users()
@@ -27,5 +27,10 @@ class Product extends Model
     public function categories()
     {
         return $this->belongsToMany('App\Categories', 'matcher', 'products_id', 'categories_id');
+    }
+
+    public function wishlists()
+    {
+        $return $this->belongsToMany('App\Wishlist','wish','products_id','wishlists_id');
     }
 }

@@ -429,6 +429,37 @@
 
                 </ul>
 
+                <ul class="nav nav-pills flex-column marginbot20">
+
+
+                    <li class="nav-item">
+
+                        <a class="nav-link {{ isActiveRoute('acc.edit') }} blackfont">⚫Product Dealers Management</a>
+
+
+                    </li>
+
+
+                    <li class="nav-item">
+                        <a class="nav-link {{ isActiveRoute('acc.index') }} blackfont" href="{{route('acc.index')}}">View
+                            All Product</a>
+                    </li>
+
+                    <li class="nav-item nav-link">
+
+                        <form method="POST" action="{{ route('admin.prod.show.search') }}" enctype="multipart/form-data">
+                            @csrf
+
+                            <input type="text" name="searcher" placeholder="Search all Product ...">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </form>
+                    </li>
+
+
+                </ul>
+
             </nav>
             <main class="col-sm-9 col-md-10  pt-3" style="  background-color: #e8e5da; "> <!-- py-4 -->
                 @yield('content')

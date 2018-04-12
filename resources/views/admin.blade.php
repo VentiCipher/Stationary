@@ -91,6 +91,7 @@
                 </div>
 
             </section>
+
             <div class="row">
                 <!--BOX 1-->
                 <div class="col-md-6">
@@ -177,6 +178,72 @@
                             <a href="{{route('indexcat')}}" class="uppercase">View All Categories</a>
                         </div>
                         <!-- /.box-footer -->
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="info-box bg-yellow">
+                        <span class="info-box-icon"><i class="ion ion-ios-pricetag-outline newicon"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">Dealer User</span>
+                            <span class="info-box-number">{{$dealernumber}}</span>
+
+                            <div class="progress">
+
+
+                                <div class="progress-bar" style="width: {{$dealernumber*100/$u_am}}%"></div>
+
+                            </div>
+                            <span class="progress-description">
+                                 {{$dealernumber*100.0/$u_am}}%
+
+                  </span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="info-box bg-green">
+                        <span class="info-box-icon"><i class="ion ion-ios-pricetag-outline newicon"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">User On Shopping</span>
+                            <span class="info-box-number">{{$justuser}}</span>
+
+                            <div class="progress">
+
+                                <div class="progress-bar" style="width: {{$justuser*100.0/$u_am}}%"></div>
+
+                            </div>
+                            <span class="progress-description">
+
+                                    {{$justuser*100.0/$u_am}}%
+
+                  </span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="info-box bg-aqua">
+                        <span class="info-box-icon"><i class="ion ion-ios-pricetag-outline newicon"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">Administrator</span>
+                            <span class="info-box-number">{{$justadmin}}</span>
+
+                            <div class="progress">
+
+                                <div class="progress-bar" style="width: {{$justadmin*100.0/$u_am}}%"></div>
+
+                            </div>
+                            <span class="progress-description">
+                               {{$justadmin*100.0/$u_am}}%
+                  </span>
+                        </div>
+                        <!-- /.info-box-content -->
                     </div>
                 </div>
             </div>

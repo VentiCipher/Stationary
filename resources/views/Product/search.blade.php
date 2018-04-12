@@ -51,7 +51,7 @@
                                 <div class="col-sm-6"></div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-16" style="width:100%;">
+                                <div class="col-sm-16">
                                     <table id="example2" class="table table-bordered table-hover dataTable" role="grid"
                                            aria-describedby="example2_info">
                                         <thead>
@@ -94,11 +94,10 @@
                                                 <td>{{$prod->promotion_id}}</td>
                                                 <td><a href="{{route('prod.show.edit',$prod->id)}}"
                                                        class="badge badge-primary">Edit/Details</a>
-                                                    <br/><br/>
                                                     <a href="{{route('prod.delete',$prod->id)}}"
                                                        class="badge badge-danger"
                                                        onclick="return confirm('Are you sure to Remove this Product? Once you done you cannot undo!')">Remove</a>
-                                                    <br/><br/>
+
                                                     <a href="{{route('prod.image.index',$prod->id)}}" class="badge badge-warning">Edit Image</a>
 
 

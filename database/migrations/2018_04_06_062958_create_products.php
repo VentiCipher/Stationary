@@ -25,6 +25,7 @@ class CreateProducts extends Migration
             $table->string('color')->nullable();
             $table->string('createby');
             $table->string('promotion_id')->nullable();
+            $table->string('thumbsnail')->nullable();
             $table->timestamps();
         });
     }
