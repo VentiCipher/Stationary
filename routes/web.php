@@ -36,6 +36,7 @@ Route::prefix('dealers')->group(function () {
     Route::get('/products/delete{id}', 'Product\ProductController@delete')->name('prod.delete');
 
     Route::get('/products/index', 'Product\ProductController@index')->name('prod.index');
+
     Route::post('/products/search', 'Product\ProductController@search')->name('prod.show.search');
     Route::get('/products/image/{id}', 'Product\ProductController@imgindex')->name('prod.image.index');
     Route::get('/products/killimages/{id}{prodid}', 'Product\ProductController@killimg')->name('prod.image.delete');
@@ -49,7 +50,7 @@ Route::prefix('admins')->group(function () {
 
 
     Route::get('/', 'DashboardController@index')->name('dashboardindex');
-
+    Route::get('/products/index', 'Product\ProductController@allindex')->name('prod.all.index');
     /*Categories Section*/
     Route::get('/categories/add', 'Categories\CategoriesController@showadd')->name('addcat');
     Route::post('/categories/create', 'Categories\CategoriesController@createadd')->name('createcat');

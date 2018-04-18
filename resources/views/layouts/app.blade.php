@@ -372,8 +372,8 @@
 
                                                     <li><a class="dropdown-item {{ isActiveRoute('acc.edit') }} ">⚫Product
                                                             Dealers Management</a></li>
-                                                    <li><a class="dropdown-item {{ isActiveRoute('acc.index') }} "
-                                                           href="{{route('acc.index')}}">View
+                                                    <li><a class="dropdown-item {{ isActiveRoute('prod.all.index') }} "
+                                                           href="{{route('prod.all.index')}}">View
                                                             All Product</a></li>
                                                     <li>
                                                         <form method="POST"

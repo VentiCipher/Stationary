@@ -107,6 +107,11 @@ class ProductController extends Controller
         $products = Auth::user()->products;
         return view('Product.index', ['products' => $products]);
     }
+    public function allindex()
+    {
+        $products = Product::all();
+        return view('Product.allindex', ['products' => $products]);
+    }
 
     public function addmore($id, Request $request)
     {
