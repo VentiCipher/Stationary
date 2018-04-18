@@ -196,12 +196,12 @@
                             <div class="contactinfo">
 
                                 <ul class="nav nav-pills" style="    padding-top: 1%;">
-                                    <li><a href="http://www.free-css.com/free-css-templates"><i class="fa fa-phone"></i>
-                                            +2
-                                            95 01 88 821</a></li>
-                                    <li style="padding-left:20px;"><a href="http://www.free-css.com/free-css-templates"><i
+                                    <li><a href="tel:+6625644412"><i class="fa fa-phone"></i>
+                                            +66
+                                            2 564 4441-79</a></li>
+                                    <li style="padding-left:20px;"><a  href="mailto:trythis.stationary@gmail.com?Subject=FAQ. to Admin"><i
                                                     class="fa fa-envelope"></i>
-                                            info@domain.com</a></li>
+                                            trythis.stationary@gmail.com</a></li>
                                 </ul>
 
                             </div>
@@ -209,18 +209,18 @@
                         <div class="col-sm-6">
                             <div class="social-icons pull-right">
                                 <ul class="nav navbar-nav" style="    display: inline-block;">
-                                    <li><a href="http://www.free-css.com/free-css-templates"><i
+                                    <li><a  href="https://www.facebook.com/sharer/sharer.php?u=trythis-stationary.com" target="_blank"><i
                                                     class="fa fa-facebook"></i></a>
                                     </li>
-                                    <li><a href="http://www.free-css.com/free-css-templates"><i
+                                    <li><a href="https://twitter.com/intent/tweet?url=trythis-stationary.com" target="_blank"><i
                                                     class="fa fa-twitter"></i></a></li>
-                                    <li><a href="http://www.free-css.com/free-css-templates"><i
+                                    <li><a href="#"><i
                                                     class="fa fa-linkedin"></i></a>
                                     </li>
-                                    <li><a href="http://www.free-css.com/free-css-templates"><i
+                                    <li><a href="#"><i
                                                     class="fa fa-dribbble"></i></a>
                                     </li>
-                                    <li><a href="http://www.free-css.com/free-css-templates"><i
+                                    <li><a href="#"><i
                                                     class="fa fa-google-plus"></i></a></li>
                                 </ul>
                             </div>
@@ -242,7 +242,7 @@
                             <div class="shop-menu pull-right" style="margin-top: 2%;">
                                 <ul class="nav navbar-nav" style="display:inline-block;">
                                     @if(Auth::check())
-                                        {{--<li><a href="http://www.free-css.com/free-css-templates"><i class="fa fa-user"></i>--}}
+                                        {{--<li><a href="#"><i class="fa fa-user"></i>--}}
                                         {{--</a></li>--}}
                                         <li>
                                             <a id="navbarDropdown" class="dropdown-item dropdown" href="#" role="button"
@@ -287,12 +287,12 @@
 
                                     @endif
 
-                                    <li><a href="http://www.free-css.com/free-css-templates"><i class="fa fa-star"></i>
+                                    <li><a href="#"><i class="fa fa-star"></i>
                                             Wishlist</a></li>
-                                    <li><a href="pages/checkout.php"><i class="fa fa-crosshairs"></i> Tracking order</a>
+                                    <li><a href="#"><i class="fa fa-crosshairs"></i> Tracking order</a>
                                     </li>
-                                    <li><a href="pages/checkout.php"><i class="	fa fa-edit"></i> Checkout</a></li>
-                                    <li><a href="pages/cart.php"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+                                    <li><a href="#"><i class="	fa fa-edit"></i> Checkout</a></li>
+                                    <li><a href="#"><i class="fa fa-shopping-cart"></i> Cart</a></li>
                                     @guest
                                         <li><a href="{{ route('login') }}"><i class=" fa fa-lock"></i> Login</a></li>
                                         <li><a href="{{ route('register') }}"><i class="fa fa-check-square-o"></i>

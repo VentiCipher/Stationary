@@ -8,9 +8,9 @@
     </style>
 
 
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-md-8">
+            {{--<div class="col-md-8">--}}
                 <!-- 	<div class="panel panel-default animated zoomIn">
 
                         <div class="panel-heading">Student Dashboard</div>
@@ -19,9 +19,9 @@
 
 
                         </div> -->
-                5555555555
+                <img src="{{url('/images/soon.jpg')}}" style="width: auto;"/>
             </div>
-        </div>
+        {{--</div>--}}
     </div>
     </div>
 @endsection
