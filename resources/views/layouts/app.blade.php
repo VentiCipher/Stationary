@@ -22,81 +22,62 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+
+    <!--Extends Styles -->
+    {{--    <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">--}}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/price-range.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/animate.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}">
+    <style type="text/css">
+        #freecssfooter {
+            display: block;
+            width: 100%;
+            padding: 120px 0 20px;
+            overflow: hidden;
+            background-color: transparent;
+            z-index: 5000;
+            text-align: center;
+        }
+
+        #freecssfooter div#fcssholder div {
+            display: none;
+        }
+
+        #freecssfooter div#fcssholder div:first-child {
+            display: block;
+        }
+
+        #freecssfooter div#fcssholder div:first-child a {
+            float: none;
+            margin: 0 auto;
+        }
+    </style>
+    <script async="" src="//www.google-analytics.com/analytics.js"></script>
+    <script type="text/javascript" async="" src="//s3.buysellads.com/ac/bsa.js"></script>
+    <script type="text/javascript" id="_bsap_js_b893e54e42ad5b76e7b252f59be18e67"
+            src="//s3.buysellads.com/r/s_b893e54e42ad5b76e7b252f59be18e67.js?v=1524067200000" async="async"></script>
+    <script type="text/javascript" src="//s3.buysellads.com/ac/pro.js" id="_bsap_premium_pro"></script>
+    <script type="text/javascript" id="_bsaPRO_js"
+            src="//srv.buysellads.com/ads/get/ids/CV7DP2T;CV7DPKY/?r=1524067200000" async="async"></script>
+    <script src="{{ asset('js/jquery.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.scrollUp.min.js') }}"></script>
+    <script src="{{ asset('js/price-range.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
+    <!--Extends Styles -->
+
     <style>
 
-
-        #search {
-            position: fixed;
-            top: 0px;
-            left: 0px;
-            width: 100%;
-            height: 100%;
-            /*background-color: rgba(0, 0, 0, 0.7);*/
-            background-color: #ffffd2;
-            -webkit-transition: all 0.5s ease-in-out;
-            -moz-transition: all 0.5s ease-in-out;
-            -o-transition: all 0.5s ease-in-out;
-            -ms-transition: all 0.5s ease-in-out;
-            transition: all 0.5s ease-in-out;
-
-            -webkit-transform: translate(0px, -100%) scale(0, 0);
-            -moz-transform: translate(0px, -100%) scale(0, 0);
-            -o-transform: translate(0px, -100%) scale(0, 0);
-            -ms-transform: translate(0px, -100%) scale(0, 0);
-            transform: translate(0px, -100%) scale(0, 0);
-
-            opacity: 0;
-        }
 
         .centerdrop {
             text-align: center;
         }
 
-        #search.open {
-            -webkit-transform: translate(0px, 0px) scale(1, 1);
-            -moz-transform: translate(0px, 0px) scale(1, 1);
-            -o-transform: translate(0px, 0px) scale(1, 1);
-            -ms-transform: translate(0px, 0px) scale(1, 1);
-            transform: translate(0px, 0px) scale(1, 1);
-            opacity: 1;
-        }
-
-        #search input[type="search"] {
-            position: absolute;
-            top: 50%;
-            width: 100%;
-            color: rgb(255, 255, 255);
-            background: rgba(0, 0, 0, 0);
-            font-size: 60px;
-            font-weight: 300;
-            text-align: center;
-            border: 0px;
-            margin: 0px auto;
-            margin-top: -51px;
-            padding-left: 30px;
-            padding-right: 30px;
-            outline: none;
-        }
-
-        #search .btn {
-            /* position: absolute;
-             top: 50%;
-             left: 50%;
-             margin-top: 61px;
-             margin-left: -45px;*/
-            margin-top: -4px;
-        }
-
-        #search .close {
-            position: fixed;
-            top: 15px;
-            /* right: 15px; */
-            color: black;
-            /* background-color: #428bca; */
-            border-color: #357ebd;
-            opacity: 1;
-            padding: 3px 34px;
-            font-size: 34px;
+        .navbar-nopadding {
+            padding: 0px;
+            min-height: 0px;
         }
 
         .navbar-header {
@@ -137,8 +118,13 @@
 
         .newbgnav {
             /*background-image: url(../images/bg.png);*/
-            background-color: #ffffa2;
+            background-color: #ffe381;
+            width: 100%;
+        }
 
+        .renewheader-bottom {
+            padding-top: 30px;
+            padding-bottom: 15px;
         }
 
         .navigator {
@@ -171,260 +157,312 @@
             visibility: visible;
         }
 
+        .contactinfo ul li:first-child {
+            margin-left: 0px;
+        }
+
+        ul.sub-menu {
+            position: absolute;
+            top: 30px;
+            left: 0;
+            background: rgba(0, 0, 0, 0.9);
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            width: 290px;
+            -webkit-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1);
+            /* display: none; */
+            z-index: 999;
+        }
+
+        .btn.btn-primary {
+            background: #FE980F;
+            border: 0 none;
+            border-radius: 0;
+             margin-top: 0px;
+        }
     </style>
 </head>
 
-<body>
-<div id="app">
-    <nav class="navbar navbar-expand-md navbar-light navbar-laravel navbar-fixed-top newbgnav">
-        <div class="bg"></div>
-        <div class="container-fluid">
+<main style="background-color: white;">
+    <div id="app">
+        <nav class=" navbar-expand-md navbar-light navbar-laravel navbar-fixed-top .navbar-nopadding">
+            {{--<div class="bg"></div>--}}
+            <div class="newbgnav">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="contactinfo">
 
-            <!-- <div class = "navbar-header"> -->
+                                <ul class="nav nav-pills" style="    padding-top: 1%;">
+                                    <li><a href="http://www.free-css.com/free-css-templates"><i class="fa fa-phone"></i>
+                                            +2
+                                            95 01 88 821</a></li>
+                                    <li style="padding-left:20px;"><a href="http://www.free-css.com/free-css-templates"><i
+                                                    class="fa fa-envelope"></i>
+                                            info@domain.com</a></li>
+                                </ul>
 
-        <!-- <div class = "navbar-brand">
-                        <a class="navbar-brand" href="{{ url('/') }}">
-                            {{ config('app.name', 'Laravel') }}
-                </a>
-
-        </div> -->
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <!-- Left Side Of Navbar -->
-                <ul class="nav navbar-nav mr-auto" style="    display: contents;">
-
-
-                    <a href="#search" class="nav-link fa fa-search buttonbar"></a>
-
-                @if(Auth::check())
-                    @if(Auth::user()->roles == "seller" || Auth::user()->roles == "admin")
-                        <!-- <a href ="#" class="nav-link fa fa-cubes buttonbar" style="margin-left:1%" title="Stock MANAGER"></a> -->
-                            <!-- THIS IS DROPDOWNS STOCK-->
-                            <div class="tooltip">
-                                <a href="{{route('sellerpanel')}} " class="nav-link {{ isActiveRoute('sellerpanel') }}">
-                                    <i class="fa fa-cubes buttonbar nav-link nav-item">
-                                    </i>
-                                    <span class="tooltiptext">Dealer Panel</span></a>
                             </div>
-
-
-                        @endif
-                        @if(Auth::user()->roles == "admin")
-                            <div class="tooltip">
-                                <a href="{{route('dashboardindex')}}"
-                                   class="nav-link {{ isActiveRoute('dashboardindex') }}">
-                                    <i class="fa fa-dashboard buttonbar nav-link nav-item">
-                                    </i>
-                                    <span class="tooltiptext">Management Panel</span></a>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="social-icons pull-right">
+                                <ul class="nav navbar-nav" style="    display: inline-block;">
+                                    <li><a href="http://www.free-css.com/free-css-templates"><i
+                                                    class="fa fa-facebook"></i></a>
+                                    </li>
+                                    <li><a href="http://www.free-css.com/free-css-templates"><i
+                                                    class="fa fa-twitter"></i></a></li>
+                                    <li><a href="http://www.free-css.com/free-css-templates"><i
+                                                    class="fa fa-linkedin"></i></a>
+                                    </li>
+                                    <li><a href="http://www.free-css.com/free-css-templates"><i
+                                                    class="fa fa-dribbble"></i></a>
+                                    </li>
+                                    <li><a href="http://www.free-css.com/free-css-templates"><i
+                                                    class="fa fa-google-plus"></i></a></li>
+                                </ul>
                             </div>
-
-                        <!--   <li class="nav-item dropdown centerdrop">
-                                <a id="navbarDropdown" class="nav-link dropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    <div class ="tooltip">
-                                     <i class="fa fa-dashboard buttonbar dropbtn" style="margin-left:80%" >
-                                     </i>
-                                     <span class="tooltiptext">Management Panel</span>
-                                 </div>
-                        <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                           
-
-                                    <a class="dropdown-item" href="{{ route('indexcat') }}">
-                                        Manage Categories
-                                    </a>
-
-                                     <a class="dropdown-item" href="{{ route('login') }}">
-                                        Manage User
-                                    </a>
-
-                               
-                                </div>
-                            </li> -->
-                        @endif
-                    @else
-                        <div style="padding-left:2%"></div>
-
-                        <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
-                        <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
-
-                    @endif
-                </ul>
-
-
-                </ul>
-
-                <ul class="nav nav-justified" style="text-align: center;">
-                    <li>
-                        @if(Auth::check())
-                            @if((Auth::user()->roles == "admin")||(Auth::user()->roles == "seller"))
-                                <a href="{{url('/')}}" class="navbar-brand">
-                                    <img src="{{url('/images/logo.png')}}" style="width: 60%">
-                                </a>
-                            @else
-                                <a href="{{url('/')}}" class="navbar-brand">
-                                    <img src="{{url('/images/logo.png')}}" style="width: 60% ; padding-left: 11%;">
-                                </a>
-
-                            @endif
-                        @else
-                            <a href="{{url('/')}}" class="navbar-brand">
-                                <img src="{{url('/images/logo.png')}}" style="width: 60% ; ">
-                            </a>
-                        @endif
-                    </li>
-
-                </ul>
-
-
-                <!-- Right Side Of Navbar -->
-                <ul class="navbar-nav ml-auto">
-                    <a href="#" class="nav-link">
-                        <i class="nav-link fa fa-gift buttonbar navigator"></i>
-                    </a>
-                    <a href="#" class="nav-link">
-                        <i class="nav-link fa fa-shopping-cart buttonbar navigator"></i>
-                    </a>
-                <!-- Authentication Links
-                        @guest
-                    <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
-                            <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
-                        @else
-                    <li class="nav-item dropdown centerdrop">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-{{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                            </a>
-
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                            </form>
                         </div>
-                    </li>
-                      <li></li>
-@endguest
-
-                        -->
-
-
-                    <!-- Authentication Links -->
-
-                    <li class="nav-link nav-item dropdown centerdrop">
-                        <a id="navbarDropdown" class="nav-link dropdown" href="#" role="button" data-toggle="dropdown"
-                           aria-haspopup="true" aria-expanded="false" v-pre>
-
-                            <i class="fa fa-user-circle buttonbar dropbtn"> </i>
-
-                            <!-- <span class="caret"></span> -->
-                        </a>
-
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="    left: -125%; top: 128%;">
-                            @guest
-                                <div style="padding-bottom:20px;">
-                                    <label class="dropdown-item" style="background-color: #dcdcaa; padding-bottom: ">Welcome
-                                        Guest</label>
-                                </div>
-                                <a class="dropdown-item" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                <a class="dropdown-item" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                <a class="dropdown-item" href="{{ route('register') }}">Tracking Orders</a>
-                                <a class="dropdown-item"
-                                   href="mailto:trythis.stationary@gmail.com?Subject=FAQ. to Admin"
-                                   target="_top">F.A.Q.</a>
-                            @else
-                                <div style="padding-bottom:20px;">
-                                    <label class="dropdown-item" style="background-color: #dcdcaa; padding-bottom: ">Welcome {{ Auth::user()->name }}</label>
-                                </div>
-
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </a>
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                      style="display: none;">
-                                    @csrf
-                                </form>
-                            @endguest
-                        </div>
-                    </li>
-
-
-                </ul>
+                    </div>
+                </div>
             </div>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            <div class="header-middle">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="logo pull-left">
+                                <a href="{{url('/')}}">
+                                    <img src="{{url('/images/logo.png')}}" style="width: 150%;margin-left: -100px;">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="shop-menu pull-right" style="margin-top: 2%;">
+                                <ul class="nav navbar-nav" style="display:inline-block;">
+                                    @if(Auth::check())
+                                        {{--<li><a href="http://www.free-css.com/free-css-templates"><i class="fa fa-user"></i>--}}
+                                        {{--</a></li>--}}
+                                        <li>
+                                            <a id="navbarDropdown" class="dropdown-item dropdown" href="#" role="button"
+                                               data-toggle="dropdown"
+                                               aria-haspopup="true" aria-expanded="false" v-pre>
 
-            <!-- </div> -->
-        </div>
-    </nav>
+                                                <i class="fa fa-user-circle "> </i>
+                                                My Account
+                                                <!-- <span class="caret"></span> -->
+                                            </a>
 
-    <main class="py-4">
-        @yield('content')
-    </main>
-</div>
+                                        </li>
+                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown"
+                                             style="    left: -125%; top: 128%;">
+                                            <div>
+                                                <label class="dropdown-item"
+                                                       style="background-color: #FE980F; padding-bottom: ">Welcome
+                                                    {{Auth::user()->name}}</label>
+                                            </div>
+                                            <div style="padding-left: 15%;">
+                                                <a class="dropdown-item"
+                                                   href="#"><i
+                                                            class="fa fa-id-badge"> </i>&nbsp;&nbsp;My Profile</a>
+                                                <a class="dropdown-item"
+                                                   href="mailto:trythis.stationary@gmail.com?Subject=FAQ. to Admin"
+                                                   target="_top"><i
+                                                            class="fa fa-question-circle-o"> </i>&nbsp;&nbsp;Support</a>
+
+                                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                                   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                                    {{ __('Logout') }}
+                                                </a>
+
+                                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                                      style="display: none;">
+                                                    @csrf
+                                                </form>
+
+                                            </div>
+                                        </div>
+
+                                    @endif
+
+                                    <li><a href="http://www.free-css.com/free-css-templates"><i class="fa fa-star"></i>
+                                            Wishlist</a></li>
+                                    <li><a href="pages/checkout.php"><i class="fa fa-crosshairs"></i> Tracking order</a>
+                                    </li>
+                                    <li><a href="pages/checkout.php"><i class="	fa fa-edit"></i> Checkout</a></li>
+                                    <li><a href="pages/cart.php"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+                                    @guest
+                                        <li><a href="{{ route('login') }}"><i class=" fa fa-lock"></i> Login</a></li>
+                                        <li><a href="{{ route('register') }}"><i class="fa fa-check-square-o"></i>
+                                                Register</a>
+                                        </li>
+                                    @endguest
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="renewheader-bottom">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-9">
+                            <div class="navbar-header">
+                                {{--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button>--}}
+                                <button class="pull-left navbar-toggler navbar-toggler-right" type="button"
+                                        data-toggle="collapse"
+                                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                        aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-icon"></span>
+                                </button>
+
+                            </div>
+                            {{--Main Menu left--}}
+                            <div class="mainmenu pull-left">
+                                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                    <ul class="nav navbar-nav mr-auto " style="height: auto;">
+                                        <li><a href="{{route('home')}}" class="{{isActiveRoute('home')}}">Home</a>
+                                        </li>
+                                        @if(Auth::user()->roles == 'user')
+                                            <li><a class="dropdown-item"
+                                                   href="#"><i
+                                                            class="fa fa-tag"> </i>&nbsp;&nbsp;My Order</a></li>
+                                        @endif
 
 
-<div id="search">
-    <button type="button" class="close">×</button>
-    <form style="    display: block;
-    text-align: center;
-    margin-top: 8%;">
-        <label class="labelnewstyle">SEARCH</label><br>
-
-        <input type="text" autofocus value="" placeholder="search ..." style="    font-size: 17px;
-    width: 50%;
-    padding-top: 5px;
-    padding-bottom: 5px;"/>
-        <button type="submit">
-            <i class="fa fa-search buttonbar" style="padding-top: 14%; padding-bottom: 40%;">
-            </i>
-        </button>
-
-    </form>
-</div>
-
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
-
-<script>
-    $(function () {
-        $('a[href="#search"]').on('click', function (event) {
-            event.preventDefault();
-            $('#search').addClass('open');
-            $('#search > form > input[type="search"]').focus();
-        });
-
-        $('#search, #search button.close').on('click keyup', function (event) {
-            if (event.target == this || event.target.className == 'close' || event.keyCode == 27) {
-                $(this).removeClass('open');
-            }
-        });
 
 
-        //Do not include! This prevents the form from submitting for DEMO purposes only!
-        // $('form').submit(function(event) {
-        //     event.preventDefault();
-        //     return false;
-        // })
-    });
-</script>
 
-</body>
+
+                                        @if(Auth::user()->roles == 'admin')
+                                            <li class="dropdown"><a class="{{isActiveRoute('dashboardindex')}}"
+                                                                    href="{{ route('dashboardindex') }}" "> <i
+                                                        class="fa fa-dashboard"> </i> Administrator Dashboard<i
+                                                        class="fa fa-angle-down"></i></a>
+                                                <ul role="menu" class="sub-menu">
+                                                    {{--<li><a class="dropdown-item {{ isActiveRoute('dashboardindex') }}">Dashboard</a>--}}
+                                                    {{--</li>--}}
+
+                                                    <li><a class="dropdown-item {{ isActiveRoute('cat.edit') }} ">⚫Categories
+                                                            Management</a></li>
+                                                    <li><a class="dropdown-item {{ isActiveRoute('addcat') }} "
+                                                           href="{{route('addcat')}}">Add
+                                                            Categories</a></li>
+                                                    <li><a class="dropdown-item {{ isActiveRoute('indexcat') }} "
+                                                           href="{{route('indexcat')}}">Edit/View
+                                                            Categories</a></li>
+
+                                                    <li><a class="dropdown-item {{ isActiveRoute('acc.edit') }} ">⚫Users
+                                                            Management</a></li>
+                                                    <li><a class="dropdown-item {{ isActiveRoute('acc.show.add') }} "
+                                                           href="{{route('acc.show.add')}}">Add Users</a></li>
+                                                    <li><a class="dropdown-item {{ isActiveRoute('acc.index') }} "
+                                                           href="{{route('acc.index')}}">View
+                                                            All Users</a></li>
+
+                                                    <li><a class="dropdown-item {{ isActiveRoute('acc.show.manage') }} "
+                                                           href="{{route('acc.show.manage')}}">Dealers Management</a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="dropdown-item {{ isActiveRoute('acc.show.approve') }} "
+                                                           href="{{route('acc.show.approve')}}">Pending Dealers
+                                                            Approval</a></li>
+
+                                                    <li><a class="dropdown-item {{ isActiveRoute('acc.edit') }} ">⚫Product
+                                                            Dealers Management</a></li>
+                                                    <li><a class="dropdown-item {{ isActiveRoute('acc.index') }} "
+                                                           href="{{route('acc.index')}}">View
+                                                            All Product</a></li>
+                                                    <li>
+                                                        <form method="POST"
+                                                              action="{{ route('admin.prod.show.search') }}"
+                                                              enctype="multipart/form-data" >
+                                                            @csrf
+
+                                                            <input type="text" name="searcher"
+                                                                   placeholder="Search all Product ...">
+                                                            <button type="submit" class="btn btn-primary">
+                                                                <i class="fa fa-search"></i>
+                                                            </button>
+                                                        </form>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        @endif
+                                        @if(Auth::user()->roles == 'admin' || Auth::user()->roles ==
+                                                                            'seller')
+                                            <li class="dropdown"><a href="{{ route('sellerpanel') }}"
+                                                                    class="{{ isActiveRoute('sellerpanel') }}"><i
+                                                            class="fa fa-cubes">
+                                                    </i> Dealer Controller<i
+                                                            class="fa fa-angle-down"></i></a>
+                                                <ul role="menu" class="sub-menu extendtop45">
+                                                    <li>
+                                                        <a class="dropdown-item {{ isActiveRoute('prod.image.index') }} {{ isActiveRoute('prod.show.search') }} ">⚫Product
+                                                            Management</a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="dropdown-item {{ isActiveRoute('prod.show.add') }} "
+                                                           href="{{route('prod.show.add')}}">Add
+                                                            Product</a></li>
+                                                    <li><a class="dropdown-item {{ isActiveRoute('prod.index') }} "
+                                                           href="{{route('prod.index')}}">Overview
+                                                            Product</a></li>
+                                                    <li>
+                                                        <form method="POST" action="{{ route('prod.show.search') }}"
+                                                              enctype="multipart/form-data" >
+                                                            @csrf
+                                                            <input type="text" name="searcher"
+                                                                   placeholder="Search my Product ...">
+                                                            <button type="submit" class="btn btn-primary">
+                                                                <i class="fa fa-search"></i>
+                                                            </button>
+                                                        </form>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        @endif
+
+                                        {{--<li class="dropdown"><a href="javascript:void(0)">Blog<i--}}
+                                        {{--class="fa fa-angle-down"></i></a>--}}
+                                        {{--<ul role="menu" class="sub-menu">--}}
+                                        {{--<li><a href="pages/blog.php">Blog List</a></li>--}}
+                                        {{--<li><a href="pages/blog-single.php">Blog Single</a></li>--}}
+                                        {{--</ul>--}}
+                                        {{--</li>--}}
+                                        {{--<li><a href="pages/404.php">404</a></li>--}}
+                                        {{--<li><a href="pages/contact-us.php">Contact</a></li>--}}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="search_box pull-right" style="margin-top: -3%;">
+                                <input type="text" placeholder="Search">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <main class="py-4">
+            @yield('content')
+        </main>
+
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+                integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+                crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+                integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+                crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+                integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+                crossorigin="anonymous"></script>
+
+
+        </body>
 </html>

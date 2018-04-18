@@ -1,4 +1,4 @@
-@extends('layouts.sellerapp')
+@extends('layouts.app')
 <head>
     <link href="{{ asset('css/AdminLTE.css') }}" rel="stylesheet">
     <link href="{{ asset('css/AdminLTE.min.css') }}" rel="stylesheet">
@@ -14,7 +14,7 @@
     </style>
 </head>
 @section('content')
-    <div class="container-fluid">
+    <div class="container">
 
         <div style="padding: 20px 30px; background: #28a745; z-index: 999999; font-size: 16px; font-weight: 600;">
             <label

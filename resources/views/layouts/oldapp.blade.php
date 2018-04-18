@@ -22,184 +22,166 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <style>
 
-        .centerdrop {
-            text-align: center;
-        }
 
-        #search {
-            position: fixed;
-            top: 0px;
-            left: 0px;
-            width: 100%;
-            height: 100%;
-            /*background-color: rgba(0, 0, 0, 0.7);*/
-            background-color: #ffffd2;
-            -webkit-transition: all 0.5s ease-in-out;
-            -moz-transition: all 0.5s ease-in-out;
-            -o-transition: all 0.5s ease-in-out;
-            -ms-transition: all 0.5s ease-in-out;
-            transition: all 0.5s ease-in-out;
+</head>
+<style>
 
-            -webkit-transform: translate(0px, -100%) scale(0, 0);
-            -moz-transform: translate(0px, -100%) scale(0, 0);
-            -o-transform: translate(0px, -100%) scale(0, 0);
-            -ms-transform: translate(0px, -100%) scale(0, 0);
-            transform: translate(0px, -100%) scale(0, 0);
 
-            opacity: 0;
-        }
+    #search {
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        /*background-color: rgba(0, 0, 0, 0.7);*/
+        background-color: #ffffd2;
+        -webkit-transition: all 0.5s ease-in-out;
+        -moz-transition: all 0.5s ease-in-out;
+        -o-transition: all 0.5s ease-in-out;
+        -ms-transition: all 0.5s ease-in-out;
+        transition: all 0.5s ease-in-out;
 
-        #search.open {
-            -webkit-transform: translate(0px, 0px) scale(1, 1);
-            -moz-transform: translate(0px, 0px) scale(1, 1);
-            -o-transform: translate(0px, 0px) scale(1, 1);
-            -ms-transform: translate(0px, 0px) scale(1, 1);
-            transform: translate(0px, 0px) scale(1, 1);
-            opacity: 1;
-        }
+        -webkit-transform: translate(0px, -100%) scale(0, 0);
+        -moz-transform: translate(0px, -100%) scale(0, 0);
+        -o-transform: translate(0px, -100%) scale(0, 0);
+        -ms-transform: translate(0px, -100%) scale(0, 0);
+        transform: translate(0px, -100%) scale(0, 0);
 
-        #search input[type="search"] {
-            position: absolute;
-            top: 50%;
-            width: 100%;
-            color: rgb(255, 255, 255);
-            background: rgba(0, 0, 0, 0);
-            font-size: 60px;
-            font-weight: 300;
-            text-align: center;
-            border: 0px;
-            margin: 0px auto;
-            margin-top: -51px;
-            padding-left: 30px;
-            padding-right: 30px;
-            outline: none;
-        }
+        opacity: 0;
+    }
 
-        #search .btn {
-            /* position: absolute;
-             top: 50%;
-             left: 50%;
-             margin-top: 61px;
-             margin-left: -45px;*/
-            margin-top: -4px;
-        }
+    .centerdrop {
+        text-align: center;
+    }
 
-        #search .close {
-            position: fixed;
-            top: 15px;
-            /* right: 15px; */
-            color: black;
-            /* background-color: #428bca; */
-            border-color: #357ebd;
-            opacity: 1;
-            padding: 3px 34px;
-            font-size: 34px;
-        }
+    #search.open {
+        -webkit-transform: translate(0px, 0px) scale(1, 1);
+        -moz-transform: translate(0px, 0px) scale(1, 1);
+        -o-transform: translate(0px, 0px) scale(1, 1);
+        -ms-transform: translate(0px, 0px) scale(1, 1);
+        transform: translate(0px, 0px) scale(1, 1);
+        opacity: 1;
+    }
 
-        .navbar-header {
-            float: left;
-            text-align: center;
-            width: 100%;
-        }
+    #search input[type="search"] {
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        color: rgb(255, 255, 255);
+        background: rgba(0, 0, 0, 0);
+        font-size: 60px;
+        font-weight: 300;
+        text-align: center;
+        border: 0px;
+        margin: 0px auto;
+        margin-top: -51px;
+        padding-left: 30px;
+        padding-right: 30px;
+        outline: none;
+    }
 
-        .navbar-brand {
-            float: none;
-            color: white;
-        }
+    #search .btn {
+        /* position: absolute;
+         top: 50%;
+         left: 50%;
+         margin-top: 61px;
+         margin-left: -45px;*/
+        margin-top: -4px;
+    }
 
-        .navbar-right {
-            float: right;
-        }
+    #search .close {
+        position: fixed;
+        top: 15px;
+        /* right: 15px; */
+        color: black;
+        /* background-color: #428bca; */
+        border-color: #357ebd;
+        opacity: 1;
+        padding: 3px 34px;
+        font-size: 34px;
+    }
 
-        .buttonbar {
-            font-size: 23px;
-            /*
-                    margin-top: 6px;
-                    margin-bottom: 12px;
-                    margin-left: 15px;
-                    margin-right: 15px;*/
-            padding-left: 20px;
-            padding-right: 20px;
-            text-align: center;
-            color: black;
-        }
+    .navbar-header {
+        float: left;
+        text-align: center;
+        width: 100%;
+    }
 
-        .dropdown:hover .dropbtn {
-            color: grey;
-        }
+    .navbar-brand {
+        float: none;
+        color: white;
+    }
 
-        .btnholder:hover {
-            color: grey;
-        }
+    .navbar-right {
+        float: right;
+    }
 
-        .newbgnav {
-            /*background-image: url(../images/bg.png);*/
-            background-color: #ffffa2;
+    .buttonbar {
+        font-size: 23px;
+        /*
+                margin-top: 6px;
+                margin-bottom: 12px;
+                margin-left: 15px;
+                margin-right: 15px;*/
+        padding-left: 20px;
+        padding-right: 20px;
+        text-align: center;
+        color: black;
+    }
 
-        }
+    .dropdown:hover .dropbtn {
+        color: grey;
+    }
 
-        .navigator {
-            /*margin-right: 8%;*/
-        }
+    .btnholder:hover {
+        color: grey;
+    }
 
-        .tooltip {
-            position: relative;
-            display: contents;
-            border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
-        }
+    .newbgnav {
+        /*background-image: url(../images/bg.png);*/
+        background-color: #ffffa2;
 
-        /* Tooltip text */
-        .tooltip .tooltiptext {
-            visibility: hidden;
-            width: 120px;
-            background-color: black;
-            color: #fff;
-            text-align: center;
-            padding: 5px 0;
-            border-radius: 6px;
-            margin-top: 8px;
-            /* Position the tooltip text - see examples below! */
-            position: absolute;
-            z-index: 1;
-        }
+    }
 
-        /* Show the tooltip text when you mouse over the tooltip container */
-        .tooltip:hover .tooltiptext {
-            visibility: visible;
-        }
+    .navigator {
+        /*margin-right: 8%;*/
+    }
 
-        .removepadding {
-            padding-right: 0px;
-            padding-left: 0px;
-        }
+    .tooltip {
+        position: relative;
+        display: contents;
+        border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+    }
 
-        .marginbot20 {
-            margin-bottom: 20px;
-        }
+    /* Tooltip text */
+    .tooltip .tooltiptext {
+        visibility: hidden;
+        width: 120px;
+        background-color: black;
+        color: #fff;
+        text-align: center;
+        padding: 5px 0;
+        border-radius: 6px;
+        margin-top: 8px;
+        /* Position the tooltip text - see examples below! */
+        position: absolute;
+        z-index: 1;
+    }
 
-        .blackfont {
-            color: black;
-        }
-        .input[type=text] {
-            width: 130px;
-            -webkit-transition: width 0.4s ease-in-out;
-            transition: width 0.4s ease-in-out;
-        }
+    /* Show the tooltip text when you mouse over the tooltip container */
+    .tooltip:hover .tooltiptext {
+        visibility: visible;
+    }
 
-        /* When the input field gets focus, change its width to 100% */
-        .input[type=text]:focus {
-            width: 100%;
-        }
-    </style>
+</style>
 </head>
 
-<body style="background-color: #e8e5da">
+<body>
 <div id="app">
     <nav class="navbar navbar-expand-md navbar-light navbar-laravel navbar-fixed-top newbgnav">
         <div class="bg"></div>
-        <div class="container">
+        <div class="container-fluid">
 
             <!-- <div class = "navbar-header"> -->
 
@@ -239,10 +221,10 @@
                                     <span class="tooltiptext">Management Panel</span></a>
                             </div>
 
-                        <!--  <li class="nav-item dropdown">
+                        <!--   <li class="nav-item dropdown centerdrop">
                                 <a id="navbarDropdown" class="nav-link dropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     <div class ="tooltip">
-                                     <i class="fa fa-dashboard buttonbar dropbtn"  >
+                                     <i class="fa fa-dashboard buttonbar dropbtn" style="margin-left:80%" >
                                      </i>
                                      <span class="tooltiptext">Management Panel</span>
                                  </div>
@@ -264,6 +246,12 @@
                                 </div>
                             </li> -->
                         @endif
+                    @else
+                        <div style="padding-left:2%"></div>
+
+                        <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
+                        <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
+
                     @endif
                 </ul>
 
@@ -272,9 +260,22 @@
 
                 <ul class="nav nav-justified" style="text-align: center;">
                     <li>
-                        <a href="{{url('/')}}" class="navbar-brand">
-                            <img src="{{url('/images/logo.png')}}" style="width: 60%">
-                        </a>
+                        @if(Auth::check())
+                            @if((Auth::user()->roles == "admin")||(Auth::user()->roles == "seller"))
+                                <a href="{{url('/')}}" class="navbar-brand">
+                                    <img src="{{url('/images/logo.png')}}" style="width: 60%">
+                                </a>
+                            @else
+                                <a href="{{url('/')}}" class="navbar-brand">
+                                    <img src="{{url('/images/logo.png')}}" style="width: 60% ; padding-left: 11%;">
+                                </a>
+
+                            @endif
+                        @else
+                            <a href="{{url('/')}}" class="navbar-brand">
+                                <img src="{{url('/images/logo.png')}}" style="width: 60% ; ">
+                            </a>
+                        @endif
                     </li>
 
                 </ul>
@@ -283,7 +284,8 @@
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">
                     <a href="#" class="nav-link">
-                        <i class="nav-link fa fa-gift buttonbar navigator"></i></a>
+                        <i class="nav-link fa fa-gift buttonbar navigator"></i>
+                    </a>
                     <a href="#" class="nav-link">
                         <i class="nav-link fa fa-shopping-cart buttonbar navigator"></i>
                     </a>
@@ -292,7 +294,7 @@
                     <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
                             <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
                         @else
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown centerdrop">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
 {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
@@ -317,10 +319,12 @@
 
                     <!-- Authentication Links -->
 
-                    <li class="nav-item dropdown centerdrop nav-link">
+                    <li class="nav-link nav-item dropdown centerdrop">
                         <a id="navbarDropdown" class="nav-link dropdown" href="#" role="button" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false" v-pre>
-                            <i class="fa fa-user-circle buttonbar dropbtn"></i>
+
+                            <i class="fa fa-user-circle buttonbar dropbtn"> </i>
+
                             <!-- <span class="caret"></span> -->
                         </a>
 
@@ -340,9 +344,6 @@
                                 <div style="padding-bottom:20px;">
                                     <label class="dropdown-item" style="background-color: #dcdcaa; padding-bottom: ">Welcome {{ Auth::user()->name }}</label>
                                 </div>
-                                <a class="dropdown-item"
-                                   href="mailto:trythis.stationary@gmail.com?Subject=FAQ. to Admin"
-                                   target="_top">F.A.Q.</a>
 
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
@@ -368,93 +369,11 @@
 
             <!-- </div> -->
         </div>
-
     </nav>
-    <div class="container-fluid">
-        <div class="row">
-            <nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar removepadding border border-primary rounded"
-                 style="background-color:#f3f3f3 ;">
 
-                <ul class="nav nav-pills flex-column marginbot20">
-                    <li class="nav-item">
-                        <a class="nav-link {{ isActiveRoute('sellerpanel') }} blackfont"
-                           href="{{route('sellerpanel')}}">Dealer Dashboard <span class="sr-only">(current)</span></a>
-                    </li>
-
-                    <!-- <div class="text-center">----------------------------------</div> -->
-                </ul>
-
-
-                <ul class="nav nav-pills flex-column marginbot20">
-
-
-                    <li class="nav-item">
-
-                        <a class="nav-link {{ isActiveRoute('prod.image.index') }} {{ isActiveRoute('prod.show.search') }} blackfont">⚫Product Management</a>
-
-
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link {{ isActiveRoute('prod.show.add') }} blackfont"
-                           href="{{route('prod.show.add')}}">Add
-                            Product</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ isActiveRoute('prod.index') }} blackfont" href="{{route('prod.index')}}">Overview
-                            Product</a>
-                    </li>
-                    <br/>
-                    <li class="nav-item nav-link">
-
-                        <form method="POST" action="{{ route('prod.show.search') }}" enctype="multipart/form-data">
-                            @csrf
-                        <input type="text" name="searcher" placeholder="Search my Product ...">
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fa fa-search"></i>
-                        </button>
-                        </form>
-                    </li>
-
-                </ul>
-
-
-                <ul class="nav nav-pills flex-column marginbot20">
-
-
-                    <li class="nav-item">
-
-                        <a class="nav-link {{ isActiveRoute('acc.edit') }} blackfont">⚫Users Management</a>
-
-
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link {{ isActiveRoute('acc.show.add') }} blackfont"
-                           href="{{route('acc.show.add')}}">Add Users</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ isActiveRoute('acc.index') }} blackfont" href="{{route('acc.index')}}">View
-                            All Users</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ isActiveRoute('acc.show.manage') }} blackfont"
-                           href="{{route('acc.show.manage')}}">Dealers Management</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ isActiveRoute('acc.show.approve') }} blackfont"
-                           href="{{route('acc.show.approve')}}">Pending Dealers Approval</a>
-                    </li>
-
-
-                </ul>
-
-            </nav>
-            <main class="col-sm-9 col-md-10  pt-3" style="  background-color: #e8e5da; "> <!-- py-4 -->
-                @yield('content')
-            </main>
-        </div>
-    </div>
+    <main class="py-4">
+        @yield('content')
+    </main>
 </div>
 
 
@@ -509,11 +428,6 @@
         // })
     });
 </script>
-<!-- <script>
-    $(".nav .nav-link").on("click", function(){
-   $(".nav").find(".active").removeClass("active");
-   $(this).addClass("active");
-});
-</script> -->
+
 </body>
 </html>

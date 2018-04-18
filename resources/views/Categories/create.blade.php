@@ -1,4 +1,4 @@
-@extends('layouts.adminapp')
+@extends('layouts.app')
 <style>
 .hideplz
 {

@@ -1,4 +1,4 @@
-@extends('layouts.adminapp')
+@extends('layouts.app')
 <head>
     <link href="{{ asset('css/AdminLTE.css') }}" rel="stylesheet">
     <link href="{{ asset('css/AdminLTE.min.css') }}" rel="stylesheet">
@@ -14,7 +14,7 @@
     </style>
 </head>
 @section('content')
-    <div class="container-fluid">
+    <div class="container">
         <div class=" justify-content-center">
         <!--  <div class="col-md-8">
             <div class="card">

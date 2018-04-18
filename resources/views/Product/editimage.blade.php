@@ -1,4 +1,4 @@
-@extends('layouts.sellerapp')
+@extends('layouts.app')
 <style>
     .hideplz {
         visibility: hidden;
