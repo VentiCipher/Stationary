@@ -255,6 +255,16 @@
                                             </a>
 
                                         </li>
+                                        <li> <a class="#" href="{{ route('logout') }}"
+                                                onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                                {{ __('Logout') }}
+                                            </a>
+
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                                  style="display: none;">
+                                                @csrf
+                                            </form></li>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown"
                                              style="    left: -125%; top: 128%;">
                                             <div>
@@ -452,8 +462,20 @@
                             </div>
                         </div>
                         <div class="col-sm-3">
-                            <div class="search_box pull-right" style="margin-top: -3%;">
-                                <input type="text" placeholder="Search">
+                            <div class="search_box pull-right" style="margin-top: -3%; width:100%;">
+
+                                <form method="POST"
+                                      action="{{ route('user.show.search') }}"
+                                      enctype="multipart/form-data">
+                                    @csrf
+
+                                    <input name="searcher" type="text" placeholder="Search product" style="width: 80%;"><button type="submit" class="btn btn-primary">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+
+
+                                </form>
+
                             </div>
                         </div>
                     </div>
@@ -506,7 +528,7 @@
             <div class="row">
 
 
-                @if (\Route::current()->getName() == 'home' ||\Route::current()->getName() == 'index' )
+                @if (\Route::current()->getName() == 'home' ||\Route::current()->getName() == 'index'||\Route::current()->getPrefix() == '/users' )
                     <div class="col-sm-3">
                         <div class="left-sidebar">
                             <h2>Category</h2>
@@ -533,7 +555,7 @@
                                 @foreach($data['myvar'] as $cat)
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
-                                            <h4 class="panel-title"><a href="#">{{$cat->name}}</a></h4>
+                                            <h4 class="panel-title"><a href="{{route('user.show.cat',['id'=>$cat->id])}}">{{$cat->name}}</a></h4>
                                         </div>
                                     </div>
                                 @endforeach
@@ -573,7 +595,7 @@
                         </div>
                     </div>
                 @endif
-                @if (\Route::current()->getName() == 'home'||\Route::current()->getName() == 'index')
+                    @if (\Route::current()->getName() == 'home' ||\Route::current()->getName() == 'index' || \Route::current()->getPrefix() == '/users'  )
                     <div class="col-sm-9 padding-right">
                         {{--<main class="py-4">--}}
                         @yield('content')
@@ -594,6 +616,7 @@
     </nav>
 
 </div>
+
 <div class="footer footer-widget" style="background-color: #F0F0E9;">
     <div class="container">
         <div class="row">

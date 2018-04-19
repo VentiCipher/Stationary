@@ -42,6 +42,8 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
     public function add($id)
     {
         $user = Auth::user();

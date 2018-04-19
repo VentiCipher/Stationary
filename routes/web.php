@@ -26,9 +26,9 @@ Route::prefix('users')->group(function () {
     Route::get('/wish/add{id}', 'Product\UserController@add')->name('addtowish');//->middleware('seller')
     Route::get('/wish/delete{id}', 'Product\UserController@remove')->name('removetowish');//->middleware('seller')
     Route::get('/wishlist', 'Product\UserController@index')->name('wishlist.index');//->middleware('seller')
-
+    Route::post('/products/search', 'SearchController@search')->name('user.show.search');
+    Route::get('/products/{id}', 'SearchController@showcat')->name('user.show.cat');
 });
-
 /* Product Section */
 Route::prefix('dealers')->group(function () {
     Route::get('/panel', 'Seller\SellerController@index')->name('sellerpanel');//->middleware('seller')
