@@ -39,7 +39,7 @@ class User extends Authenticatable
 
     public function wishlists()
     {
-        return $this->hasOne('App\Wishlist', 'wishlist_id', 'users_id');
+        return $this->hasOne('App\Wishlist', 'id', 'users_id');
     }
 
     public function sendPasswordResetNotification($token)

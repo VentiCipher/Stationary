@@ -286,10 +286,15 @@
                                         </div>
 
                                     @endif
-
-                                    <li><a href="#"><i class="fa fa-star"></i>
-                                            Wishlist</a></li>
-
+                                    @if(Auth::check())
+                                        <li><a href="{{route('wishlist.index')}}"
+                                               class="{{isActiveRoute('wishlist.index')}}"><i class="fa fa-star "></i>
+                                                Wishlist</a></li>
+                                    @else
+                                        <li><a href="{{route('login')}}" class="{{isActiveRoute('login')}}"><i
+                                                        class="fa fa-star "></i>
+                                                Wishlist</a></li>
+                                    @endif
                                     <li><a href="#"><i class="	fa fa-edit"></i> Checkout</a></li>
                                     <li><a href="#"><i class="fa fa-shopping-cart"></i> Cart</a></li>
                                     @guest
@@ -501,7 +506,7 @@
             <div class="row">
 
 
-                @if (\Route::current()->getName() == 'home')
+                @if (\Route::current()->getName() == 'home' ||\Route::current()->getName() == 'index' )
                     <div class="col-sm-3">
                         <div class="left-sidebar">
                             <h2>Category</h2>
@@ -568,14 +573,14 @@
                         </div>
                     </div>
                 @endif
-                @if (\Route::current()->getName() == 'home')
+                @if (\Route::current()->getName() == 'home'||\Route::current()->getName() == 'index')
                     <div class="col-sm-9 padding-right">
                         {{--<main class="py-4">--}}
                         @yield('content')
                         {{--</main>--}}
 
                     </div>
-                
+
                 @else
                     <div class="col-sm-12 padding-right">
                         {{--<main class="py-4">--}}

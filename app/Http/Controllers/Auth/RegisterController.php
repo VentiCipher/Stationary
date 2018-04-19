@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Http\Controllers\Controller;
+use App\Wishlist;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -83,6 +84,7 @@ class RegisterController extends Controller
         // }
        // $newdate = date_parse_from_format("Y-d-m", $data['birthdate']);
         //$data['birthdate']= ((string)$newdate['year']) +  ((string)$newdate['month']) + ((string)$newdate['day']);
+
         return User::create([
             'name' => $data['name'],
             'surname' => $data['surname'],

@@ -61,7 +61,7 @@
                         </div>
                         <div class="choose">
                             <ul class="nav nav-pills nav-justified" style="width: 100%;display: block;">
-                                <li style="text-align: center;"><a href="#"><i class="fa fa-plus-square"></i>Add to
+                                <li style="text-align: center;"><a href="{{route('addtowish',['id'=>$prod->id])}}"><i class="fa fa-plus-square"></i>Add to
                                         wishlist</a></li>
                                 {{--<li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>--}}
                             </ul>
@@ -72,5 +72,17 @@
             @endforeach
         </div>
     </div>
+    <script type="text/javascript">
+        $('.choose').find('a').click(function (event){
+            event.preventDefault();
+            $.ajax({
+                url: $(this).attr('href')
+                ,success: function(response) {
+                    alert(response)
+                }
+            });
+            return false; //for good measure
+        });
+    </script>
 @endsection
 

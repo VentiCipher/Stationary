@@ -13,7 +13,7 @@ class Wishlist extends Model
      * @var array
      */
     protected $fillable = [
-        'name','users_id',
+        'name','users_id','products_id',
     ];
     public function users()
     {
@@ -21,7 +21,7 @@ class Wishlist extends Model
     }
     public function products()
     {
-        return $this->belongsToMany('App\User','wish','wishlists_id','products_id');
+        return $this->hasMany('App\Product');
     }
     
 }

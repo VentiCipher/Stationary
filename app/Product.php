@@ -31,6 +31,6 @@ class Product extends Model
 
     public function wishlists()
     {
-        return $this->belongsToMany('App\Wishlist','wish','products_id','wishlists_id');
+        return $this->belongsTo('App\Wishlist');
     }
 }
