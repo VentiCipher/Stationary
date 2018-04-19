@@ -97,7 +97,8 @@ class CartController extends Controller
         $cart = Cart::all();
         $data = Product::all();
         $products = array();
-
+        $sumup = 0.0;
+        $promotion = 0.0;
         foreach ($data as $single) {
 //            dd($single->id);
             if ($user->isEmpty())
@@ -105,10 +106,13 @@ class CartController extends Controller
             if ($user->first()->products_id == $single->id) {
 //                $products[] = $single;
                 array_push($products, $single);
+                $sumup = $sumup + $single->price;
+                $promotion = $promotion +$single->promo_price;
             }
         }
 //        dd($products);
-        return view('cart', ['wishlist' => $products, 'cart' => $cart]);
+
+        return view('cart', ['wishlist' => $products, 'cart' => $cart,'total'=>$sumup,'promotiontotal'=>$promotion]);
     }
 
 }
