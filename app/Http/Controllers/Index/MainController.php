@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Index;
 
+use App\Subscriber;
 use Illuminate\Http\Request;
 use App\Categories;
 use App\User;
@@ -44,5 +45,20 @@ class MainController extends Controller
 //            dd($prod);
             return view('index',['categories'=>$cat,'products'=>$prod,'username'=>$usr]);
         }
+    }
+    public function showsub()
+    {
+        return view('subscribe');
+    }
+    public function upsub(Request $request)
+    {
+        $cmd = Subscriber::where('email', $request->email)->orWhere('lineid',$request->lineid)->first();
+
+        if (!$cmd->exists())
+            Subscriber::create($request->all());
+
+
+
+        return redirect()->intended('/');
     }
 }

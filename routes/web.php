@@ -22,7 +22,12 @@ Route::get('/home', 'Index\MainController@index')->name('home');//->middleware('
 //    return view('index');
 //})->name('home');
 
+
 Route::prefix('users')->group(function () {
+    Route::get('/ssubscribe', 'Index\MainController@showsub')->name('showsub');//->middleware('seller')
+    Route::post('/sub', 'Index\MainController@upsub')->name('upsub');//->middleware('seller')
+
+
     Route::get('/wish/add{id}', 'Product\UserController@add')->name('addtowish');//->middleware('seller')
     Route::get('/wish/delete{id}', 'Product\UserController@remove')->name('removetowish');//->middleware('seller')
     Route::get('/wishlist', 'Product\UserController@index')->name('wishlist.index');//->middleware('seller')

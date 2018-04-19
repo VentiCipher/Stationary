@@ -16,7 +16,7 @@ class AppServiceProvider extends ServiceProvider
     {
         view()->composer('layouts.app', function ($view) {
             $myvar = Categories::all();
-            $user = User::where('roles','seller')->where('dealer_approve','0')->get();
+            $user = User::where('roles','seller')->orWhere('roles','admin')->where('dealer_approve','0')->get();
             $view->with('data', ['myvar' => $myvar,'user'=>$user]);
         });
     }

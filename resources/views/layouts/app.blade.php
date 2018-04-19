@@ -244,7 +244,7 @@
                                     @if(Auth::check())
                                         {{--<li><a href="#"><i class="fa fa-user"></i>--}}
                                         {{--</a></li>--}}
-                                        <li>
+                                         <li>
                                             <a id="navbarDropdown" class="dropdown-item dropdown" href="#" role="button"
                                                data-toggle="dropdown"
                                                aria-haspopup="true" aria-expanded="false" v-pre>
@@ -555,10 +555,11 @@
                                 @foreach($data['myvar'] as $cat)
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
-                                            <h4 class="panel-title"><a href="{{route('user.show.cat',['id'=>$cat->id])}}">{{$cat->name}}</a></h4>
+                                            <h4 class="panel-title"><a href="{{route('user.show.cat',['id'=>$cat->id])}}">{{$cat->name}} ({{$cat->products->count()}})</a></h4>
                                         </div>
                                     </div>
                                 @endforeach
+
                             </div>
                             <div class="brands_products">
                                 <h2>Brands</h2>
@@ -572,6 +573,12 @@
                                     </ul>
                                 </div>
                             </div>
+                            @guest
+                            <div class="brands_products" style="padding-top:20%;">
+                                <a href="{{route('showsub')}}" ><h2>Subscribe Now</h2></a>
+
+                            </div>
+                            @endguest
                             {{--<div class="price-range">--}}
                             {{--<h2>Price Range</h2>--}}
                             {{--<div class="well text-center">--}}

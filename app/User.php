@@ -36,7 +36,10 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Cart');
     }
-
+    public function subscribes()
+    {
+        return $this->hasOne('App\Subscriber');
+    }
     public function wishlists()
     {
         return $this->hasOne('App\Wishlist', 'id', 'users_id');

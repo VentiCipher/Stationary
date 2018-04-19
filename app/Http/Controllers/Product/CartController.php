@@ -106,8 +106,11 @@ class CartController extends Controller
             if ($user->first()->products_id == $single->id) {
 //                $products[] = $single;
                 array_push($products, $single);
-                $sumup = $sumup + $single->price;
-                $promotion = $promotion +$single->promo_price;
+                $result = Cart::select('amount')->where('products_id', $single->id)->first();
+
+                $sumup = $sumup + ($single->price*$result->amount);
+
+                $promotion = $promotion +($single->promo_price*$result->amount);
             }
         }
 //        dd($products);
