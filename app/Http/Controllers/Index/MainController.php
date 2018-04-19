@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Index;
 
 use Illuminate\Http\Request;
-use App\Category;
+use App\Categories;
 use App\User;
 use App\Product;
 use App\Image;
@@ -32,15 +32,16 @@ class MainController extends Controller
         if(Auth::check())
         {
             $usr = Auth::user()->name;
-            $cat = Category::all();
+            $cat = Categories::all();
             $prod = Product::all();
             return view('index',['categories'=>$cat,'products'=>$prod,'username'=>$usr]);
         }
         else
         {
-            $cat = Category::all();
+            $cat = Categories::all();
             $prod = Product::all();
             $usr = "Guest";
+//            dd($prod);
             return view('index',['categories'=>$cat,'products'=>$prod,'username'=>$usr]);
         }
     }

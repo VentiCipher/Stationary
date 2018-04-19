@@ -28,6 +28,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('profilepic')->nullable();
             $table->boolean('dealer_approve')->default('0');
+            $table->string('shopname')->unique()->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

@@ -3,7 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-
+use App\User;
+use App\Categories;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -13,8 +14,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        view()->composer('layouts.app', function ($view) {
+            $myvar = Categories::all();
+            $user = User::where('roles','seller')->where('dealer_approve','0')->get();
+            $view->with('data', ['myvar' => $myvar,'user'=>$user]);
+        });
     }
+
 
     /**
      * Register any application services.

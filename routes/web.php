@@ -12,14 +12,15 @@
 */
 Auth::routes();
 
-Route::get('/', function () {
-    return view('index');
-})->name('index');
+//Route::get('/','Index\MainController@index'), function () {
+//    return view('index');
+//})->name('index');
+Route::get('/', 'Index\MainController@index')->name('index');//->middleware('seller')
+Route::get('/home', 'Index\MainController@index')->name('home');//->middleware('seller')
 
-
-Route::get('/home', function () {
-    return view('index');
-})->name('home');
+//Route::get('/home', function () {
+//    return view('index');
+//})->name('home');
 
 Route::prefix('users')->group(function () {
 
