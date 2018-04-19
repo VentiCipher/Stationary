@@ -20,7 +20,7 @@
                                 <p>{{$prod->name}}</p>
                                     @if($prod->in_stock > 0)
                                         <p> <button class="badge badge-success">{{$prod->in_stock}} Left</button></p>
-                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add
+                                        <a href="{{route('addtocart',['id'=>$prod->id])}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add
                                             to
                                             cart</a></div>
                                     @else
@@ -45,13 +45,13 @@
                                         <h2>฿{{$prod->price}}</h2>
                                         <p>By {{$prod->users->first()->shopname}}</p>
                                     @endif
-                                        <a href ="#">
+                                        <a href ="{{route('user.show.explore',['id'=>$prod->id])}}">
 
                                             <button class="btn btn-default add-to-cart  "><i class="fa fa-cube"></i>See Details</button>
 
                                         </a>
                                         @if($prod->in_stock >0)
-                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add
+                                    <a href="{{route('addtocart',['id'=>$prod->id])}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add
                                         to cart</a></div>
                                 @else
                                     <a class="btn btn-default add-to-cart"><i class="fa fa fa-remove"></i>Out of Stock</a></div>

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Categories;
 use App\User;
 use App\Product;
-use App\Images;
+use App\PImages;
 use App\Cart;
 use Session;
 use Auth;
@@ -56,7 +56,7 @@ class DashboardController extends Controller
 
         $user_amount = User::all()->count();
         $cat_amount = Categories::all()->count();
-        $image_amount = Images::all()->count();
+        $image_amount = PImages::all()->count();
         $product_amount = Product::all()->count();
 
         $dealeramount = User::where('roles','seller')->count();

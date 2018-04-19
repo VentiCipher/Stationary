@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Input;
 use Response;
 use Session;
 
-class UserController extends Controller
+class CartController extends Controller
 {
     public function __construct()
     {
@@ -47,12 +47,35 @@ class UserController extends Controller
     public function add($id)
     {
         $user = Auth::user();
-        $product = Product::where('id',$id)->get();
+        $product = Product::where('id', $id)->get();
         $data = array();
         $data['users_id'] = $user->id;
         $data['products_id'] = $product->first()->id;
-        Wishlist::create($data);
+        $data['amount'] = 1;
+        $updater = Cart::where('products_id', '=', $id)->first();
+        if (Cart::where('products_id', '=', $id)->exists()) {
+            $updater->amount = $updater->amount + 1;
+            $updater->save();
+        } else
+            Cart::create($data);
         return redirect()->back();
+    }
+
+    public function decrease($id)
+    {
+        $cmd = Cart::where('products_id', $id)->where('users_id', Auth::user()->id)->first();
+
+        if ($cmd->exists())
+
+            if ($cmd->amount > 1    ) {
+                $cmd->amount = $cmd->amount - 1;
+                $cmd->save();
+            } else {
+                $cmd->delete();
+            }
+
+            return redirect()->back();
+
     }
 
     public function remove($id)
@@ -61,26 +84,31 @@ class UserController extends Controller
 //        $user = Auth::user();
 //        $product = Product::where('id',id)->get();
 
-        $cmd = Wishlist::where('products_id',$id)->where('users_id',Auth::user()->id)->delete();
-        $cmd = Wishlist::all();
+        $cmd = Cart::where('products_id', $id)->where('users_id', Auth::user()->id)->delete();
+//        $cmd = Wishlist::all();
 //        dd($cmd);
         return redirect()->back();
     }
 
-    public function index()
+    public
+    function index()
     {
-        $user = Wishlist::select('products_id')->where('users_id',Auth::user()->id)->get();
-
+        $user = Cart::select('products_id')->where('users_id', Auth::user()->id)->get();
+        $cart = Cart::all();
         $data = Product::all();
         $products = array();
+
         foreach ($data as $single) {
 //            dd($single->id);
-
-            if ($user->contains('products_id',$single->id))
-                $products[] = $single;
+            if ($user->isEmpty())
+                break;
+            if ($user->first()->products_id == $single->id) {
+//                $products[] = $single;
+                array_push($products, $single);
+            }
         }
 //        dd($products);
-        return view('wishlist',['wishlist'=>$products]);
+        return view('cart', ['wishlist' => $products, 'cart' => $cart]);
     }
 
 }

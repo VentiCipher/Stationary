@@ -3,7 +3,7 @@
 namespace App;
 use Illuminate\Database\Eloquent\Model;
 
-class Images extends Model
+class PImages extends Model
 {
    // use Notifiable;
     protected $guard = 'web';

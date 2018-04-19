@@ -18,25 +18,34 @@
                     <td class="image">Item</td>
                     <td class="description"></td>
                     <td class="price">Price</td>
-                    <td class="quantity">In Stock</td>
+                    <td class="quantity">Amount</td>
                     <td class="total">Promotion Price</td>
                     <td></td>
                 </tr>
                 </thead>
                 <tbody>
+
                 @foreach($wishlist as $prod)
                     <tr>
+
                         <td class="cart_product" style="width:20%;     display: table-cell; "><a href="#"><img
                                         src="{{asset($prod->thumbsnail)}}" style="width:50%;"></a></td>
                         <td class="cart_description"><h4><a href="#">{{$prod->name}}</a></h4>
                             <p>Dealer: {{$prod->users->first()->shopname}}</p></td>
+
                         <td class="cart_price" style="    color: #FE980F;font-size: 24px;">
                             <p>฿{{$prod->price}}</p></td>
                         <td class="cart_quantity">
-                            {{--<div class="cart_quantity_button"><a class="cart_quantity_up"--}}
-                                                                 {{--href="#">+</a>--}}
-                               <p>{{$prod->in_stock}} Left</p>
-                                {{--<a class="cart_quantity_down" href="#"> -</a></div>--}}
+
+                            <div class="cart_quantity_button"> <a class="cart_quantity_up" href="{{route('addtocart',['id'=>$prod->id])}}">+</a>
+                                <input class="cart_quantity_input" type="text" name="quantity"
+                            @foreach($cart as $singlecart)
+                                        @if($singlecart->products_id == $prod->id)
+                            value="{{$singlecart->amount}}"
+                                        @endif
+                                        @endforeach
+                                         autocomplete="off" size="2">
+                                <a class="cart_quantity_down" href="{{route('decrease',['id'=>$prod->id])}}"> -</a></div>
                         </td>
                         <td class="cart_total"><p class="cart_total_price">
                                 @if($prod->price_promo == null)
@@ -46,7 +55,7 @@
                                     @endif
                             </p></td>
                         <td class="cart_delete"style="padding-top: 79%;"><a class="cart_quantity_delete"
-                                                   href="{{route('removetowish',['id'=>$prod->id])}}"><i
+                                                   href="{{route('removefromcart',['id'=>$prod->id])}}"><i
                                         class="fa fa-times"></i></a></td>
                     </tr>
                 @endforeach

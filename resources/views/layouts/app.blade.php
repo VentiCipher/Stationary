@@ -306,7 +306,7 @@
                                                 Wishlist</a></li>
                                     @endif
                                     <li><a href="#"><i class="	fa fa-edit"></i> Checkout</a></li>
-                                    <li><a href="#"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+                                    <li><a href="{{route('cart.index')}}"><i class="fa fa-shopping-cart"></i> Cart</a></li>
                                     @guest
                                         <li><a href="{{ route('login') }}"><i class=" fa fa-lock"></i> Login</a></li>
                                         <li><a href="{{ route('register') }}"><i class="fa fa-check-square-o"></i>

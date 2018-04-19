@@ -18,6 +18,7 @@ class CreateCarts extends Migration
              $table->increments('id')->unique();
             $table->integer('users_id');
             $table->integer('products_id');
+            $table->integer('amount');
             $table->timestamps();
         });
     }

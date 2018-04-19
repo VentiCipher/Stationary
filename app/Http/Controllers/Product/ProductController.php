@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Categories;
 use App\User;
 use App\Product;
-use App\Images;
+use App\PImages;
 use App\Cart;
 use App\Http\Controllers\Controller;
 use Auth;
@@ -128,7 +128,7 @@ class ProductController extends Controller
                     $file->move($destinationPath, $filename);
                     $final = 'dealers/' . Auth::user()->email . '/' . $filename;
 //                    $final = $destinationPath . '/' . $filename;
-                    Images::create(['products_id' => $postData->id, 'path' => $final, 'createby' => Auth::user()->email]);
+                    PImages::create(['products_id' => $postData->id, 'path' => $final, 'createby' => Auth::user()->email]);
                 }
             }
         }
@@ -147,7 +147,7 @@ class ProductController extends Controller
     public function setimg($id, $prodid)
     {
         $prod = Product::FindOrFail($prodid);
-        $img = Images::FindOrFail($id);
+        $img = PImages::FindOrFail($id);
 
         $prod->thumbsnail = $img->path;
         $prod->save();
@@ -158,7 +158,7 @@ class ProductController extends Controller
     {
         $prod = Product::FindOrFail($id);
 
-        $imglist = Images::where('products_id', $id)->get();
+        $imglist = PImages::where('products_id', $id)->get();
 //        dd($imglist);
 
 //        dd($list);
@@ -199,7 +199,7 @@ class ProductController extends Controller
     public function killimg($id, $prodid)
     {
 //        dd($id);
-        $imager = Images::where('id', $id)->first();
+        $imager = PImages::where('id', $id)->first();
         $imager->delete();
         Session::flash('info', 'Delete Image Sucessfully');
         return redirect()->intended(route('prod.image.index', $prodid));
@@ -243,7 +243,7 @@ class ProductController extends Controller
                     $file->move($destinationPath, $filename);
                     $final = 'dealers/' . Auth::user()->email . '/' . $filename;
 //                    $final = $destinationPath . '/' . $filename;
-                    Images::create(['products_id' => $postData->id, 'path' => $final, 'createby' => Auth::user()->email]);
+                    PImages::create(['products_id' => $postData->id, 'path' => $final, 'createby' => Auth::user()->email]);
                 }
             }
         }

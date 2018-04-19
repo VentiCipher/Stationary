@@ -28,6 +28,12 @@ Route::prefix('users')->group(function () {
     Route::get('/wishlist', 'Product\UserController@index')->name('wishlist.index');//->middleware('seller')
     Route::post('/products/search', 'SearchController@search')->name('user.show.search');
     Route::get('/products/{id}', 'SearchController@showcat')->name('user.show.cat');
+    Route::get('/explore/{id}', 'SearchController@showdetails')->name('user.show.explore');
+
+    Route::get('/addtocart/{id}', 'Product\CartController@add')->name('addtocart');
+    Route::get('/removefromcart/{id}', 'Product\CartController@remove')->name('removefromcart');
+    Route::get('/removefromcart1/{id}', 'Product\CartController@decrease')->name('decrease');
+    Route::get('/cart', 'Product\CartController@index')->name('cart.index');
 });
 /* Product Section */
 Route::prefix('dealers')->group(function () {

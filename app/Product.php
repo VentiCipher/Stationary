@@ -33,4 +33,8 @@ class Product extends Model
     {
         return $this->belongsTo('App\Wishlist');
     }
+    public function carts()
+    {
+        return $this->belongsTo('App\Cart');
+    }
 }

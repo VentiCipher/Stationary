@@ -13,7 +13,7 @@ class CreateImagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('images', function (Blueprint $table) {
+        Schema::create('p_images', function (Blueprint $table) {
             $table->increments('id')->unique();
 //            $table->string('name');
             $table->integer('products_id')->unsigned();
@@ -31,6 +31,6 @@ class CreateImagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('images');
+        Schema::dropIfExists('p_images');
     }
 }
