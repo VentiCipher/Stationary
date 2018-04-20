@@ -92,7 +92,7 @@ class AccountController extends Controller
         }
         //$user->profilepic = $request->profilepic;
         $user->save();
-        Session::flash('info',"Account $user->email updated");
+        Session::flash('status',"Account $user->email updated");
         return redirect()->intended(route('acc.index'));
     }
 
@@ -107,7 +107,7 @@ class AccountController extends Controller
         $account->dealer_approve = '0';
         $account->roles = 'admin';
         $account->save();
-        Session::flash('info',"Account $account->email promote to admin");
+        Session::flash('status',"Account $account->email promote to admin");
         return redirect()->intended(route('acc.index'));
     }
     public function promoteseller($id)
@@ -116,7 +116,7 @@ class AccountController extends Controller
         $account->dealer_approve = '0';
         $account->roles = 'seller';
         $account->save();
-        Session::flash('info',"Account $account->email promote to dealer");
+        Session::flash('status',"Account $account->email promote to dealer");
         return redirect()->intended(route('acc.index'));
     }
     
@@ -126,7 +126,7 @@ class AccountController extends Controller
         $account->dealer_approve = '0';
         $account->roles = 'user';
         $account->save();
-        Session::flash('info',"Account $account->email demote for dealer");
+        Session::flash('status',"Account $account->email demote for dealer");
         return redirect()->intended(route('acc.show.manage'));
     }
     public function showmanage()
@@ -140,7 +140,7 @@ class AccountController extends Controller
         $account->dealer_approve = '0';
         $account->roles = 'seller';
         $account->save();
-        Session::flash('info',"Account $account->email approved for dealer");
+        Session::flash('status',"Account $account->email approved for dealer");
         return redirect()->intended(route('acc.show.approve'));
     }
     public function rejected($id)
@@ -149,7 +149,7 @@ class AccountController extends Controller
         $account->dealer_approve = '0';
         $account->roles = 'user';
         $account->save();
-        Session::flash('info',"Account $account->email rejected for dealer");
+        Session::flash('status',"Account $account->email rejected for dealer");
         return redirect()->intended(route('acc.show.approve'));
     }
     public function createadd(Request $request)
@@ -172,7 +172,7 @@ class AccountController extends Controller
       
         
 
-        Session::flash('info','Users Added');
+        Session::flash('status','Users Added');
         return redirect()->intended(route('acc.index'));
     }
 
@@ -180,7 +180,7 @@ class AccountController extends Controller
     {
         $cat = User::FindOrFail($id);
         $cat->delete();
-        Session::flash('info','User Deleted');
+        Session::flash('status','User Deleted');
         return redirect()->intended(route('acc.index'));
     }
 }

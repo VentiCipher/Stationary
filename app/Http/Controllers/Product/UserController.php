@@ -19,7 +19,7 @@ class UserController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('web');
+        $this->middleware('auth');
 
         $this->middleware(function ($request, $next) {
             $this->user = Auth::user()->name;
@@ -52,6 +52,7 @@ class UserController extends Controller
         $data['users_id'] = $user->id;
         $data['products_id'] = $product->first()->id;
         Wishlist::create($data);
+        Session::flash('status','Added Product to wishlist');
         return redirect()->back();
     }
 
@@ -64,6 +65,7 @@ class UserController extends Controller
         $cmd = Wishlist::where('products_id',$id)->where('users_id',Auth::user()->id)->delete();
         $cmd = Wishlist::all();
 //        dd($cmd);
+        Session::flash('status','Removed Product from wishlist');
         return redirect()->back();
     }
 

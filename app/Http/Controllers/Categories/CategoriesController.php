@@ -59,7 +59,7 @@ class CategoriesController extends Controller
         $currentcat->description = $request->description;
         $currentcat->save();
         
-        Session::flash('info','Categories Updated');
+        Session::flash('status','Categories Updated');
         return redirect()->intended(route('indexcat'));
     }
     public function createadd(Request $request)
@@ -77,7 +77,7 @@ class CategoriesController extends Controller
       
         
 
-        Session::flash('info','Categories Added');
+        Session::flash('status','Categories Added');
         return redirect()->intended(route('indexcat'));
     }
 
@@ -85,7 +85,7 @@ class CategoriesController extends Controller
     {
         $cat = Categories::FindOrFail($id);
         $cat->delete();
-        Session::flash('info','Categories Deleted');
+        Session::flash('status','Categories Deleted');
         return redirect()->intended(route('indexcat'));
     }
 }

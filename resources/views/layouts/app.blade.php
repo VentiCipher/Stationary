@@ -255,16 +255,7 @@
                                             </a>
 
                                         </li>
-                                        <li> <a class="#" href="{{ route('logout') }}"
-                                                onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                                {{ __('Logout') }}
-                                            </a>
 
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                                  style="display: none;">
-                                                @csrf
-                                            </form></li>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown"
                                              style="    left: -125%; top: 128%;">
                                             <div>
@@ -317,6 +308,18 @@
                                                 Register</a>
                                         </li>
                                     @endguest
+                                    @if(Auth::check())
+                                            <li> <a class="#" href="{{ route('logout') }}"
+                                                    onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                                    <i class="fa fa-lock"></i> {{ __('Logout') }}
+                                                </a>
+
+                                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                                      style="display: none;">
+                                                    @csrf
+                                                </form></li>
+                                        @endif
                                 </ul>
                             </div>
                         </div>
@@ -487,6 +490,15 @@
                 </div>
             </div>
         </section>
+        <section id="flowbar">
+            <div class = "container">
+            @if (session('status'))
+                <div class="alert alert-info">
+                    {{ session('status') }}
+                </div>
+            @endif
+            </div>
+        </section>
         {{--<section id="slider">--}}
         {{--<div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">--}}
         {{--<ol class="carousel-indicators">--}}
@@ -570,7 +582,7 @@
                                 <div class="brands-name">
                                     <ul class="nav nav-pills nav-stacked">
                                         @foreach($data['user'] as $usr)
-                                            <li><a href="#"><span class="pull-right">({{$usr->products->count()}}
+                                            <li><a href="{{route('user.show.deal',['id'=>$usr->id])}}"><span class="pull-right">({{$usr->products->count()}}
                                                         )</span>{{$usr->shopname}}</a>
                                             </li>
                                         @endforeach
@@ -682,9 +694,11 @@
             <div class="col-sm-3 col-sm-offset-1">
                 <div class="single-widget">
                     <h2>Subscribe</h2>
-                    <form action="#" method="post" class="searchform">
+                    <form class="searchform" method="POST" action="{{ route('upsub') }}">
+                        {{ csrf_field() }}
                         <div class="row">
-                            <input type="text" placeholder="Your email address">
+
+                            <input id="email" type="email" class="form-control" name="email" placeholder="Your email address"  >
                             <button type="submit" class="btn btn-default"><i class="fa fa-arrow-circle-o-right"></i>
                             </button>
                         </div>

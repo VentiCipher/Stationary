@@ -97,7 +97,7 @@ class ProductController extends Controller
             $product->categories()->attach($cat);
 
         }
-        Session::flash('info', "Update Product: $product->name Sucessfully");
+        Session::flash('status', "Update Product: $product->name Sucessfully");
         return redirect()->intended(route('prod.index'));
 
     }
@@ -132,7 +132,7 @@ class ProductController extends Controller
                 }
             }
         }
-        Session::flash('info', "Add new Product: $postData->name Sucessfully");
+        Session::flash('status', "Add new Product: $postData->name Successfully");
         return redirect()->intended(route('prod.index'));
     }
 
@@ -141,6 +141,7 @@ class ProductController extends Controller
         $prod = Product::FindOrFail($id);
         $prod->categories()->detach();
         $prod->delete();
+        Session::flash('status','Delete Category Successfully');
         return redirect()->intended(route('prod.index'));
     }
 
@@ -151,6 +152,7 @@ class ProductController extends Controller
 
         $prod->thumbsnail = $img->path;
         $prod->save();
+        Session::flash('status','Set Image Successfully');
         return redirect()->intended(route('prod.index'));
     }
 
@@ -201,7 +203,7 @@ class ProductController extends Controller
 //        dd($id);
         $imager = PImages::where('id', $id)->first();
         $imager->delete();
-        Session::flash('info', 'Delete Image Sucessfully');
+        Session::flash('status', 'Delete Image Sucessfully');
         return redirect()->intended(route('prod.image.index', $prodid));
     }
 
@@ -247,7 +249,7 @@ class ProductController extends Controller
                 }
             }
         }
-        Session::flash('info', "Add new Product: $postData->name Sucessfully");
+        Session::flash('status', "Add new Product: $postData->name Sucessfully");
         return redirect()->intended(route('prod.index'));
     }
 }

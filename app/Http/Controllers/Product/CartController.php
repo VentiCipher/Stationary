@@ -19,7 +19,7 @@ class CartController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('web');
+        $this->middleware('auth');
 
         $this->middleware(function ($request, $next) {
             $this->user = Auth::user()->name;
@@ -58,6 +58,7 @@ class CartController extends Controller
             $updater->save();
         } else
             Cart::create($data);
+        Session::flash('status','Added Product to cart');
         return redirect()->back();
     }
 
@@ -73,7 +74,7 @@ class CartController extends Controller
             } else {
                 $cmd->delete();
             }
-
+        Session::flash('status','Remove 1 Quantity Product from cart');
             return redirect()->back();
 
     }
@@ -87,6 +88,7 @@ class CartController extends Controller
         $cmd = Cart::where('products_id', $id)->where('users_id', Auth::user()->id)->delete();
 //        $cmd = Wishlist::all();
 //        dd($cmd);
+        Session::flash('status','Removed Product from cart');
         return redirect()->back();
     }
 
@@ -102,10 +104,9 @@ class CartController extends Controller
         foreach ($data as $single) {
 //            dd($single->id);
             if ($user->isEmpty())
-                break;
-            if ($user->first()->products_id == $single->id) {
-//                $products[] = $single;
-                array_push($products, $single);
+                continue;
+            if ($user->contains('products_id',$single->id)){
+                $products[] = $single;
                 $result = Cart::select('amount')->where('products_id', $single->id)->first();
 
                 $sumup = $sumup + ($single->price*$result->amount);

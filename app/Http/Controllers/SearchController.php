@@ -43,6 +43,15 @@ class SearchController extends Controller
 //        dd($data);
         return view('indexsearch', ['products' => $data]);
     }
+    public function showdealer($id)
+    {
+//        dd($id);
+        //get Data from Categories
+//        $data = Product::with('categories')->where('categories_id','=',$id)->firstOrFail();
+        $data = User::FindOrFail($id)->products;
+//        dd($data);
+        return view('indexsearch', ['products' => $data]);
+    }
     public function showdetails($id)
     {
         $product = Product::FindOrFail($id);

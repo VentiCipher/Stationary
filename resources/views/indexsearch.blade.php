@@ -52,7 +52,7 @@
 
                                         </a>
                                         @if($prod->in_stock >0)
-                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add
+                                    <a href="{{route('addtocart',['id'=>$prod->id])}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add
                                         to cart</a></div>
                                 @else
                                     <a class="btn btn-default add-to-cart"><i class="fa fa fa-remove"></i>Out of Stock</a></div>

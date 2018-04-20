@@ -35,16 +35,24 @@
                     <p>{{$prod->user['shopname']}}</p>
                     {{--<img src="../assets/images/product-details/rating.png" alt="website template image">--}}
                     <span> <span> @if($prod->price_promo == null)
-                               ฿{{$prod->price}}
+                                ฿{{$prod->price}}
                             @else
-                               <strike>฿{{$prod->price}}</strike><br/>฿{{$prod->price_promo}}
+                                <strike>฿{{$prod->price}}</strike><br/>฿{{$prod->price_promo}}
                             @endif</span>
 
               <label>Quantity:</label>
               <input type="text" value="1">
-              <button type="button" class="btn btn-fefault cart"> <i
-                          class="fa fa-shopping-cart"></i> Add to cart</button>
-              </span>
+                        @if($prod->in_stock >0)
+                            <a href="{{route('addtocart',['id'=>$prod->id])}}" class="btn btn-default cart add-to-cart">
+
+              <i
+                          class="fa fa-shopping-cart"></i> Add to cart</a>
+                            </a>
+                        @else
+                            <a class="btn btn-default cart add-to-cart"><i
+                                            class="fa fa-remove"></i> Out of Stock</button></a>
+                        @endif
+            </span>
                     <p><b>Availability:</b>
                         @if($prod->in_stock>0)
                             In Stock
@@ -109,9 +117,19 @@
                     <h5><strike>{{$prod->price}}</strike>=> {{$prod->price_promo}}</h5>
                 @endif
                 <p>{{$prod->name}}</p>
-                <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to
-                    cart
-                </button>
+                @if($prod->in_stock >0)
+                    <a href="{{route('addtocart',['id'=>$prod->id])}}" class="btn btn-default cart add-to-cart">
+
+                        <i
+                                    class="fa fa-shopping-cart"></i> Add to cart</a>
+                    </a>
+                @else
+                    <a class="btn btn-default add-to-cart"> <i
+                                    class="fa fa-remove"></i> Out of Stock</a>
+                @endif
+                {{--<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to--}}
+                    {{--cart--}}
+                {{--</button>--}}
             </div>
 
             <div class="col-md-6 product-information">
@@ -129,16 +147,17 @@
         <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
             <div class="row">
                 <div class="row">
-                    @foreach($data->slice(1,4) as $sug)
+                    @foreach($data->slice(0,3) as $sug)
                         <div class="col-sm-4">
                             <div class="product-image-wrapper">
                                 <div class="single-products">
-                                    <div class="productinfo text-center"><img src="{{asset($sug->thumbsnail)}}" style="width:auto;height:30%;">
+                                    <div class="productinfo text-center"><img src="{{asset($sug->thumbsnail)}}"
+                                                                              style="width:auto;height:30%;">
                                         <h2>฿{{$sug->price}}</h2>
                                         <p>฿{{$sug->user['shopname']}}</p>
-                                        <button type="button" class="btn btn-default add-to-cart"><i
+                                        <a href="{{route('addtocart',['id'=>$sug->id])}}" class="btn btn-default add-to-cart"><i
                                                     class="fa fa-shopping-cart"></i>Add to cart
-                                        </button>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -147,8 +166,8 @@
                 </div>
             </div>
             {{--<a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev"><i--}}
-                        {{--class="fa fa-angle-left"></i></a> <a class="right recommended-item-control"--}}
-                                                             {{--href="#recommended-item-carousel" data-slide="next"><i--}}
-                        {{--class="fa fa-angle-right"></i></a></div>--}}
-    </div>
+            {{--class="fa fa-angle-left"></i></a> <a class="right recommended-item-control"--}}
+            {{--href="#recommended-item-carousel" data-slide="next"><i--}}
+            {{--class="fa fa-angle-right"></i></a></div>--}}
+        </div>
 @endsection

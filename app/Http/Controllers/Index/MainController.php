@@ -11,6 +11,8 @@ use App\Image;
 use App\Cart;
 use App\Http\Controllers\Controller;
 use Auth;
+use Session;
+
 class MainController extends Controller
 {
     /**
@@ -52,11 +54,13 @@ class MainController extends Controller
     }
     public function upsub(Request $request)
     {
-        $cmd = Subscriber::where('email', $request->email)->orWhere('lineid',$request->lineid)->first();
+        $cmd = Subscriber::where('email', $request->email)->orWhere('lineid',$request->lineid)->whereNotNull('lineid')->first();
 
-        if (!$cmd->exists())
+        if ($cmd == null) {
             Subscriber::create($request->all());
-
+            Session::flash('status','Thank you for Subscribed !');
+        }
+        else{Session::flash('status','You already Subscribed !');}
 
 
         return redirect()->intended('/');

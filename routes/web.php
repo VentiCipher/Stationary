@@ -33,6 +33,7 @@ Route::prefix('users')->group(function () {
     Route::get('/wishlist', 'Product\UserController@index')->name('wishlist.index');//->middleware('seller')
     Route::post('/products/search', 'SearchController@search')->name('user.show.search');
     Route::get('/products/{id}', 'SearchController@showcat')->name('user.show.cat');
+    Route::get('/dproducts/{id}', 'SearchController@showdealer')->name('user.show.deal');
     Route::get('/explore/{id}', 'SearchController@showdetails')->name('user.show.explore');
 
     Route::get('/addtocart/{id}', 'Product\CartController@add')->name('addtocart');
