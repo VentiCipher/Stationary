@@ -10,7 +10,7 @@
     </style>
 </head>
 @section('content')
-    <div class="table-responsive cart_info">
+    <div class="table-responsive cart_info" style="padding-bottom: 15px;">
         <div class="table-responsive cart_info">
             <table class="table table-condensed">
                 <thead>
@@ -49,7 +49,7 @@
                                        value="{{$singlecart->amount}}"
                                        @endif
                                        @endforeach
-                                       autocomplete="off" size="2">
+                                       autocomplete="off" size="2" readonly>
                                 <a class="cart_quantity_down" href="{{route('decrease',['id'=>$prod->id])}}"> -</a>
                             </div>
                         </td>

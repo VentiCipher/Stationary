@@ -30,6 +30,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/price-range.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/animate.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}">
+
     <style type="text/css">
         #freecssfooter {
             display: block;
@@ -178,6 +179,21 @@
             border-radius: 0;
             margin-top: 0px;
         }
+
+        .stylish-input-group .input-group-addon {
+            background: white !important;
+        }
+
+        .stylish-input-group .form-control {
+            border-right: 0;
+            box-shadow: 0 0 0;
+            border-color: #ccc;
+        }
+
+        .stylish-input-group button {
+            border: 0;
+            background: transparent;
+        }
     </style>
 </head>
 
@@ -241,22 +257,50 @@
                         <div class="col-sm-8">
                             <div class="shop-menu pull-right" style="margin-top: 2%;">
                                 <ul class="nav navbar-nav" style="display:inline-block;">
+
+                                    @if(Auth::check())
+                                        <li><a href="{{route('wishlist.index')}}"
+                                               class="{{isActiveRoute('wishlist.index')}}"><i class="fa fa-star "></i>
+                                                Wishlist
+                                                ({{ \App\Wishlist::select('products_id')->where('users_id',Auth::user()->id)->count()}}
+                                                )</a></li>
+                                    @else
+                                        <li><a href="{{route('login')}}" class="{{isActiveRoute('login')}}"><i
+                                                        class="fa fa-star "></i>
+                                                Wishlist</a></li>
+                                    @endif
+                                    <li><a href="#"><i class="	fa fa-edit"></i> Checkout</a></li>
+                                    @if(Auth::check())
+                                        <li><a href="{{route('cart.index')}}" class="{{isActiveRoute('login')}}"><i
+                                                        class="fa fa-shopping-cart"></i> Cart
+                                                ({{ \App\Cart::select('products_id')->where('users_id',Auth::user()->id)->count()}}
+                                                )</a></li>
+                                    @else
+                                        <li><a href="{{route('login')}}"><i class="fa fa-shopping-cart"></i> Cart</a>
+                                        </li>
+                                    @endif
+                                    @guest
+                                        <li><a href="{{ route('login') }}"><i class=" fa fa-lock"></i> Login</a></li>
+                                        <li><a href="{{ route('register') }}"><i class="fa fa-check-square-o"></i>
+                                                Register</a>
+                                        </li>
+                                    @endguest
                                     @if(Auth::check())
                                         {{--<li><a href="#"><i class="fa fa-user"></i>--}}
                                         {{--</a></li>--}}
-                                         <li>
-                                            <a id="navbarDropdown" class="dropdown-item dropdown" href="#" role="button"
-                                               data-toggle="dropdown"
-                                               aria-haspopup="true" aria-expanded="false" v-pre>
-
+                                        <li>
+                                            {{--<a id="navbarDropdown" class="dropdown-item dropdown" href="#" role="button"--}}
+                                            {{--data-toggle="dropdown"--}}
+                                            {{--aria-haspopup="true" aria-expanded="false" v-pre>--}}
+                                            <a href="{{route('user.acc.edit',['id'=>Auth::user()->id])}}">
                                                 <i class="fa fa-user-circle "> </i>
-                                                My Account
+                                                My {{Auth::user()->roles}} Account
                                                 <!-- <span class="caret"></span> -->
                                             </a>
 
                                         </li>
 
-                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown"
+                                        <div class="dropdown-menu hidden" aria-labelledby="navbarDropdown"
                                              style="    left: -125%; top: 128%;">
                                             <div>
                                                 <label class="dropdown-item"
@@ -288,38 +332,19 @@
 
                                     @endif
                                     @if(Auth::check())
-                                        <li><a href="{{route('wishlist.index')}}"
-                                               class="{{isActiveRoute('wishlist.index')}}"><i class="fa fa-star "></i>
-                                                Wishlist</a></li>
-                                    @else
-                                        <li><a href="{{route('login')}}" class="{{isActiveRoute('login')}}"><i
-                                                        class="fa fa-star "></i>
-                                                Wishlist</a></li>
-                                    @endif
-                                    <li><a href="#"><i class="	fa fa-edit"></i> Checkout</a></li>
-                                        @if(Auth::check())
-                                    <li><a href="{{route('cart.index')}}" class="{{isActiveRoute('login')}}" ><i class="fa fa-shopping-cart"></i> Cart</a></li>
-                                        @else
-                                            <li><a href="{{route('login')}}"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-                                            @endif
-                                    @guest
-                                        <li><a href="{{ route('login') }}"><i class=" fa fa-lock"></i> Login</a></li>
-                                        <li><a href="{{ route('register') }}"><i class="fa fa-check-square-o"></i>
-                                                Register</a>
-                                        </li>
-                                    @endguest
-                                    @if(Auth::check())
-                                            <li> <a class="#" href="{{ route('logout') }}"
-                                                    onclick="event.preventDefault();
+                                        <li><a class="#" href="{{ route('logout') }}"
+                                               onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                                    <i class="fa fa-lock"></i> {{ __('Logout') }}
-                                                </a>
+                                                <i class="fa fa-lock"></i> {{ __('Logout') }}
+                                            </a>
 
-                                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                                      style="display: none;">
-                                                    @csrf
-                                                </form></li>
-                                        @endif
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                                  style="display: none;">
+                                                @csrf
+                                            </form>
+                                        </li>
+                                    @endif
+
                                 </ul>
                             </div>
                         </div>
@@ -476,7 +501,8 @@
                                       enctype="multipart/form-data">
                                     @csrf
 
-                                    <input name="searcher" type="text" placeholder="Search product" style="width: 80%;"><button type="submit" class="btn btn-primary">
+                                    <input name="searcher" type="text" placeholder="Search product" style="width: 80%;">
+                                    <button type="submit" class="btn btn-primary">
                                         <i class="fa fa-search"></i>
                                     </button>
 
@@ -491,55 +517,51 @@
             </div>
         </section>
         <section id="flowbar">
-            <div class = "container">
-            @if (session('status'))
-                <div class="alert alert-info">
-                    {{ session('status') }}
-                </div>
-            @endif
+            <div class="container">
+                @if (session('status'))
+                    <div class="alert alert-info">
+                        {{ session('status') }}
+                    </div>
+                @endif
             </div>
         </section>
-        {{--<section id="slider">--}}
-        {{--<div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">--}}
-        {{--<ol class="carousel-indicators">--}}
-        {{--<li data-target="#carouselExampleCaptions" data-slide-to="0" class=""></li>--}}
-        {{--<li data-target="#carouselExampleCaptions" data-slide-to="1" class=""></li>--}}
-        {{--<li data-target="#carouselExampleCaptions" data-slide-to="2" class="active"></li>--}}
-        {{--</ol>--}}
-        {{--<div class="carousel-inner" role="listbox">--}}
-        {{--<div class="carousel-item">--}}
-        {{--<img class="d-block img-fluid" src="{{asset('images/soon.JPG')}}" style="height: 60%;" >--}}
-        {{--<div class="carousel-caption d-none d-md-block">--}}
-        {{--<h3>First slide label</h3>--}}
-        {{--<p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>--}}
-        {{--</div>--}}
-        {{--</div>--}}
-        {{--<div class="carousel-item">--}}
-        {{--<img class="d-block img-fluid" src="{{asset('images/soon.JPG')}}" style="height: 60%;" >--}}
-        {{--<div class="carousel-caption d-none d-md-block">--}}
-        {{--<h3>Second slide label</h3>--}}
-        {{--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>--}}
-        {{--</div>--}}
-        {{--</div>--}}
-        {{--<div class="carousel-item">--}}
-        {{--<img class="d-block img-fluid" src="{{asset('images/soon.JPG')}}" style="height: 60%;" >--}}
-        {{--<div class="carousel-caption d-none d-md-block">--}}
-        {{--<h3>Third slide label</h3>--}}
-        {{--<p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>--}}
-        {{--</div>--}}
-        {{--</div>--}}
-        {{--</div>--}}
-        {{--<a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">--}}
-        {{--<span class="carousel-control-prev-icon" aria-hidden="true"></span>--}}
-        {{--<span class="sr-only">Previous</span>--}}
-        {{--</a>--}}
-        {{--<a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">--}}
-        {{--<span class="carousel-control-next-icon" aria-hidden="true"></span>--}}
-        {{--<span class="sr-only">Next</span>--}}
-        {{--</a>--}}
-        {{--</div>--}}
-        {{--</section>--}}
+        @if (\Route::current()->getName() == 'home' ||\Route::current()->getName() == 'index')
+            <section id="slider">
+                <div id="featured" class="carousel slide" data-ride="carousel">
 
+                    <!-- Indicators -->
+                    <ul class="carousel-indicators">
+                        <li data-target="featured#1" data-slide-to="0" class="active"></li>
+                        <li data-target="featured#2" data-slide-to="1"></li>
+                        <li data-target="featured#3" data-slide-to="2"></li>
+                    </ul>
+
+                    <!-- The slideshow -->
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="{{url('/images/3.png')}}" style="width:100%;">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{{url('/images/4.png')}}" style="width:100%;">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{{url('/images/5.png')}}" style="width:100%;">
+                        </div>
+                    </div>
+
+                    <!-- Left and right controls -->
+                    <a class="carousel-control-prev" href="#featured" data-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </a>
+                    <a class="carousel-control-next" href="#featured" data-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </a>
+
+                </div>
+            </section>
+
+
+        @endif
         <div class="container" style="padding-top:35px;">
             <div class="row">
 
@@ -571,7 +593,9 @@
                                 @foreach($data['myvar'] as $cat)
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
-                                            <h4 class="panel-title"><a href="{{route('user.show.cat',['id'=>$cat->id])}}">{{$cat->name}} ({{$cat->products->count()}})</a></h4>
+                                            <h4 class="panel-title"><a
+                                                        href="{{route('user.show.cat',['id'=>$cat->id])}}">{{$cat->name}}
+                                                    ({{$cat->products->count()}})</a></h4>
                                         </div>
                                     </div>
                                 @endforeach
@@ -582,7 +606,8 @@
                                 <div class="brands-name">
                                     <ul class="nav nav-pills nav-stacked">
                                         @foreach($data['user'] as $usr)
-                                            <li><a href="{{route('user.show.deal',['id'=>$usr->id])}}"><span class="pull-right">({{$usr->products->count()}}
+                                            <li><a href="{{route('user.show.deal',['id'=>$usr->id])}}"><span
+                                                            class="pull-right">({{$usr->products->count()}}
                                                         )</span>{{$usr->shopname}}</a>
                                             </li>
                                         @endforeach
@@ -590,10 +615,10 @@
                                 </div>
                             </div>
                             @guest
-                            <div class="brands_products" style="padding-top:20%;">
-                                <a href="{{route('showsub')}}" ><h2>Subscribe Now</h2></a>
+                                <div class="brands_products" style="padding-top:20%;">
+                                    <a href="{{route('showsub')}}"><h2>Subscribe Now</h2></a>
 
-                            </div>
+                                </div>
                             @endguest
                             {{--<div class="price-range">--}}
                             {{--<h2>Price Range</h2>--}}
@@ -618,7 +643,7 @@
                         </div>
                     </div>
                 @endif
-                    @if (\Route::current()->getName() == 'home' ||\Route::current()->getName() == 'index' || \Route::current()->getPrefix() == '/users'  )
+                @if (\Route::current()->getName() == 'home' ||\Route::current()->getName() == 'index' || \Route::current()->getPrefix() == '/users'  )
                     <div class="col-sm-9 padding-right">
                         {{--<main class="py-4">--}}
                         @yield('content')
@@ -698,7 +723,8 @@
                         {{ csrf_field() }}
                         <div class="row">
 
-                            <input id="email" type="email" class="form-control" name="email" placeholder="Your email address"  >
+                            <input id="email" type="email" class="form-control" name="email"
+                                   placeholder="Your email address">
                             <button type="submit" class="btn btn-default"><i class="fa fa-arrow-circle-o-right"></i>
                             </button>
                         </div>

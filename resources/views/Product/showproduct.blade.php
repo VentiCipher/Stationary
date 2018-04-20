@@ -40,8 +40,8 @@
                                 <strike>฿{{$prod->price}}</strike><br/>฿{{$prod->price_promo}}
                             @endif</span>
 
-              <label>Quantity:</label>
-              <input type="text" value="1">
+              <label>Quantity: </label>
+              <input type="text" value="1" readonly>
                         @if($prod->in_stock >0)
                             <a href="{{route('addtocart',['id'=>$prod->id])}}" class="btn btn-default cart add-to-cart">
 

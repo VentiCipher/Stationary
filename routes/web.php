@@ -26,7 +26,7 @@ Route::get('/home', 'Index\MainController@index')->name('home');//->middleware('
 Route::prefix('users')->group(function () {
     Route::get('/ssubscribe', 'Index\MainController@showsub')->name('showsub');//->middleware('seller')
     Route::post('/sub', 'Index\MainController@upsub')->name('upsub');//->middleware('seller')
-
+    Route::get('/account/edit/{id}', 'Account\UserAccountController@showedit')->name('user.acc.edit');
 
     Route::get('/wish/add{id}', 'Product\UserController@add')->name('addtowish');//->middleware('seller')
     Route::get('/wish/delete{id}', 'Product\UserController@remove')->name('removetowish');//->middleware('seller')

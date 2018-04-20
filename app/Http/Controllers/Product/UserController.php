@@ -47,12 +47,19 @@ class UserController extends Controller
     public function add($id)
     {
         $user = Auth::user();
-        $product = Product::where('id',$id)->get();
+        $product = Product::where('id', $id)->get();
         $data = array();
         $data['users_id'] = $user->id;
         $data['products_id'] = $product->first()->id;
-        Wishlist::create($data);
-        Session::flash('status','Added Product to wishlist');
+        $updater = Wishlist::where('products_id', '=', $id)->first();
+        if (Wishlist::where('products_id', '=', $id)->exists()) {
+
+            Session::flash('status','This Product already in your wishlist!');
+        } else {
+//            Cart::create($data);
+            Wishlist::create($data);
+            Session::flash('status','Added Product to wishlist');
+        }
         return redirect()->back();
     }
 
@@ -62,27 +69,27 @@ class UserController extends Controller
 //        $user = Auth::user();
 //        $product = Product::where('id',id)->get();
 
-        $cmd = Wishlist::where('products_id',$id)->where('users_id',Auth::user()->id)->delete();
+        $cmd = Wishlist::where('products_id', $id)->where('users_id', Auth::user()->id)->delete();
         $cmd = Wishlist::all();
 //        dd($cmd);
-        Session::flash('status','Removed Product from wishlist');
+        Session::flash('status', 'Removed Product from wishlist');
         return redirect()->back();
     }
 
     public function index()
     {
-        $user = Wishlist::select('products_id')->where('users_id',Auth::user()->id)->get();
+        $user = Wishlist::select('products_id')->where('users_id', Auth::user()->id)->get();
 
         $data = Product::all();
         $products = array();
         foreach ($data as $single) {
 //            dd($single->id);
 
-            if ($user->contains('products_id',$single->id))
+            if ($user->contains('products_id', $single->id))
                 $products[] = $single;
         }
 //        dd($products);
-        return view('wishlist',['wishlist'=>$products]);
+        return view('wishlist', ['wishlist' => $products]);
     }
 
 }
