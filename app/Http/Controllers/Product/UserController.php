@@ -52,7 +52,8 @@ class UserController extends Controller
         $data['users_id'] = $user->id;
         $data['products_id'] = $product->first()->id;
         $updater = Wishlist::where('products_id', '=', $id)->first();
-        if (Wishlist::where('products_id', '=', $id)->exists()) {
+
+        if (Wishlist::where('products_id', '=', $id)->where('users_id','=',Auth::user()->id)->exists()) {
 
             Session::flash('status','This Product already in your wishlist!');
         } else {

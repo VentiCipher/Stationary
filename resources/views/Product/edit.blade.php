@@ -15,7 +15,7 @@
                             <div class="form-group row">
                                 <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
 
-                                <div class="col-md-6">
+                                <divpromo class="col-md-6">
                                     <input id="name" type="text"
                                            class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
                                            name="name" required autofocus value="{{$product->name}}">
@@ -25,7 +25,7 @@
                                         <strong>{{ $errors->first('name') }}</strong>
                                     </span>
                                     @endif
-                                </div>
+                                </divpromo>
                             </div>
                             <div class="form-group row">
                                 <label for="name" class="col-md-4 col-form-label text-md-right">In Stock</label>
@@ -88,10 +88,9 @@
 
 
                             <div class="form-group row">
-                                <label for="promotion_id" class="col-md-4 col-form-label text-md-right">Promotion
-                                    ID</label>
+
                                 <div class="col-md-6">
-                                    <input id="promotion_id" type="text"
+                                    <input id="promotion_id" type="hidden"
                                            class="form-control{{ $errors->has('promotion_id') ? ' is-invalid' : '' }}"
                                            name="promotion_id" value="{{$product->promotion_id}}">
 

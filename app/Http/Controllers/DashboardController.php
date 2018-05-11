@@ -12,6 +12,7 @@ use App\Cart;
 use Session;
 use Auth;
 use DB;
+use App\Order;
 class DashboardController extends Controller
 {
     public function __construct()
@@ -58,13 +59,14 @@ class DashboardController extends Controller
         $cat_amount = Categories::all()->count();
         $image_amount = PImages::all()->count();
         $product_amount = Product::all()->count();
-
+        $order = Order::all()->take(5);
+        $last_product = Product::orderBy('created_at','desc')->limit(6)->get();
         $dealeramount = User::where('roles','seller')->count();
         $just_user = User::where('roles','user')->count();
         $just_admin = User::where('roles','admin')->count();
         $last_user = User::orderby('created_at','desc')->limit(4)->get();
         $last_cat = Categories::orderby('created_at','desc')->limit(4)->get();
         //$last_user = User::all();
-        return view('admin',['justadmin'=>$just_admin,'dealernumber'=>$dealeramount,'justuser'=>$just_user,'u_am'=>$user_amount,'cat_am'=>$cat_amount,'img_am'=>$image_amount,'pro_am'=>$product_amount,'last_users'=>$last_user,'last_cat'=>$last_cat]);
+        return view('admin',['lastprod'=>$last_product,'order'=>$order,'justadmin'=>$just_admin,'dealernumber'=>$dealeramount,'justuser'=>$just_user,'u_am'=>$user_amount,'cat_am'=>$cat_amount,'img_am'=>$image_amount,'pro_am'=>$product_amount,'last_users'=>$last_user,'last_cat'=>$last_cat]);
     }
 }

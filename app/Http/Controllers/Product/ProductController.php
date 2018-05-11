@@ -201,8 +201,8 @@ class ProductController extends Controller
     public function killimg($id, $prodid)
     {
 //        dd($id);
-        $imager = PImages::where('id', $id)->first();
-        $imager->delete();
+        $imager = PImages::where('id', $id)->delete();
+
         Session::flash('status', 'Delete Image Sucessfully');
         return redirect()->intended(route('prod.image.index', $prodid));
     }

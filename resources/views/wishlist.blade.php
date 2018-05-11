@@ -28,7 +28,7 @@
                     <tr>
                         <td class="cart_product" style="width:20%;     display: table-cell; "><a href="#"><img
                                         src="{{asset($prod->thumbsnail)}}" style="width:50%;"></a></td>
-                        <td class="cart_description"><h4><a href="#">{{$prod->name}}</a></h4>
+                        <td class="cart_description"><h4><a href="{{route('user.show.explore',$prod->id)}}">{{$prod->name}}</a></h4>
                             <p>Dealer: {{$prod->users->first()->shopname}}</p></td>
                         <td class="cart_price" style="    color: #FE980F;font-size: 24px;">
                             <p>฿{{$prod->price}}</p></td>

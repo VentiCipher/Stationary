@@ -48,17 +48,27 @@ class CartController extends Controller
     {
         $user = Auth::user();
         $product = Product::where('id', $id)->get();
+
         $data = array();
         $data['users_id'] = $user->id;
         $data['products_id'] = $product->first()->id;
         $data['amount'] = 1;
-        $updater = Cart::where('products_id', '=', $id)->first();
-        if (Cart::where('products_id', '=', $id)->exists()) {
-            $updater->amount = $updater->amount + 1;
-            $updater->save();
+        if($product->first()->in_stock <=0)
+        {
+            Session::flash('error', 'This Product just ran out from stock');
+            return redirect()->back();
+        }
+
+        $updater = Cart::where('products_id', '=', $id)->where('users_id', Auth::user()->id)->first();
+        if (Cart::where('users_id', Auth::user()->id)->where('products_id', '=', $id)->exists()) {
+
+                $updater->amount = $updater->amount + 1;
+                $updater->save();
+
+
         } else
             Cart::create($data);
-        Session::flash('status','Added Product to cart');
+        Session::flash('status', 'Added Product to cart');
         return redirect()->back();
     }
 
@@ -68,14 +78,14 @@ class CartController extends Controller
 
         if ($cmd->exists())
 
-            if ($cmd->amount > 1    ) {
+            if ($cmd->amount > 1) {
                 $cmd->amount = $cmd->amount - 1;
                 $cmd->save();
             } else {
                 $cmd->delete();
             }
-        Session::flash('status','Remove 1 Quantity Product from cart');
-            return redirect()->back();
+        Session::flash('status', 'Remove 1 Quantity Product from cart');
+        return redirect()->back();
 
     }
 
@@ -88,35 +98,45 @@ class CartController extends Controller
         $cmd = Cart::where('products_id', $id)->where('users_id', Auth::user()->id)->delete();
 //        $cmd = Wishlist::all();
 //        dd($cmd);
-        Session::flash('status','Removed Product from cart');
+        Session::flash('status', 'Removed Product from cart');
         return redirect()->back();
     }
 
-    public
-    function index()
+    public function index()
     {
-        $user = Cart::select('products_id')->where('users_id', Auth::user()->id)->get();
+
+
+        ##dd($usercart);
+        $user = Cart::where('users_id', '=', Auth::user()->id)->get();
+
         $cart = Cart::all();
         $data = Product::all();
         $products = array();
         $sumup = 0.0;
         $promotion = 0.0;
-        foreach ($data as $single) {
-//            dd($single->id);
-            if ($user->isEmpty())
+        foreach ($user as $cinfos) {
+            $tmp = Product::whereId($cinfos->products_id)->first();
+            $cmd = Cart::where('products_id', $tmp->id)->where('users_id', Auth::user()->id)->first();
+            if ($tmp->in_stock <= 0) {
+                if ($cmd->exists())
+                    $cmd->delete();
+
                 continue;
-            if ($user->contains('products_id',$single->id)){
-                $products[] = $single;
-                $result = Cart::select('amount')->where('products_id', $single->id)->first();
-
-                $sumup = $sumup + ($single->price*$result->amount);
-
-                $promotion = $promotion +($single->promo_price*$result->amount);
+            }
+            else if($tmp->in_stock < $cmd->amount)
+            {
+                $cmd->amount = $tmp->in_stock;
+                $cmd->save();
+            }
+            $products[] = $tmp;
+            $sumup += $tmp->price * $cinfos->amount;
+            if (!empty($tmp->price_promo)) {
+                $promotion += ($tmp->price - $tmp->price_promo) * $cinfos->amount;
             }
         }
-//        dd($products);
 
-        return view('cart', ['wishlist' => $products, 'cart' => $cart,'total'=>$sumup,'promotiontotal'=>$promotion]);
+
+        return view('cart', ['wishlist' => $products, 'cart' => $user, 'total' => $sumup, 'promotiontotal' => $promotion]);
     }
 
 }

@@ -269,7 +269,9 @@
                                                         class="fa fa-star "></i>
                                                 Wishlist</a></li>
                                     @endif
-                                    <li><a href="#"><i class="	fa fa-edit"></i> Checkout</a></li>
+
+                                    <li><a href={{route('orderreview.index')}}><i class="	fa fa-edit"></i>
+                                            Checkout</a></li>
                                     @if(Auth::check())
                                         <li><a href="{{route('cart.index')}}" class="{{isActiveRoute('login')}}"><i
                                                         class="fa fa-shopping-cart"></i> Cart
@@ -372,13 +374,39 @@
                                         <li><a href="{{route('home')}}" class="{{isActiveRoute('home')}}"><i
                                                         class="fa fa-home"></i> Home</a>
                                         </li>
-                                        <li><a href="#"><i class="fa fa-crosshairs"></i> Tracking order</a>
+
+
+                                        <li class="dropdown"><a href="#"><i
+                                                        class="fa fa-crosshairs">
+                                                </i>Track Order<i
+                                                        class="fa fa-angle-down"></i></a>
+                                            <ul role="menu" class="sub-menu extendtop45">
+
+                                                <li>
+                                                    <form method="POST" action="{{ route('invoice.show.search') }}"
+                                                          enctype="multipart/form-data">
+                                                        @csrf
+                                                        <input type="text" name="searcher"
+                                                               placeholder="Order ID ...">
+                                                        <button type="submit" class="btn btn-primary">
+                                                            <i class="fa fa-search"></i>
+                                                        </button>
+                                                    </form>
+                                                </li>
+                                            </ul>
                                         </li>
+
+
                                         @if(Auth::check())
+                                            <li><a href="{{route('showindexorder')}}"><i class="fa fa-dropbox"></i> My
+                                                    order</a>
+                                            </li>
                                             @if(Auth::user()->roles == 'user')
-                                                <li><a class="dropdown-item"
-                                                       href="#"><i
-                                                                class="fa fa-tag"> </i>&nbsp;&nbsp;My Order</a></li>
+                                                @if(Auth::user()->dealer_approve == 0)
+                                                    <li><a href="{{route('dealerapply')}}"><i class="fa fa-barcode"></i>
+                                                            &nbsp;Apply Dealer</a>
+                                                    </li>
+                                                @endif
                                             @endif
 
 
@@ -394,6 +422,13 @@
                                                     <ul role="menu" class="sub-menu">
                                                         {{--<li><a class="dropdown-item {{ isActiveRoute('dashboardindex') }}">Dashboard</a>--}}
                                                         {{--</li>--}}
+
+                                                        <li><a class="dropdown-item {{ isActiveRoute('promo.index') }} "
+                                                               href="{{route('promo.index')}}">Coupon Management</a>
+                                                        </li>
+                                                        <li><a class="dropdown-item {{ isActiveRoute('promo.index') }} "
+                                                               href="{{route('promo.allindex')}}">All Coupon List</a>
+                                                        </li>
 
                                                         <li><a class="dropdown-item {{ isActiveRoute('cat.edit') }} ">⚫Categories
                                                                 Management</a></li>
@@ -465,6 +500,10 @@
                                                                href="{{route('prod.index')}}">Overview
                                                                 Product</a></li>
                                                         <li>
+                                                        <li><a class="dropdown-item {{ isActiveRoute('promo.index') }} "
+                                                               href="{{route('promo.index')}}">Coupon Management</a>
+                                                        </li>
+                                                        <li>
                                                             <form method="POST" action="{{ route('prod.show.search') }}"
                                                                   enctype="multipart/form-data">
                                                                 @csrf
@@ -523,6 +562,23 @@
                         {{ session('status') }}
                     </div>
                 @endif
+                @if (session('error'))
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
+                    </div>
+                @endif
+                @if (Auth::check() && Auth::user()->dealer_approve==1 && Auth::user()->roles =="user")
+                    <div class="alert alert-warning">
+                        Pending Dealer Approval<br>If Successful your dealer panel could access<br>If unsuccessful
+                        please contact administrator for more information<br>
+                    </div>
+                @endif
+                @if(Auth::check() && Auth::user()->roles == "admin")
+                    @if($data =="1")
+                            <div class="alert alert-warning">
+                                Pending Dealer Approval Awaiting Please <a href ="{{route('acc.show.approve')}}" >Check out</a><br>
+                            </div>
+                    @endif @endif
             </div>
         </section>
         @if (\Route::current()->getName() == 'home' ||\Route::current()->getName() == 'index')
@@ -668,60 +724,61 @@
 <div class="footer footer-widget" style="background-color: #F0F0E9;">
     <div class="container">
         <div class="row">
-            <div class="col-sm-2">
-                <div class="single-widget">
-                    <h2>Service</h2>
+            {{--<div class="col-sm-2">--}}
+                {{--<div class="single-widget">--}}
+                    {{--<h2>Service</h2>--}}
 
-                    <ul class="">
-                        <li><a href="#">Online Help</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">Order Status</a></li>
-                        <li><a href="#">FAQ’s</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-sm-2">
-                <div class="single-widget">
-                    <h2>Quock Shop</h2>
-                    <ul class="">
-                        <li><a href="#">T-Shirt</a></li>
-                        <li><a href="#">Mens</a></li>
-                        <li><a href="#">Womens</a></li>
-                        <li><a href="#">Gift Cards</a></li>
-                        <li><a href="#">Shoes</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-sm-2">
-                <div class="single-widget">
-                    <h2>Policies</h2>
-                    <ul class="">
-                        <li><a href="#">Terms of Use</a></li>
-                        <li><a href="#">Privecy Policy</a></li>
-                        <li><a href="#">Refund Policy</a></li>
-                        <li><a href="#">Billing System</a></li>
-                        <li><a href="#">Ticket System</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-sm-2">
-                <div class="single-widget">
-                    <h2>About Shopper</h2>
-                    <ul class="">
-                        <li><a href="#">Company Information</a></li>
-                        <li><a href="#">Careers</a></li>
-                        <li><a href="#">Store Location</a></li>
-                        <li><a href="#">Affillate Program</a></li>
-                        <li><a href="#">Copyright</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-sm-3 col-sm-offset-1">
-                <div class="single-widget">
+                    {{--<ul class="">--}}
+                        {{--<li><a href="#">Online Help</a></li>--}}
+                        {{--<li><a href="#">Contact Us</a></li>--}}
+                        {{--<li><a href="#">Order Status</a></li>--}}
+                        {{--<li><a href="#">FAQ’s</a></li>--}}
+                    {{--</ul>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+            {{--<div class="col-sm-2">--}}
+                {{--<div class="single-widget">--}}
+                    {{--<h2>Quock Shop</h2>--}}
+                    {{--<ul class="">--}}
+                        {{--<li><a href="#">T-Shirt</a></li>--}}
+                        {{--<li><a href="#">Mens</a></li>--}}
+                        {{--<li><a href="#">Womens</a></li>--}}
+                        {{--<li><a href="#">Gift Cards</a></li>--}}
+                        {{--<li><a href="#">Shoes</a></li>--}}
+                    {{--</ul>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+            {{--<div class="col-sm-2">--}}
+                {{--<div class="single-widget">--}}
+                    {{--<h2>Policies</h2>--}}
+                    {{--<ul class="">--}}
+                        {{--<li><a href="#">Terms of Use</a></li>--}}
+                        {{--<li><a href="#">Privecy Policy</a></li>--}}
+                        {{--<li><a href="#">Refund Policy</a></li>--}}
+                        {{--<li><a href="#">Billing System</a></li>--}}
+                        {{--<li><a href="#">Ticket System</a></li>--}}
+                    {{--</ul>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+            {{--<div class="col-sm-2">--}}
+                {{--<div class="single-widget">--}}
+                    {{--<h2>About Shopper</h2>--}}
+                    {{--<ul class="">--}}
+                        {{--<li><a href="#">Company Information</a></li>--}}
+                        {{--<li><a href="#">Careers</a></li>--}}
+                        {{--<li><a href="#">Store Location</a></li>--}}
+                        {{--<li><a href="#">Affillate Program</a></li>--}}
+                        {{--<li><a href="#">Copyright</a></li>--}}
+                    {{--</ul>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+            <div class="col-md-12">
+                <div class="single-widget" style="text-align: center;">
                     <h2>Subscribe</h2>
                     <form class="searchform" method="POST" action="{{ route('upsub') }}">
                         {{ csrf_field() }}
-                        <div class="row">
+                        <div class="row" style="text-align: center;    display: -webkit-inline-box; ">
+
 
                             <input id="email" type="email" class="form-control" name="email"
                                    placeholder="Your email address">

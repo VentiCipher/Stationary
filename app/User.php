@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name','surname','address','phonenumber','gender', 'email', 'password','birthdate','paymentcard','roles','year','month','day','password-confirm','profilepic','age','dealer_approve','shopname',
+        'name','surname','address','phonenumber','gender', 'email', 'password','birthdate','paymentcard','roles','year','month','day','password-confirm','profilepic','age','dealer_approve','shopname','defaultdev',
     ];
 
     /**
@@ -34,7 +34,11 @@ class User extends Authenticatable
     }
     public function carts()
     {
-        return $this->hasOne('App\Cart');
+        return $this->hasOne('App\Cart','users_id');
+    }
+    public function orders()
+    {
+        return $this->hasMany('App\Order','users_id');
     }
     public function subscribes()
     {

@@ -10,7 +10,8 @@
       "doctrine/dbal": "^2.7",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.6.*",
-        "laravel/tinker": "^1.0"
+        "laravel/tinker": "^1.0",
+        "omise/omise-php": "dev-master"
     },
     "require-dev": {
         "filp/whoops": "^2.0",

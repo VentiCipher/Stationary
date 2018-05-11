@@ -50,12 +50,13 @@
                             </a>
                         @else
                             <a class="btn btn-default cart add-to-cart"><i
-                                            class="fa fa-remove"></i> Out of Stock</button></a>
+                                            class="fa fa-remove"></i> Out of Stock</a>
                         @endif
             </span>
+
                     <p><b>Availability:</b>
                         @if($prod->in_stock>0)
-                            In Stock
+                            In Stock ({{$prod->in_stock}} Left)
                         @else
                             Out of Stock
                         @endif

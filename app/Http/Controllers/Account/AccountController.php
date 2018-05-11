@@ -106,6 +106,7 @@ class AccountController extends Controller
         $account = User::where('id',$id)->firstorfail();
         $account->dealer_approve = '0';
         $account->roles = 'admin';
+        $account->shopname = $account->name;
         $account->save();
         Session::flash('status',"Account $account->email promote to admin");
         return redirect()->intended(route('acc.index'));
@@ -115,6 +116,7 @@ class AccountController extends Controller
         $account = User::where('id',$id)->firstorfail();
         $account->dealer_approve = '0';
         $account->roles = 'seller';
+        $account->shopname = $account->name;
         $account->save();
         Session::flash('status',"Account $account->email promote to dealer");
         return redirect()->intended(route('acc.index'));
@@ -139,6 +141,7 @@ class AccountController extends Controller
         $account = User::where('id',$id)->firstorfail();
         $account->dealer_approve = '0';
         $account->roles = 'seller';
+        $account->shopname = $account->name;
         $account->save();
         Session::flash('status',"Account $account->email approved for dealer");
         return redirect()->intended(route('acc.show.approve'));

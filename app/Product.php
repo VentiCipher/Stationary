@@ -37,4 +37,10 @@ class Product extends Model
     {
         return $this->belongsTo('App\Cart');
     }
+
+    public function Orders()
+    {
+        return $this->belongsToMany('App\Order','order_pack','products_id','orders_id')->withPivot('amount')
+        ->withTimestamps();
+    }
 }

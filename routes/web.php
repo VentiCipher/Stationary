@@ -22,8 +22,23 @@ Route::get('/home', 'Index\MainController@index')->name('home');//->middleware('
 //    return view('index');
 //})->name('home');
 
+Route::prefix('orders')->group(function() {
+    Route::get('/placeorder','Order\OrderController@index')->name('orderreview.index');
+    Route::get('/all','Order\PublicOrderController@orderindexall')->name('order.index.all');
+    Route::get('/placeorderh/{id}','Order\OrderController@indexwithdata')->name('orderreviewdata.index');
+    Route::post('/checkout','Order\OrderController@createorder')->name('order.show.fetch');
+    Route::post('/cardinvoice','Order\CreditController@creditPayment')->name('credit.order.pay');
+    Route::post('/transferinvoice','Order\CreditController@bankPayment')->name('transfer.order.pay');
+    Route::get('/invoice/{id}','Order\CreditController@generateInvoice')->name('invoice.generate');
+    Route::get('/payretryc/{id}','Order\OrderController@trypaid')->name('invoice.trypaid.credit');
+    Route::get('/payretryb/{id}','Order\OrderController@trypaidtransfer')->name('invoice.trypaid.transfer');
+    Route::get('/cancelorder/{id}','Order\OrderController@cancelorder')->name('invoice.cancel');
 
+
+});
 Route::prefix('users')->group(function () {
+
+    Route::get('/applydealer','Account\UserAccountController@apply')->name('dealerapply');
     Route::get('/ssubscribe', 'Index\MainController@showsub')->name('showsub');//->middleware('seller')
     Route::post('/sub', 'Index\MainController@upsub')->name('upsub');//->middleware('seller')
     Route::get('/account/edit/{id}', 'Account\UserAccountController@showedit')->name('user.acc.edit');
@@ -40,6 +55,11 @@ Route::prefix('users')->group(function () {
     Route::get('/removefromcart/{id}', 'Product\CartController@remove')->name('removefromcart');
     Route::get('/removefromcart1/{id}', 'Product\CartController@decrease')->name('decrease');
     Route::get('/cart', 'Product\CartController@index')->name('cart.index');
+
+    Route::Get('/myorder','Order\OrderController@showorderindex')->name('showindexorder');
+    Route::post('/searchorder','Order\PublicOrderController@searchorderindex')->name('invoice.show.search');
+    Route::get('/trackorder/{id}','Order\PublicOrderController@index')->name('public.order.status');
+    Route::get('/invoice/receipt/{id}','Order\PublicOrderController@seereceipt')->name('invoice.receipt');
 });
 /* Product Section */
 Route::prefix('dealers')->group(function () {
@@ -58,6 +78,16 @@ Route::prefix('dealers')->group(function () {
     Route::get('/products/setimages/{id}{prodid}', 'Product\ProductController@setimg')->name('prod.image.set');
     Route::post('/products/image/addition/{id}', 'Product\ProductController@addmore')->name('prod.image.add');
 
+    Route::get('/promocode','Promotion\PromotionController@index')->name('promo.index');
+    Route::get('/promocodeall','Promotion\PromotionController@allindex')->name('promo.allindex');
+    Route::post('/promocode/add','Promotion\PromotionController@add')->name('promo.add');
+    Route::get('/promocode/edit/{id}','Promotion\PromotionController@showedit')->name('promo.edit');
+    Route::get('/promocode/add','Promotion\PromotionController@showadd')->name('promo.showadd');
+
+    Route::get('/promocode/delete/{id}', 'Promotion\PromotionController@remove')->name('promo.remove');
+    Route::post('/promocode/update/', 'Promotion\PromotionController@update')->name('promo.update');
+    Route::get('/updateorder/{id}','Seller\SellerController@setknow')->name('order.setknow');
+    Route::post('/updatedealer','Seller\SellerController@updatefront')->name('dealer.update');
 });
 
 

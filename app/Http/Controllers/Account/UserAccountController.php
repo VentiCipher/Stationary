@@ -40,6 +40,14 @@ class UserAccountController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function apply()
+    {
+        $user = Auth::user();
+        $user->dealer_approve = 1;
+        $user->save();
+        Session::flash('status','Apply Successfully');
+        return redirect()->back();
+    }
 
     public function showedit($id)
     {
