@@ -33,7 +33,7 @@
                         <label class="col-md-4 control-label" >Transfer Bank Account </label>
 
                         <div class="col-md-6">
-                            <input data-preview="#preview" name="filepath" type="file" id="filepath" class="form-control">
+                            <input data-preview="#preview" name="filepath" type="file" id="filepath" class="form-control" required>
                         </div>
                     </div>
                     <input type="hidden" id="name" class="form-control" name="name" value="{{$name}}"/>

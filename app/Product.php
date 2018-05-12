@@ -22,7 +22,7 @@ class Product extends Model
     }
     public function images()
     {
-        return $this->hasMany('App\Image', 'images_id', 'products_id');
+        return $this->hasMany('App\PImage', 'images_id', 'products_id');
     }
     public function categories()
     {

@@ -24,7 +24,7 @@ use App\Payment;
 use App\Promotion;
 use OmiseAccount;
 use OmiseCharge;
-
+use Mail;
 define('OMISE_PUBLIC_KEY', 'pkey_test_5bv8bv1syowtocv6su4');
 define('OMISE_SECRET_KEY', 'skey_test_5bv8bv1thehbkd5y3pq');
 define('OMISE_API_VERSION', '2017-11-02');
@@ -49,7 +49,6 @@ class OrderController extends Controller
     }
 
 
-
     public function index()
     {
 
@@ -70,7 +69,7 @@ class OrderController extends Controller
                 $promotion += ($tmp->price - $tmp->price_promo) * $cinfos->amount;
             }
 
-            $deli += $tmp->users->first()->defaultdev == null ? 0 : $tmp->users->defaultdev;
+            $deli += $tmp->users->first()->defaultdev == null ? 0 : $tmp->users->first()->defaultdev;
         }
 
 
@@ -97,7 +96,7 @@ class OrderController extends Controller
                 $promotion += ($tmp->price - $tmp->price_promo) * $cinfos->amount;
             }
 
-            $deli += $tmp->users->first()->defaultdev == null ? 0 : $tmp->users->defaultdev;
+            $deli += $tmp->users->first()->defaultdev == null ? 0 : $tmp->users->first()->defaultdev;
 
         }
 
@@ -147,7 +146,7 @@ class OrderController extends Controller
         $cartuser = Auth::user()->carts->first();
         if (!empty($request->coupon)) {
             $promotioninfo = Promotion::where('promocoder', '=', $request->coupon)->first();
-            if (empty($promotioninfo) && $promotioninfo->limit !=0) {
+            if (empty($promotioninfo) && $promotioninfo->limit != 0) {
                 Session::flash('error', $request->coupon . " is INVALID Coupon Code");
                 return redirect()->back();
             } else {
@@ -158,9 +157,11 @@ class OrderController extends Controller
                 }
             }
         }
+        if (empty($request->delivery_cost)) {
+            $request->delivery_cost = 0;
+        }
         $name = $request->name;
-        if(empty($request->name))
-        {
+        if (empty($request->name)) {
             $name = Auth::user()->name;
         }
 
@@ -194,14 +195,24 @@ class OrderController extends Controller
         foreach ($user as $cinfos) {
             $tmp = Product::whereId($cinfos->products_id)->firstOrFail();
             $products[] = $tmp;
+            if(!is_null($tmp->users->first()->freeshipwhenprice) && !empty(($tmp->users->first()->freeshipwhenprice)))
+            {
+                if($request->total >= $tmp->users->first()->freeshipwhenprice)
+                {
+                    $newdeli = 1;
+                }
+            }
             $sumup += $tmp->price * $cinfos->amount;
             if (!empty($tmp->price_promo)) {
                 $promotion += ($tmp->price - $tmp->price_promo) * $cinfos->amount;
             }
 
-            $request->delivery_cost += $tmp->users->first()->defaultdev;
+//            $request->delivery_cost += $tmp->users->first()->defaultdev;
+//            echo($request->delivery_cost);
         }
-        $final = $request->total;
+//        print_r($request->delivery_cost);
+//        dd($request->total);
+        $final = $request->total + $request->delivery_cost;
         $discount = 0;
         if ($newdeli == 1) {
             $discount += $request->delivery_cost;
@@ -209,12 +220,11 @@ class OrderController extends Controller
             $final = $request->total - $discount;
         }
 
-        if ($final <= 20)
-        {
-            $final += 21-$final;
-            $request->delivery_cost= 21-$final;
+        if ($final <= 20) {
+            $final += 21 - $final;
+            $request->delivery_cost = 21 - $final;
         }
-$request->name = $name;
+        $request->name = $name;
         //Creating Credit cards payment
         //$pay = Payment::create(['users_id' => Auth::user()->id, 'methods' => $request->methods, 'state' => 0, 'final' => $final]);
 
@@ -255,32 +265,33 @@ $request->name = $name;
         }
 
         if ($request->methods == "creditcard")
-            return view('Invoice.credit', ['name'=>$name,'orderid' => $order->id,'cardno' => $request->cards]);
+            return view('Invoice.credit', ['name' => $name, 'orderid' => $order->id, 'cardno' => $request->cards]);
         else
-            return view('Invoice.transfer',['name'=>$name,'orderid'=>$order->id]);
+            return view('Invoice.transfer', ['name' => $name, 'orderid' => $order->id]);
 
 
     }
+
     public function trypaid($id)
     {
         $request = Order::findorFail($id);
         $name = Auth::user()->name;
         if ($request->methods == "creditcard")
-            return view('Invoice.credit', ['name'=>$name,'orderid' => $request->id,'cardno' => $request->cards]);
+            return view('Invoice.credit', ['name' => $name, 'orderid' => $request->id, 'cardno' => $request->cards]);
         else
-            return view('Invoice.transfer', ['name'=>$name,'orderid' => $request->id,'cardno' => $request->cards]);
+            return view('Invoice.transfer', ['name' => $name, 'orderid' => $request->id, 'cardno' => $request->cards]);
     }
+
     public function cancelorder($id)
     {
 
         $request = Order::findorFail($id);
         $prodinor = $request->products;
-        foreach($prodinor as $prod)
-        {
+        foreach ($prodinor as $prod) {
             $request->products()->detach($prod);
         }
         $request->delete();
-        Session::flash('status',"Successfully Cancel Order");
+        Session::flash('status', "Successfully Cancel Order");
         return redirect()->intended(route('index'));
     }
 }

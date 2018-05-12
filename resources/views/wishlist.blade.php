@@ -47,7 +47,12 @@
                             </p></td>
                         <td class="cart_delete"style="padding-top: 79%;"><a class="cart_quantity_delete"
                                                    href="{{route('removetowish',['id'=>$prod->id])}}"><i
-                                        class="fa fa-times"></i></a></td>
+                                        class="fa fa-times"></i></a><a class="cart_quantity_add"
+                                                                       href="{{route('addtocart',['id'=>$prod->id])}}"><i
+                                        class="fa fa-shopping-cart"></i></a>
+
+                        </td>
+
                     </tr>
                 @endforeach
                 </tbody>

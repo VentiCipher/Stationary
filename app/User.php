@@ -17,6 +17,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name','surname','address','phonenumber','gender', 'email', 'password','birthdate','paymentcard','roles','year','month','day','password-confirm','profilepic','age','dealer_approve','shopname','defaultdev',
+        'freeshipwhenprice','couponwhenprice','codegiftwhenprice',
     ];
 
     /**
@@ -42,7 +43,7 @@ class User extends Authenticatable
     }
     public function subscribes()
     {
-        return $this->hasOne('App\Subscriber');
+        return $this->hasOne('App\Subscriber','email','email');
     }
     public function wishlists()
     {

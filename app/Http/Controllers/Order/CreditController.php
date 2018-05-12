@@ -24,7 +24,7 @@ use App\Payment;
 use App\Promotion;
 use OmiseAccount;
 use OmiseCharge;
-
+use Mail;
 define('OMISE_PUBLIC_KEY', 'pkey_test_5bv8bv1syowtocv6su4');
 define('OMISE_SECRET_KEY', 'skey_test_5bv8bv1thehbkd5y3pq');
 define('OMISE_API_VERSION', '2017-11-02');
@@ -145,6 +145,19 @@ class CreditController extends Controller
 
         foreach ($order->products as $prod) {
             $tmp = Product::find($prod->id);
+            $checkerprod = $tmp->users->first()->couponwhenprice;
+            if(!is_null($checkerprod) && !empty($checkerprod) && $amount >= $checkerprod)
+            {
+                $data = array('name' => Auth::user()->email);
+                $data['coupon'] = $tmp->users->first()->codegiftwhenprice;
+                $data['couponitem'] = Promotion::where('promocoder', '=',  $tmp->users->first()->codegiftwhenprice)->first();
+                Mail::send(['html' => 'emails.rewards'], $data, function ($message) use ($data){
+                    $message->to($data['name'], $data['name'])->subject
+                    ('Coupon Rewards!');
+                    $message->from('no-reply.trythis.stationary@gmail.com', 'Try This promotion No-reply');
+                });
+                Session::flash('coupon','Your Coupon Rewards: '.$tmp->users->first()->codegiftwhenprice.' can be used and we already send to your email now please check it out!');
+            }
             $tmp->in_stock -= $prod->pivot->amount;
             $tmp->save();
         }
@@ -158,10 +171,9 @@ class CreditController extends Controller
         $order = Order::findOrFail($request->orderid);
         $amount = $order->total;
         $methods = $order->methods;
-        $pay = Payment::create(['name' => $request->name, 'users_id' => Auth::user()->id, 'orders_id' => $order->id, 'methods' => $methods, 'state' => 1, 'final' => $amount]);
+
         $token = $request->omise_token;
-        $order->payments_id = $pay->id;
-        $order->save();
+
 
 //        dd($request);
         $charge = OmiseCharge::create(array(
@@ -172,6 +184,9 @@ class CreditController extends Controller
         ));
 
         if ($charge['status'] == "successful") {
+            $pay = Payment::create(['name' => $request->name, 'users_id' => Auth::user()->id, 'orders_id' => $order->id, 'methods' => $methods, 'state' => 1, 'final' => $amount]);
+            $order->payments_id = $pay->id;
+            $order->save();
             if (!empty($order->coupon)) {
 
                 $coupon = Promotion::where('promocoder', '=', $order->coupon)->first();

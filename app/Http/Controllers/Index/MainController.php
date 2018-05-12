@@ -40,7 +40,7 @@ class MainController extends Controller
             $usr = Auth::user()->name;
             $cat = Categories::all();
             $prod = Product::all();
-            return view('index', ['data'=>$data,'categories' => $cat, 'products' => $prod, 'username' => $usr]);
+            return view('index', ['data' => $data, 'categories' => $cat, 'products' => $prod, 'username' => $usr]);
         } else {
             $cat = Categories::all();
             $prod = Product::all();
@@ -54,6 +54,21 @@ class MainController extends Controller
     {
         return view('subscribe');
     }
+
+    public function regissub()
+    {
+        if (!empty(Auth::user()->subscribes)) {
+            Auth::user()->subscribes()->delete();
+            Session::flash('error', 'We so sad that you just Unsubscribed ! T_T');
+            return redirect()->back();
+        } else {
+            Auth::user()->subscribes()->create();
+            Session::flash('status', 'Thank you for Subscribed !');
+            return redirect()->back();
+        }
+    }
+
+
 
     public function upsub(Request $request)
     {

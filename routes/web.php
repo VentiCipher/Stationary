@@ -40,6 +40,7 @@ Route::prefix('users')->group(function () {
 
     Route::get('/applydealer','Account\UserAccountController@apply')->name('dealerapply');
     Route::get('/ssubscribe', 'Index\MainController@showsub')->name('showsub');//->middleware('seller')
+    Route::get('/subscribe','Index\MainController@regissub')->name('subscriberegis');
     Route::post('/sub', 'Index\MainController@upsub')->name('upsub');//->middleware('seller')
     Route::get('/account/edit/{id}', 'Account\UserAccountController@showedit')->name('user.acc.edit');
 

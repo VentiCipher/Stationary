@@ -562,9 +562,19 @@
                         {{ session('status') }}
                     </div>
                 @endif
+                    @if (session('coupon'))
+                        <div class="alert alert-primary">
+                            {{ session('coupon') }}
+                        </div>
+                    @endif
                 @if (session('error'))
                     <div class="alert alert-danger">
                         {{ session('error') }}
+                    </div>
+                @endif
+                @if (session('warning'))
+                    <div class="alert alert-warning">
+                        {{ session('warning') }}
                     </div>
                 @endif
                 @if (Auth::check() && Auth::user()->dealer_approve==1 && Auth::user()->roles =="user")
@@ -575,9 +585,10 @@
                 @endif
                 @if(Auth::check() && Auth::user()->roles == "admin")
                     @if($data =="1")
-                            <div class="alert alert-warning">
-                                Pending Dealer Approval Awaiting Please <a href ="{{route('acc.show.approve')}}" >Check out</a><br>
-                            </div>
+                        <div class="alert alert-warning">
+                            Pending Dealer Approval Awaiting Please <a href="{{route('acc.show.approve')}}">Check
+                                out</a><br>
+                        </div>
                     @endif @endif
             </div>
         </section>
@@ -670,6 +681,23 @@
                                     </ul>
                                 </div>
                             </div>
+                            <br>
+                            @if(Auth::Check())
+                                <div class="brands_products">
+                                    <h2><strike>สับตะไคร้</strike>&nbsp;Subscribe</h2>
+                                    <div class="brands-name" style="text-align: center;">
+
+                                        @if(is_null(Auth::user()->subscribes))
+                                            <a href="{{route("subscriberegis")}}" class="btn btn-primary">Subscribe
+                                                me!</a>
+                                        @else
+                                            <a href="{{route("subscriberegis")}}" class="btn btn-primary"
+                                               onclick="return confirm('Are you sure to unsubscribe? you will miss our news')">Unsubscribe...</a>
+                                        @endif
+
+                                    </div>
+                                </div>
+                            @endif
                             @guest
                                 <div class="brands_products" style="padding-top:20%;">
                                     <a href="{{route('showsub')}}"><h2>Subscribe Now</h2></a>
@@ -725,52 +753,52 @@
     <div class="container">
         <div class="row">
             {{--<div class="col-sm-2">--}}
-                {{--<div class="single-widget">--}}
-                    {{--<h2>Service</h2>--}}
+            {{--<div class="single-widget">--}}
+            {{--<h2>Service</h2>--}}
 
-                    {{--<ul class="">--}}
-                        {{--<li><a href="#">Online Help</a></li>--}}
-                        {{--<li><a href="#">Contact Us</a></li>--}}
-                        {{--<li><a href="#">Order Status</a></li>--}}
-                        {{--<li><a href="#">FAQ’s</a></li>--}}
-                    {{--</ul>--}}
-                {{--</div>--}}
+            {{--<ul class="">--}}
+            {{--<li><a href="#">Online Help</a></li>--}}
+            {{--<li><a href="#">Contact Us</a></li>--}}
+            {{--<li><a href="#">Order Status</a></li>--}}
+            {{--<li><a href="#">FAQ’s</a></li>--}}
+            {{--</ul>--}}
+            {{--</div>--}}
             {{--</div>--}}
             {{--<div class="col-sm-2">--}}
-                {{--<div class="single-widget">--}}
-                    {{--<h2>Quock Shop</h2>--}}
-                    {{--<ul class="">--}}
-                        {{--<li><a href="#">T-Shirt</a></li>--}}
-                        {{--<li><a href="#">Mens</a></li>--}}
-                        {{--<li><a href="#">Womens</a></li>--}}
-                        {{--<li><a href="#">Gift Cards</a></li>--}}
-                        {{--<li><a href="#">Shoes</a></li>--}}
-                    {{--</ul>--}}
-                {{--</div>--}}
+            {{--<div class="single-widget">--}}
+            {{--<h2>Quock Shop</h2>--}}
+            {{--<ul class="">--}}
+            {{--<li><a href="#">T-Shirt</a></li>--}}
+            {{--<li><a href="#">Mens</a></li>--}}
+            {{--<li><a href="#">Womens</a></li>--}}
+            {{--<li><a href="#">Gift Cards</a></li>--}}
+            {{--<li><a href="#">Shoes</a></li>--}}
+            {{--</ul>--}}
+            {{--</div>--}}
             {{--</div>--}}
             {{--<div class="col-sm-2">--}}
-                {{--<div class="single-widget">--}}
-                    {{--<h2>Policies</h2>--}}
-                    {{--<ul class="">--}}
-                        {{--<li><a href="#">Terms of Use</a></li>--}}
-                        {{--<li><a href="#">Privecy Policy</a></li>--}}
-                        {{--<li><a href="#">Refund Policy</a></li>--}}
-                        {{--<li><a href="#">Billing System</a></li>--}}
-                        {{--<li><a href="#">Ticket System</a></li>--}}
-                    {{--</ul>--}}
-                {{--</div>--}}
+            {{--<div class="single-widget">--}}
+            {{--<h2>Policies</h2>--}}
+            {{--<ul class="">--}}
+            {{--<li><a href="#">Terms of Use</a></li>--}}
+            {{--<li><a href="#">Privecy Policy</a></li>--}}
+            {{--<li><a href="#">Refund Policy</a></li>--}}
+            {{--<li><a href="#">Billing System</a></li>--}}
+            {{--<li><a href="#">Ticket System</a></li>--}}
+            {{--</ul>--}}
+            {{--</div>--}}
             {{--</div>--}}
             {{--<div class="col-sm-2">--}}
-                {{--<div class="single-widget">--}}
-                    {{--<h2>About Shopper</h2>--}}
-                    {{--<ul class="">--}}
-                        {{--<li><a href="#">Company Information</a></li>--}}
-                        {{--<li><a href="#">Careers</a></li>--}}
-                        {{--<li><a href="#">Store Location</a></li>--}}
-                        {{--<li><a href="#">Affillate Program</a></li>--}}
-                        {{--<li><a href="#">Copyright</a></li>--}}
-                    {{--</ul>--}}
-                {{--</div>--}}
+            {{--<div class="single-widget">--}}
+            {{--<h2>About Shopper</h2>--}}
+            {{--<ul class="">--}}
+            {{--<li><a href="#">Company Information</a></li>--}}
+            {{--<li><a href="#">Careers</a></li>--}}
+            {{--<li><a href="#">Store Location</a></li>--}}
+            {{--<li><a href="#">Affillate Program</a></li>--}}
+            {{--<li><a href="#">Copyright</a></li>--}}
+            {{--</ul>--}}
+            {{--</div>--}}
             {{--</div>--}}
             <div class="col-md-12">
                 <div class="single-widget" style="text-align: center;">

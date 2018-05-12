@@ -18,7 +18,7 @@ class Subscriber extends Model
 
     public function users()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\User','email','email');
     }
 
     

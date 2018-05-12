@@ -132,6 +132,37 @@
                                                value="{{$nameuser->defaultdev}}">
                                     </div>
                                 </div>
+                                <div class="box-header with-border"><h3 class="box-title">Dealer Settings (Blank for default)</h3></div>
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-6 control-label">Freeship when bought
+                                        upto</label>
+
+                                    <div class="col-sm-10">
+                                        <input type="number" name="freeshipwhenprice" class="form-control"
+                                               id="freeshipwhenprice"
+                                               value="{{$nameuser->freeshipwhenprice}}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-6 control-label">Set Price that giveaway
+                                        Coupon Special When Customer Price reach</label>
+
+                                    <div class="col-sm-10">
+                                        <input type="number" name="couponwhenprice" class="form-control"
+                                               id="couponwhenprice"
+                                               value="{{$nameuser->couponwhenprice}}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-6 control-label">Coupon Code When user bought
+                                        reach </label>
+
+                                    <div class="col-sm-10">
+                                        <input type="text" name="codegiftwhenprice" class="form-control"
+                                               id="codegiftwhenprice"
+                                               value="{{$nameuser->codegiftwhenprice}}">
+                                    </div>
+                                </div>
 
                             </div>
                             <!-- /.box-body -->
