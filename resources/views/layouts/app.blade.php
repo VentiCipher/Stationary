@@ -562,11 +562,11 @@
                         {{ session('status') }}
                     </div>
                 @endif
-                    @if (session('coupon'))
-                        <div class="alert alert-primary">
-                            {{ session('coupon') }}
-                        </div>
-                    @endif
+                @if (session('coupon'))
+                    <div class="alert alert-primary">
+                        {{ session('coupon') }}
+                    </div>
+                @endif
                 @if (session('error'))
                     <div class="alert alert-danger">
                         {{ session('error') }}
@@ -672,11 +672,14 @@
                                 <h2>Brands</h2>
                                 <div class="brands-name">
                                     <ul class="nav nav-pills nav-stacked">
+
                                         @foreach($data['user'] as $usr)
-                                            <li><a href="{{route('user.show.deal',['id'=>$usr->id])}}"><span
-                                                            class="pull-right">({{$usr->products->count()}}
-                                                        )</span>{{$usr->shopname}}</a>
-                                            </li>
+                                            @if($usr->products->count() >0)
+                                                <li><a href="{{route('user.show.deal',['id'=>$usr->id])}}"><span
+                                                                class="pull-right">({{$usr->products->count()}}
+                                                            )</span>{{$usr->shopname}}</a>
+                                                </li>
+                                            @endif
                                         @endforeach
                                     </ul>
                                 </div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 11, 2018 at 07:36 AM
+-- Generation Time: May 12, 2018 at 09:29 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -134,11 +134,11 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (7, '2018_04_10_092438_create_images_table', 1),
 (8, '2018_04_10_144036_create_wishlist_table', 1),
 (9, '2018_04_11_084231_create_productinfo_table', 1),
-(10, '2018_04_06_071651_create_subscribers', 2),
 (22, '2018_05_04_061939_create_order_pack', 3),
 (63, '2018_05_06_120124_create_payments', 4),
 (64, '2018_05_08_060355_create_promotion_table', 4),
-(65, '2018_05_08_120214_create_order_table', 4);
+(65, '2018_05_08_120214_create_order_table', 4),
+(66, '2018_04_06_071651_create_subscribers', 5);
 
 -- --------------------------------------------------------
 
@@ -162,23 +162,6 @@ CREATE TABLE `orders` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `orders`
---
-
-INSERT INTO `orders` (`id`, `users_id`, `ordercode`, `address`, `invoice`, `payments_id`, `methods`, `delivery_cost`, `cards`, `coupon`, `total`, `created_at`, `updated_at`) VALUES
-(1, 5, '510520183349', '125434354435/4545454bbbb  nnnnn aaaa 12000', 'personal', 1, 'creditcard', 0, '4242424242424242', NULL, 280, '2018-05-10 06:33:49', '2018-05-10 06:38:50'),
-(2, 5, '510520184154', '125434354435/4545454bbbb  nnnnn aaaa 12000', 'personal', 2, 'creditcard', 0, '4242424242424242', NULL, 21, '2018-05-10 06:41:54', '2018-05-10 06:42:15'),
-(3, 5, '510520184548', '12354/8864 hjgh dgdyhjk  kjil', 'personal', 5, 'transfer', 0, NULL, NULL, 129, '2018-05-10 06:45:48', '2018-05-10 06:47:52'),
-(4, 8, '810520185046', 'qwewqewq', 'personal', 7, 'transfer', 0, NULL, NULL, 26, '2018-05-10 06:50:46', '2018-05-10 06:52:10'),
-(5, 1, '110520185122', '13', 'personal', 6, 'transfer', 0, NULL, NULL, 280, '2018-05-10 06:51:22', '2018-05-10 06:51:28'),
-(6, 1, '110520185229', '13', 'personal', 8, 'transfer', 0, NULL, NULL, 21, '2018-05-10 06:52:29', '2018-05-10 06:52:33'),
-(7, 1, '110520185323', '42', 'personal', 10, 'transfer', 0, NULL, NULL, 40, '2018-05-10 06:53:23', '2018-05-10 06:56:29'),
-(8, 1, '11052018575', '9pi; bnjkionjk', 'personal', 11, 'transfer', 0, NULL, NULL, 79, '2018-05-10 06:57:05', '2018-05-10 06:57:10'),
-(9, 1, '1105201802', 'n', 'personal', 12, 'transfer', 0, NULL, NULL, 21, '2018-05-10 07:00:02', '2018-05-10 07:00:06'),
-(10, 7, '71052018230', '48 pathum', 'personal', NULL, 'creditcard', 0, '4242424242', 'TRYTHIS99', 280, '2018-05-10 07:02:30', '2018-05-10 07:02:30'),
-(11, 1, '1105201864', 'mm', 'personal', 13, 'transfer', 0, NULL, NULL, 40, '2018-05-10 07:06:04', '2018-05-10 07:06:24');
-
 -- --------------------------------------------------------
 
 --
@@ -193,23 +176,6 @@ CREATE TABLE `order_pack` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `order_pack`
---
-
-INSERT INTO `order_pack` (`id`, `orders_id`, `products_id`, `amount`, `created_at`, `updated_at`) VALUES
-(1, 1, 14, 1, '2018-05-10 06:33:49', '2018-05-10 06:33:49'),
-(2, 2, 2, 1, '2018-05-10 06:41:54', '2018-05-10 06:41:54'),
-(3, 3, 9, 1, '2018-05-10 06:45:48', '2018-05-10 06:45:48'),
-(4, 4, 2, 2, '2018-05-10 06:50:46', '2018-05-10 06:50:46'),
-(5, 5, 8, 1, '2018-05-10 06:51:22', '2018-05-10 06:51:22'),
-(6, 6, 2, 1, '2018-05-10 06:52:29', '2018-05-10 06:52:29'),
-(7, 7, 5, 1, '2018-05-10 06:53:23', '2018-05-10 06:53:23'),
-(8, 8, 6, 1, '2018-05-10 06:57:05', '2018-05-10 06:57:05'),
-(9, 9, 2, 1, '2018-05-10 07:00:02', '2018-05-10 07:00:02'),
-(10, 10, 8, 1, '2018-05-10 07:02:31', '2018-05-10 07:02:31'),
-(11, 11, 5, 1, '2018-05-10 07:06:04', '2018-05-10 07:06:04');
 
 -- --------------------------------------------------------
 
@@ -242,25 +208,6 @@ CREATE TABLE `payments` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `payments`
---
-
-INSERT INTO `payments` (`id`, `users_id`, `orders_id`, `methods`, `final`, `state`, `filepath`, `name`, `created_at`, `updated_at`) VALUES
-(1, 5, 1, 'creditcard', 280, 3, NULL, 'Baifeern', '2018-05-10 06:38:50', '2018-05-10 10:07:18'),
-(2, 5, 2, 'creditcard', 21, 2, NULL, 'Baifeern', '2018-05-10 06:42:15', '2018-05-10 10:07:20'),
-(3, 5, 3, 'transfer', 129, 1, NULL, 'Baifeern', '2018-05-10 06:46:04', '2018-05-10 06:46:04'),
-(4, 5, 3, 'transfer', 129, 1, NULL, 'Baifeern', '2018-05-10 06:46:39', '2018-05-10 06:46:39'),
-(5, 5, 3, 'transfer', 129, 1, NULL, 'Baifeern', '2018-05-10 06:47:52', '2018-05-10 06:47:52'),
-(6, 1, 5, 'transfer', 280, 3, NULL, 'Promsurin', '2018-05-10 06:51:28', '2018-05-10 10:08:06'),
-(7, 8, 4, 'transfer', 26, 4, NULL, 'SCB', '2018-05-10 06:52:10', '2018-05-10 10:07:31'),
-(8, 1, 6, 'transfer', 21, 2, NULL, 'Promsurin', '2018-05-10 06:52:33', '2018-05-10 10:08:09'),
-(9, 1, 7, 'transfer', 40, 1, NULL, 'Promsurin', '2018-05-10 06:55:22', '2018-05-10 06:55:22'),
-(10, 1, 7, 'transfer', 40, 1, 'users/promsurinm@hotmail.com/7d093807a0a1c7d4945fe41b05030791.jpg', 'Promsurin', '2018-05-10 06:56:29', '2018-05-10 06:56:29'),
-(11, 1, 8, 'transfer', 79, 4, 'users/promsurinm@hotmail.com/7d093807a0a1c7d4945fe41b05030791.jpg', 'Promsurin', '2018-05-10 06:57:10', '2018-05-10 10:15:11'),
-(12, 1, 9, 'transfer', 21, 1, 'users/promsurinm@hotmail.com/7d093807a0a1c7d4945fe41b05030791.jpg', 'Promsurin', '2018-05-10 07:00:06', '2018-05-10 07:00:06'),
-(13, 1, 11, 'transfer', 40, 1, 'users/promsurinm@hotmail.com/7d093807a0a1c7d4945fe41b05030791.jpg', 'Promsurin', '2018-05-10 07:06:24', '2018-05-10 07:06:24');
-
 -- --------------------------------------------------------
 
 --
@@ -287,12 +234,12 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `in_stock`, `description`, `price`, `price_promo`, `color`, `createby`, `promotion_id`, `thumbsnail`, `created_at`, `updated_at`) VALUES
-(2, 'ยางลบ Sumikko Gurashi', 90, NULL, 15, 13, 'ตามแบบ', 'promsurinm@hotmail.com', NULL, 'dealers/promsurinm@hotmail.com/1 (3).jpg', '2018-04-19 14:56:32', '2018-05-10 07:00:06'),
-(3, 'สมุด Sumikko Gurashi', 8, 'สมุดแท้จากญี่ปุ่น', 80, 69, 'ตามแบบ', 'promsurinm@hotmail.com', NULL, 'dealers/promsurinm@hotmail.com/1 (4).jpg', '2018-04-19 14:57:18', '2018-05-09 23:36:57'),
-(5, 'ปากกา Rilakkuma', 7, 'ปากกาแท้จาก Sanrio X', 40, NULL, 'ตามแบบ', 'promsurinm@hotmail.com', NULL, 'dealers/promsurinm@hotmail.com/1 (1).jpg', '2018-04-19 15:01:35', '2018-05-10 07:06:25'),
-(6, 'สมุด Rilakkuma', 0, 'สมุดแท้จากญี่ปุ่น', 80, 79, NULL, 'promsurinm@hotmail.com', NULL, 'dealers/promsurinm@hotmail.com/1 (5).jpg', '2018-04-19 15:02:29', '2018-05-10 06:57:10'),
-(8, 'เครื่องคิดเลข Rilakkuma', 4, NULL, 280, NULL, NULL, 'promsurinm@hotmail.com', NULL, 'dealers/promsurinm@hotmail.com/1 (7).jpg', '2018-04-19 15:03:45', '2018-05-10 06:51:28'),
-(9, 'เซ็ตปากกา Rilakkuma', 5, NULL, 129, NULL, NULL, 'promsurinm@hotmail.com', NULL, 'dealers/promsurinm@hotmail.com/1 (19).jpg', '2018-04-19 15:04:31', '2018-05-10 06:47:52'),
+(2, 'ยางลบ Sumikko Gurashi', 85, NULL, 15, 13, 'ตามแบบ', 'promsurinm@hotmail.com', NULL, 'dealers/promsurinm@hotmail.com/1 (3).jpg', '2018-04-19 14:56:32', '2018-05-12 09:12:58'),
+(3, 'สมุด Sumikko Gurashi', 2, 'สมุดแท้จากญี่ปุ่น', 80, 69, 'ตามแบบ', 'promsurinm@hotmail.com', NULL, 'dealers/promsurinm@hotmail.com/1 (4).jpg', '2018-04-19 14:57:18', '2018-05-12 09:18:13'),
+(5, 'ปากกา Rilakkuma', 5, 'ปากกาแท้จาก Sanrio X', 40, NULL, 'ตามแบบ', 'promsurinm@hotmail.com', NULL, 'dealers/promsurinm@hotmail.com/1 (1).jpg', '2018-04-19 15:01:35', '2018-05-12 09:06:00'),
+(6, 'สมุด Rilakkuma', 22, 'สมุดแท้จากญี่ปุ่น', 80, 79, NULL, 'promsurinm@hotmail.com', NULL, 'dealers/promsurinm@hotmail.com/1 (5).jpg', '2018-04-19 15:02:29', '2018-05-10 06:57:10'),
+(8, 'เครื่องคิดเลข Rilakkuma', 10, NULL, 280, NULL, NULL, 'promsurinm@hotmail.com', NULL, 'dealers/promsurinm@hotmail.com/1 (7).jpg', '2018-04-19 15:03:45', '2018-05-12 12:12:27'),
+(9, 'เซ็ตปากกา Rilakkuma', 3, NULL, 129, NULL, NULL, 'promsurinm@hotmail.com', NULL, 'dealers/promsurinm@hotmail.com/1 (19).jpg', '2018-04-19 15:04:31', '2018-05-12 07:35:47'),
 (11, 'กระเป๋า Rilakkuma', 0, NULL, 129, NULL, NULL, 'promsurinm@hotmail.com', NULL, 'dealers/promsurinm@hotmail.com/1 (21).jpg', '2018-04-20 03:24:33', '2018-05-09 23:13:51'),
 (14, 'เครื่องคิดเลข Rilakkuma', 4, 'เครื่องคิดเลขสุดน่ารัก', 280, NULL, 'น้ำตาล', 'rilakkumamee.toon@hotmail.com', NULL, 'dealers/rilakkumamee.toon@hotmail.com/4bcd715a-da6f-d1ee-701d-5a07f381ab6c.jpg', '2018-04-21 07:41:41', '2018-05-10 06:38:52');
 
@@ -349,7 +296,9 @@ CREATE TABLE `promotions` (
 INSERT INTO `promotions` (`id`, `promocoder`, `salemore`, `freeship`, `info`, `limit`, `createby`, `created_at`, `updated_at`) VALUES
 (1, 'PROMO123', 50, 555, 'EtstPormotion', 5, 'Promsurin', '2018-05-10 10:53:46', '2018-05-10 10:53:46'),
 (2, 'DISCOUTN50', 50, 50, 'PromoDiscout50WithFreewShipping 1 Time Use', 1, 'Promsurin', '2018-05-10 10:54:21', '2018-05-10 10:54:21'),
-(3, 'TRYTHISGRAZT', 50, 50, 'Try This Stationary Rewards by Free Shipping and Discount First 50 person !', 500, 'Promsurin', '2018-05-10 10:58:04', '2018-05-10 10:58:04');
+(3, 'TRYTHISGRAZT', 50, 50, 'Try This Stationary Rewards by Free Shipping and Discount First 50 person !', 500, 'Promsurin', '2018-05-10 10:58:04', '2018-05-10 10:58:04'),
+(4, 'BNK48PROMO', 500, NULL, 'BNK48 ~ Nothing just give a free discount for 500BAHT', 9999, 'Promsurin', '2018-05-12 11:32:40', '2018-05-12 11:33:02'),
+(5, 'NEWUSRTT', 50, NULL, 'New user discount 50.- no limit', 999, 'Promsurin', '2018-05-12 12:21:06', '2018-05-12 12:21:06');
 
 -- --------------------------------------------------------
 
@@ -404,11 +353,7 @@ CREATE TABLE `subscribers` (
 --
 
 INSERT INTO `subscribers` (`id`, `email`, `lineid`, `created_at`, `updated_at`) VALUES
-(1, 'promsurinm@hotmail.com', 'promsurin', '2018-04-19 15:45:10', '2018-04-19 15:45:10'),
-(3, 'ininaw@gmail.com', NULL, '2018-04-19 22:06:08', '2018-04-19 22:06:08'),
-(4, 'baifernishungry@gmail.com', NULL, '2018-04-19 22:10:02', '2018-04-19 22:10:02'),
-(5, 'rilakkumamee.toon@hotmail.com', NULL, '2018-04-21 07:47:43', '2018-04-21 07:47:43'),
-(6, 'y@hot.com', 'Test', '2018-04-21 07:48:02', '2018-04-21 07:48:02');
+(11, 'promsurinm@hotmail.com', NULL, '2018-05-12 11:12:28', '2018-05-12 11:12:28');
 
 -- --------------------------------------------------------
 
@@ -433,6 +378,9 @@ CREATE TABLE `users` (
   `dealer_approve` tinyint(1) NOT NULL DEFAULT '0',
   `shopname` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `defaultdev` double DEFAULT NULL,
+  `freeshipwhenprice` double DEFAULT NULL,
+  `couponwhenprice` double DEFAULT NULL,
+  `codegiftwhenprice` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -442,14 +390,15 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `surname`, `address`, `phonenumber`, `gender`, `age`, `email`, `birthdate`, `paymentcard`, `roles`, `password`, `profilepic`, `dealer_approve`, `shopname`, `defaultdev`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Promsurin', 'Phutthammawong', NULL, NULL, 'male', 20, 'promsurinm@hotmail.com', '1997-09-03', NULL, 'admin', '$2y$10$gx1e8Kbvrh6635ZMZG0tSeiqvbXumPpiZ.IHvAX1TS2YLmoY13TTq', NULL, 0, 'SUMIKKOBKK', 99, '8vRoM4ubqKgznW838GshVO03v2uumThN29XNRurvnZ78vqXwDefV58ZrjYON', '2018-04-19 14:50:58', '2018-05-10 09:08:53'),
-(3, 'toonjaru', 'Cartoon', 'City Park', '0971342012', 'female', 21, 'rilakkumamee.toon@hotmail.com', '2539-11-08', NULL, 'admin', '$2y$10$mkhOBSB/kEcPapshH8mElO6RgNh6RytYV4cYkQvjCYdynWTlK/1bm', NULL, 0, 'toonjaru', NULL, NULL, '2018-04-21 07:15:38', '2018-04-21 07:15:53'),
-(4, 'Suthida', 'P.', 'dsasas', '0888888888', 'female', 20, 'zacatza@hotmail.com', '2540-10-31', NULL, 'seller', '$2y$10$AhC3P0oORoxHZjP3GJxOI.4N2E6jHVj.5ejkYlMuBxkyyEpJ2e/MK', NULL, 0, 'Suthida', NULL, NULL, '2018-04-21 07:16:08', '2018-04-21 07:17:54'),
-(5, 'Baifeern', 'Tcssakul', '127/14', '0123456789', 'female', 21, 'baifernishungry@gmail.com', '1996-12-31', '555', 'user', '$2y$10$gx1e8Kbvrh6635ZMZG0tSeiqvbXumPpiZ.IHvAX1TS2YLmoY13TTq', NULL, 0, NULL, NULL, '7jp43LiCmnCm20Y6wrg8Uy8pigHO3AIXNVBuz5ewouZcr9WiivwAnLejSLpb', '2018-04-21 07:18:08', '2018-04-21 07:38:58'),
-(6, 'Tester', 'Tseter2', NULL, NULL, 'male', 20, 'ininaw@gmail.com', '1997-09-03', NULL, 'user', '$2y$10$Elq/JB2BuJ6CCuOkJCr1rODaxv4EFdMtMugpylTrCOZE8pJa97Y0G', NULL, 1, NULL, NULL, 'VNaKFd6VgJsC1UqzLVXKjqYiGsOGwC4mU5sOUyrmZ9klZ2pMpqhZaQyhId3D', '2018-05-07 22:17:29', '2018-05-10 03:08:20'),
-(7, 'nineties', 'c.', NULL, NULL, 'male', 20, 'ninekawit@gmail.com', '1997-03-07', NULL, 'seller', '$2y$10$rU1mxAdvfcJc.8uiqb381umH7fx1LdUUlsQk/WQESyvgcJN2kOgD6', NULL, 0, 'nineties', NULL, NULL, '2018-05-10 06:24:59', '2018-05-10 06:30:07'),
-(8, 'tttest', 'tt', '21321', '12321314345', 'female', 19, 'ppppp1710@hotmail.com', '2018-05-17', NULL, 'user', '$2y$10$qFfPzpN9E1BRPhTZXjtyjeOWPwhQNHssz1Rh3F0glIQVMyCF2nt2y', NULL, 0, NULL, NULL, NULL, '2018-05-10 06:31:23', '2018-05-10 06:31:23');
+INSERT INTO `users` (`id`, `name`, `surname`, `address`, `phonenumber`, `gender`, `age`, `email`, `birthdate`, `paymentcard`, `roles`, `password`, `profilepic`, `dealer_approve`, `shopname`, `defaultdev`, `freeshipwhenprice`, `couponwhenprice`, `codegiftwhenprice`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Promsurin', 'Phutthammawong', NULL, NULL, 'male', 20, 'promsurinm@hotmail.com', '1997-09-03', NULL, 'admin', '$2y$10$gx1e8Kbvrh6635ZMZG0tSeiqvbXumPpiZ.IHvAX1TS2YLmoY13TTq', NULL, 0, 'SUMIKKOBKK', 50, 600, 50, 'BNK48PROMO', 'roMFj7pT1g86mmzuEOyXDXLDNfvy8TLOkAPAQ9Hzi4aA3iQvxEhBSoqltIVv', '2018-04-19 14:50:58', '2018-05-12 12:10:05'),
+(3, 'toonjaru', 'Cartoon', 'City Park', '0971342012', 'female', 21, 'rilakkumamee.toon@hotmail.com', '2539-11-08', NULL, 'admin', '$2y$10$mkhOBSB/kEcPapshH8mElO6RgNh6RytYV4cYkQvjCYdynWTlK/1bm', NULL, 0, 'toonjaru', NULL, NULL, NULL, NULL, NULL, '2018-04-21 07:15:38', '2018-04-21 07:15:53'),
+(4, 'Suthida', 'P.', 'dsasas', '0888888888', 'female', 20, 'zacatza@hotmail.com', '2540-10-31', NULL, 'seller', '$2y$10$AhC3P0oORoxHZjP3GJxOI.4N2E6jHVj.5ejkYlMuBxkyyEpJ2e/MK', NULL, 0, 'Suthida', NULL, NULL, NULL, NULL, NULL, '2018-04-21 07:16:08', '2018-04-21 07:17:54'),
+(5, 'Baifeern', 'Tcssakul', '127/14', '0123456789', 'female', 21, 'baifernishungry@gmail.com', '1996-12-31', '555', 'user', '$2y$10$gx1e8Kbvrh6635ZMZG0tSeiqvbXumPpiZ.IHvAX1TS2YLmoY13TTq', NULL, 0, NULL, NULL, NULL, NULL, NULL, '7jp43LiCmnCm20Y6wrg8Uy8pigHO3AIXNVBuz5ewouZcr9WiivwAnLejSLpb', '2018-04-21 07:18:08', '2018-04-21 07:38:58'),
+(6, 'Tester', 'Tseter2', NULL, NULL, 'male', 20, 'ininaw@gmail.com', '1997-09-03', NULL, 'user', '$2y$10$Elq/JB2BuJ6CCuOkJCr1rODaxv4EFdMtMugpylTrCOZE8pJa97Y0G', NULL, 1, NULL, NULL, NULL, NULL, NULL, 'aOEYtDpWr5OuIlIdoko9HgCrBs5saS3j3XZmWOt9d0V5rjFly5WPUvgcIcAI', '2018-05-07 22:17:29', '2018-05-10 03:08:20'),
+(7, 'nineties', 'c.', NULL, NULL, 'male', 20, 'ninekawit@gmail.com', '1997-03-07', NULL, 'seller', '$2y$10$rU1mxAdvfcJc.8uiqb381umH7fx1LdUUlsQk/WQESyvgcJN2kOgD6', NULL, 0, 'nineties', NULL, NULL, NULL, NULL, NULL, '2018-05-10 06:24:59', '2018-05-10 06:30:07'),
+(8, 'tttest', 'tt', '21321', '12321314345', 'female', 19, 'ppppp1710@hotmail.com', '2018-05-17', NULL, 'user', '$2y$10$qFfPzpN9E1BRPhTZXjtyjeOWPwhQNHssz1Rh3F0glIQVMyCF2nt2y', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, '2018-05-10 06:31:23', '2018-05-10 06:31:23'),
+(9, 'PP', 'PP', NULL, NULL, 'male', 1, 'p@s.com', '2018-05-01', NULL, 'user', '$2y$10$D3IZYuLOvBGPqRC/f6OiMelJsPIigEb5EU4Zt71m6JaQzKNpa6TES', NULL, 0, NULL, NULL, NULL, NULL, NULL, 'HPdaTQekc0O8LPBloEcqmHKCK3Tx6oqfGAxWTcb08Kzx2rJlHUHTbF7zxh11', '2018-05-12 07:33:34', '2018-05-12 07:33:34');
 
 -- --------------------------------------------------------
 
@@ -471,17 +420,11 @@ CREATE TABLE `wishlists` (
 
 INSERT INTO `wishlists` (`id`, `users_id`, `products_id`, `created_at`, `updated_at`) VALUES
 (6, 3, 2, '2018-04-21 07:45:25', '2018-04-21 07:45:25'),
-(7, 1, 2, '2018-05-07 22:15:54', '2018-05-07 22:15:54'),
 (8, 6, 2, '2018-05-07 22:17:37', '2018-05-07 22:17:37'),
 (9, 6, 3, '2018-05-07 22:17:43', '2018-05-07 22:17:43'),
 (10, 6, 5, '2018-05-07 22:17:45', '2018-05-07 22:17:45'),
 (11, 6, 6, '2018-05-07 22:17:48', '2018-05-07 22:17:48'),
 (12, 6, 8, '2018-05-07 22:17:50', '2018-05-07 22:17:50'),
-(13, 1, 3, '2018-05-07 22:18:24', '2018-05-07 22:18:24'),
-(14, 1, 5, '2018-05-07 22:18:27', '2018-05-07 22:18:27'),
-(15, 1, 6, '2018-05-07 22:18:30', '2018-05-07 22:18:30'),
-(16, 1, 8, '2018-05-07 22:18:33', '2018-05-07 22:18:33'),
-(17, 1, 9, '2018-05-07 22:18:36', '2018-05-07 22:18:36'),
 (18, 8, 2, '2018-05-10 06:31:39', '2018-05-10 06:31:39');
 
 --
@@ -575,7 +518,8 @@ ALTER TABLE `p_images`
 --
 ALTER TABLE `subscribers`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `subscribers_id_unique` (`id`);
+  ADD UNIQUE KEY `subscribers_id_unique` (`id`),
+  ADD UNIQUE KEY `subscribers_email_unique` (`email`);
 
 --
 -- Indexes for table `users`
@@ -602,7 +546,7 @@ ALTER TABLE `wishlists`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -620,25 +564,25 @@ ALTER TABLE `matcher`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `order_pack`
 --
 ALTER TABLE `order_pack`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -656,7 +600,7 @@ ALTER TABLE `product_info`
 -- AUTO_INCREMENT for table `promotions`
 --
 ALTER TABLE `promotions`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `p_images`
@@ -668,13 +612,13 @@ ALTER TABLE `p_images`
 -- AUTO_INCREMENT for table `subscribers`
 --
 ALTER TABLE `subscribers`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `wishlists`
