@@ -46,7 +46,7 @@ class UserAccountController extends Controller
         $user->dealer_approve = 1;
         $user->save();
         Session::flash('status','Apply Successfully');
-        return redirect()->back();
+        return redirect()->intended(route('/'));
     }
 
     public function showedit($id)
